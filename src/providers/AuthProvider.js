@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { login, fetxhLogout, verify, fetchLogout } from '../services/auth';
+import { verify, fetchLogout } from '../services/auth';
 
 const AuthContext = React.createContext();
 
