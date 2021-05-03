@@ -8,6 +8,7 @@ import AuthProvider from '../../providers/AuthProvider'
 import AppProvider from '../../providers/AppProvider'
 import HomePage from '../../containers/HomePage';
 import LoginDevelopment from './LoginDevelopment'
+import PostDetail from '../postDetail/PostDetail';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/login" component={LoginDevelopment} />
+              <Route exact path="/post-detail/:id" component={PostDetail} />
             </Switch>
           </AppProvider>
         </AuthProvider>

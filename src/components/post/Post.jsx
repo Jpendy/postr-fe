@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Post({
     id,
@@ -15,8 +16,10 @@ export default function Post({
 
     return (
         <>
-            <h2>{title}</h2>
-            {imageUrl && <img src={imageUrl} />}
+            <Link to={`/post-detail/${id}`} >
+                <h2>{title}</h2>
+                {imageUrl && <img src={imageUrl} />}
+            </Link>
             {body && <p>{body}</p>}
             {voteScore && <p>Score: {voteScore}</p>}
             {dateCreated && <p>Created on: {dateCreated}</p>}

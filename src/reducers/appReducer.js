@@ -1,8 +1,9 @@
-import { SET_BOARDS, SET_POSTS } from "../actions/reducerActions";
+import { SET_BOARDS, SET_POSTS, SET_POST_DETAILS } from "../actions/reducerActions";
 
 export const initialState = {
     boards: [],
     posts: [],
+    postDetails: {}
 };
 
 export default function reducer(state, action) {
@@ -13,7 +14,9 @@ export default function reducer(state, action) {
         case SET_POSTS: {
             return { ...state, posts: action.payload };
         }
-
+        case SET_POST_DETAILS: {
+            return { ...state, postDetails: action.payload }
+        }
         default: return state;
     }
 }
