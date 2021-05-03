@@ -4,32 +4,23 @@ import CommentList from '../commentList/CommentList'
 
 export default function PostDetail({ match }) {
 
-    const { postDetails, loading } = usePostDetails(match.params.id)
-    console.log(postDetails)
-    const {
-        title,
-        imageUrl,
-        body,
-        voteScore,
-        dateCreated,
-        dateModifed,
-        comments,
-        userId,
-        boardId
-    } = postDetails;
+    const { postDetails: pd, loading } = usePostDetails(match.params.id)
+
+    console.log(pd)
+
 
     if (loading) return <h2>Loading...</h2>
     return (
         <>
-            <h2>{title}</h2>
-            {imageUrl && <img src={imageUrl} />}
-            {body && <p>{body}</p>}
-            <p>Score: {voteScore}</p>
-            <p>Created on: {dateCreated}</p>
-            {dateModifed && <p>Modified on: {dateModifed}</p>}
-            <p>Created by: {userId}</p>
-            <p>Board: {boardId}</p>
-            {comments && <CommentList comments={comments} />}
+            <h2>{pd.title}</h2>
+            {pd.imageUrl && <img src={pd.imageUrl} />}
+            {pd.body && <p>{pd.body}</p>}
+            <p>Score: {pd.voteScore}</p>
+            <p>Created on: {pd.dateCreated}</p>
+            {pd.dateModifed && <p>Modified on: {pd.dateModifed}</p>}
+            <p>Created by: {pd.userId}</p>
+            <p>Board: {pd.boardId}</p>
+            {pd.comments && <CommentList comments={pd.comments} />}
         </>
     )
 }

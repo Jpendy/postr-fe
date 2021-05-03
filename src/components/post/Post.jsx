@@ -10,7 +10,8 @@ export default function Post({
     dateCreated,
     dateModifed,
     userId,
-    boardId
+    boardId,
+    commentCount
 }) {
 
 
@@ -21,11 +22,12 @@ export default function Post({
                 {imageUrl && <img src={imageUrl} />}
             </Link>
             {body && <p>{body}</p>}
-            {voteScore && <p>Score: {voteScore}</p>}
-            {dateCreated && <p>Created on: {dateCreated}</p>}
+            <p>Score: {voteScore}</p>
+            <p>Created on: {dateCreated}</p>
             {dateModifed && <p>Modified on: {dateModifed}</p>}
-            {<p>Created by: {userId}</p>}
-            {<p>Board: {boardId}</p>}
+            <p>Created by: {userId}</p>
+            <p>Board: {boardId}</p>
+            <p>Comments: {commentCount}</p>
         </>
     )
 }

@@ -12,6 +12,7 @@ export default function Comment({
 
     console.log('score', voteScore)
 
+    const replyMessage = replies > 1 ? 'replies' : 'reply'
     return (
         <>
             <p>{body}</p>
@@ -20,7 +21,7 @@ export default function Comment({
             {dateModifed && <p>Modified on: {dateModifed}</p>}
             <p>Created by: {userId}</p>
             {replies && <details>
-                <summary>replies</summary>
+                <summary>{`${replies.length} ${replyMessage}`}</summary>
                 <CommentList comments={replies} />
             </details>}
         </>
