@@ -1,44 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import { useActiveUser, useLogin, useLogout } from '../../providers/AuthProvider'
+import { login } from '../../services/auth'
 
 export default function LoginDevelopment() {
 
-    const [user, setUser] = useState(null)
-    const [error, setError] = useState(null)
+    const activeUser = useActiveUser()
+    const logout = useLogout()
 
-
-    const login = () => {
-        window.location.assign('http://localhost:7890/api/v1/auth/google-login')
-    }
-
-    const logout = () => {
-        fetch('http://localhost:7890/api/v1/auth/logout', { credentials: 'include' })
-            .then(() => setUser(null))
-    }
-
-    useEffect(() => {
-        fetch('http://localhost:7890/api/v1/auth/verify', {
-            credentials: 'include'
-        })
-            .then(res => Promise.all([res.ok, res.json()]))
-            .then(([ok, json]) => {
-                if (!ok) throw json;
-                return json;
-            })
-            .then(user => setUser(user))
-            .catch(err => setError(err.message))
-    }, [])
-
-    if (user) return (
-        <>{console.log(user)}
-            <button onClick={logout} >Logout</button>
-            <h2>welcome, {user.displayName || user.username}</h2>
-            <img src={user.userImageUrl} style={{ width: '150px' }} />
-        </>
-    )
+    console.log(activeUser)
     return (
         <div>
-            {error}
+            hello {activeUser?.username}
             <button onClick={login} >Login</button>
+            <button onClick={logout} >Logout</button>
         </div>
     )
 }

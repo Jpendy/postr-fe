@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { login, fetxhLogout, verify, fetchLogout } from '../services/auth';
 
 const AuthContext = React.createContext();
 
@@ -8,12 +9,24 @@ export default function AuthProvider({ children }) {
     const [authError, setAuthError] = useState(null);
 
     useEffect(() => {
+        setAuthLoading(true)
+        verify()
+            .then(user => setActiveUser(user))
+            .catch(err => setAuthError(err))
+            .finally(() => setAuthLoading(false))
+    }, [])
 
-    })
+    const logout = () => fetchLogout().then(() => setActiveUser(null))
 
     return (
-        <AuthContext.Provider value={activeUser, authLoading} >
+        <AuthContext.Provider value={{ activeUser, authLoading, authError, logout }} >
             {children}
         </AuthContext.Provider>
     )
 }
+
+const useAuthSelector = value => useContext(AuthContext)[value]
+
+export const useActiveUser = () => useAuthSelector('activeUser')
+export const useLogout = () => useAuthSelector('logout')
+export const useAuthError = () => useAuthSelector('authError')
