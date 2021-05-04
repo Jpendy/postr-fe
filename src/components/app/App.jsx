@@ -8,7 +8,7 @@ import AuthProvider from '../../providers/AuthProvider'
 import AppProvider from '../../providers/AppProvider'
 import HomePage from '../../containers/HomePage';
 import LoginDevelopment from './LoginDevelopment'
-import PostDetail from '../postDetail/PostDetail';
+import PostDetail from '../../containers/postDetail/PostDetail';
 import Header from '../header/Header'
 
 export default function App() {
