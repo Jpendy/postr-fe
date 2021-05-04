@@ -7,7 +7,6 @@ export default function PostList() {
 
     const { posts, loading } = usePosts()
 
-    console.log(posts)
     if (loading) return <h2>Loading...</h2>
     return (
         <ul>
