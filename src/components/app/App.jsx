@@ -9,6 +9,7 @@ import AppProvider from '../../providers/AppProvider'
 import HomePage from '../../containers/HomePage';
 import LoginDevelopment from './LoginDevelopment'
 import PostDetail from '../postDetail/PostDetail';
+import Header from '../header/Header'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
       <Router>
         <AuthProvider>
           <AppProvider>
+            <Header />
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/login" component={LoginDevelopment} />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { verify, fetchLogout } from '../services/auth';
+import { verifyUser, fetchLogout } from '../services/auth';
 
 const AuthContext = React.createContext();
 
@@ -10,7 +10,7 @@ export default function AuthProvider({ children }) {
 
     useEffect(() => {
         setAuthLoading(true)
-        verify()
+        verifyUser()
             .then(user => setActiveUser(user))
             .catch(err => setAuthError(err))
             .finally(() => setAuthLoading(false))

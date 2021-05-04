@@ -10,8 +10,6 @@ export default function Comment({
     userId,
 }) {
 
-    console.log('score', voteScore)
-
     const replyMessage = replies > 1 ? 'replies' : 'reply'
     return (
         <>
