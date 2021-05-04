@@ -46,8 +46,6 @@ export default function CreatePost() {
             })
     }
 
-    console.log(boardId, title, postBody, imageUrl)
-
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }} >
             <form style={styleObj} onSubmit={createPostSubmit} >

@@ -11,17 +11,16 @@ const styleObj = {
 }
 
 export default function CreateComment({ post, postDetails, parentCommentId, replyBoolDefault }) {
+    const dispatch = useDispatch()
 
     const [body, setBody] = useState('')
     const [error, setError] = useState(null)
     const [replyBool, setReplyBool] = useState(replyBoolDefault)
 
-    const dispatch = useDispatch()
     const posts = useSelector(getPosts)
 
     const handleCommentSubmit = e => {
         e.preventDefault()
-
         if (!body.trim()) return
 
         fetchCreateComment({ body, postId: postDetails?.id, parentCommentId })
@@ -35,10 +34,12 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
         alert('Comment Submitted!')
     }
 
-    if (!replyBool) return <button onClick={() => setReplyBool(replyBool ? false : true)} >Reply to comment</button>
+    const replyBoolFn = () => setReplyBool(replyBool ? false : true)
+
+    if (!replyBool) return <button onClick={replyBoolFn} >Reply to comment</button>
     return (
         <div>
-            <button onClick={() => setReplyBool(replyBool ? false : true)}>close reply</button>
+            {!replyBoolDefault && <button onClick={replyBoolFn}>close reply</button>}
             <form style={styleObj} onSubmit={handleCommentSubmit} >
                 {error && <h3 style={{ color: 'red' }} >{error.message}</h3>}
                 <textarea value={body} onChange={e => setBody(e.target.value)} />

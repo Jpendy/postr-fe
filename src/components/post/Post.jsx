@@ -24,8 +24,13 @@ export default function Post({
     const posts = useSelector(getPosts)
 
     const handleDeletePost = () => {
-        fetchDeletePost(id)
-            .then(post => dispatch(deletePost(post)))
+
+        const confirm = window.confirm('Are you sure you want to delete this post?')
+
+        if (confirm) {
+            fetchDeletePost(id)
+                .then(post => dispatch(deletePost(post)))
+        }
     }
 
     return (
