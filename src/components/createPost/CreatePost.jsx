@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { fetchCreatePost } from '../../services/apiFetches'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { getPosts } from '../../selectors/selectors'
-import { setPosts } from '../../actions/reducerActions'
+import { createPost, setPosts } from '../../actions/reducerActions'
 
 
 const styleObj = {
@@ -38,7 +38,12 @@ export default function CreatePost() {
         }
 
         fetchCreatePost(post)
-            .then(post => dispatch(setPosts([post, ...posts])))
+            .then(post => {
+                dispatch(createPost(post))
+                setTitle('')
+                setImageUrl('')
+                setPostBody('')
+            })
     }
 
     console.log(boardId, title, postBody, imageUrl)
@@ -47,16 +52,16 @@ export default function CreatePost() {
         <div style={{ display: 'flex', justifyContent: 'center' }} >
             <form style={styleObj} onSubmit={createPostSubmit} >
                 Create Post
-                <input type="text" placeholder="Image Url" onChange={e => setImageUrl(e.target.value)} />
-                <input type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
-                <textarea placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
+                <input value={imageUrl} type="text" placeholder="Image Url" onChange={e => setImageUrl(e.target.value)} />
+                <input value={title} type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
+                <textarea value={postBody} placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
 
                 <select id="board-list" onChange={e => setBoardId(e.target.value)} >
                     <option value="">choose board</option>
                     {boards.map(board => <option key={uuidv4()} value={board.id}> {board.name} </option>)
                     }
                 </select>
-                <button>Submit Post</button>
+                <button disabled={!title.trim() || !boardId} >Submit Post</button>
             </form>
 
         </div >

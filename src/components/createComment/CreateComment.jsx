@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { setPostDetails, setPosts } from '../../actions/reducerActions'
+import { createPostComment, setPostDetails } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { getPosts } from '../../selectors/selectors'
-import { fetchCreateComment } from '../../services/apiFetches'
+import { fetchCreateComment, fetchPostDetails } from '../../services/apiFetches'
 
 const styleObj = {
     display: 'flex',
@@ -10,10 +10,11 @@ const styleObj = {
     alignItems: 'flex-start',
 }
 
-export default function CreateComment({ postDetails, parentCommentId }) {
+export default function CreateComment({ post, postDetails, parentCommentId, replyBoolDefault }) {
 
     const [body, setBody] = useState('')
     const [error, setError] = useState(null)
+    const [replyBool, setReplyBool] = useState(replyBoolDefault)
 
     const dispatch = useDispatch()
     const posts = useSelector(getPosts)
@@ -23,12 +24,10 @@ export default function CreateComment({ postDetails, parentCommentId }) {
 
         if (!body.trim()) return
 
-        fetchCreateComment({ body, postId: postDetails.id, parentCommentId: null })
+        fetchCreateComment({ body, postId: postDetails?.id, parentCommentId })
             .then(newComment => {
-                dispatch(setPostDetails({
-                    ...postDetails,
-                    comments: [newComment, ...postDetails.comments]
-                }))
+                if (!newComment.parentCommentId) dispatch(createPostComment(newComment))
+                else fetchPostDetails(post.id).then(post => dispatch(setPostDetails(post)))
                 setBody('')
             })
             .catch(err => setError(err.message))
@@ -36,8 +35,10 @@ export default function CreateComment({ postDetails, parentCommentId }) {
         alert('Comment Submitted!')
     }
 
+    if (!replyBool) return <button onClick={() => setReplyBool(replyBool ? false : true)} >Reply to comment</button>
     return (
         <div>
+            <button onClick={() => setReplyBool(replyBool ? false : true)}>close reply</button>
             <form style={styleObj} onSubmit={handleCommentSubmit} >
                 {error && <h3 style={{ color: 'red' }} >{error.message}</h3>}
                 <textarea value={body} onChange={e => setBody(e.target.value)} />

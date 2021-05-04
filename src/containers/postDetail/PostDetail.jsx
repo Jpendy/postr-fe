@@ -22,7 +22,7 @@ export default function PostDetail({ match }) {
             <p>Board: {pd.boardId}</p>
             {pd.dateModifed && <p>Modified on: {pd.dateModifed}</p>}
 
-            {activeUser && <CreateComment postDetails={pd} parentCommentId={null} />}
+            {activeUser && <CreateComment postDetails={pd} parentCommentId={null} replyBoolDefault={true} />}
             {pd.comments && <CommentList comments={pd.comments} />}
         </>
     )

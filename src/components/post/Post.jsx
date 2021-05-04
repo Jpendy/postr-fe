@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { setPosts } from '../../actions/reducerActions'
+import { deletePost } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getPosts } from '../../selectors/selectors'
@@ -25,7 +25,7 @@ export default function Post({
 
     const handleDeletePost = () => {
         fetchDeletePost(id)
-            .then(deletePost => dispatch(setPosts(posts.filter(post => post.id !== deletePost.id))))
+            .then(post => dispatch(deletePost(post)))
     }
 
     return (
