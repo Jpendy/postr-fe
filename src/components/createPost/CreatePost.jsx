@@ -28,7 +28,7 @@ export default function CreatePost() {
 
     const createPostSubmit = (e) => {
         e.preventDefault()
-        if (!title || !boardId) return
+        if (!title.trim() || !boardId) return
 
         const post = {
             title,
@@ -44,8 +44,9 @@ export default function CreatePost() {
     console.log(boardId, title, postBody, imageUrl)
 
     return (
-        <div style={{ margin: 'auto' }} >
+        <div style={{ display: 'flex', justifyContent: 'center' }} >
             <form style={styleObj} onSubmit={createPostSubmit} >
+                Create Post
                 <input type="text" placeholder="Image Url" onChange={e => setImageUrl(e.target.value)} />
                 <input type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
                 <textarea placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />

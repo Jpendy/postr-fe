@@ -8,9 +8,9 @@ export default function HomePage() {
     const activeUser = useActiveUser()
 
     return (
-        <>
+        <div  >
             {activeUser && <CreatePost />}
             <PostList />
-        </>
+        </div>
     )
 }
