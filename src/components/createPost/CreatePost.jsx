@@ -38,7 +38,7 @@ export default function CreatePost() {
         }
 
         fetchCreatePost(post)
-            .then(post => dispatch(setPosts([...posts, post])))
+            .then(post => dispatch(setPosts([post, ...posts])))
     }
 
     console.log(boardId, title, postBody, imageUrl)
