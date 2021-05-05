@@ -14,6 +14,8 @@ export default function Post({
     voteScore,
     dateCreated,
     dateModifed,
+    createdBy,
+    board,
     userId,
     boardId,
     commentCount
@@ -66,15 +68,15 @@ export default function Post({
             {body && <p>{body}</p>}
 
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                {activeUser && <button onClick={upvote} style={{ height: '25px', marginRight: '5px' }} >upvote</button>}
+                {activeUser && <button onClick={upvote} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'green' }} >upvote</button>}
                 <p>Score: {voteScore}</p>
-                {activeUser && <button onClick={downvote} style={{ height: '25px', marginLeft: '5px' }}>downvote</button>}
+                {activeUser && <button onClick={downvote} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>downvote</button>}
             </div>
 
             <p>Created on: {dateCreated}</p>
             {dateModifed && <p>Modified on: {dateModifed}</p>}
-            <p>Created by: {userId}</p>
-            <p>Board: {boardId}</p>
+            <p>Created by: {createdBy}</p>
+            <p>Board: {board}</p>
             <p>Comments: {commentCount}</p>
             {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
         </>

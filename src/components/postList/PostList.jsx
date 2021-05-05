@@ -7,11 +7,10 @@ export default function PostList() {
 
     const { posts, loading } = usePosts()
 
-    // console.log(postVoteHistory)
     if (loading) return <h2>Loading...</h2>
     return (
         <ul>
-            {posts.map((post, i) => <li key={i}><Post {...post} /></li>)}
+            {posts.map((post, i) => <li key={i + 5555}><Post {...post} /></li>)}
         </ul>
     )
 }

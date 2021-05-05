@@ -13,8 +13,10 @@ export default function Comment({
     voteScore,
     dateCreated,
     dateModifed,
+    createdBy,
     replies,
     userId,
+    depthCounter
 }) {
 
     const [error, setError] = useState(null)
@@ -41,14 +43,14 @@ export default function Comment({
             <p>Score: {voteScore}</p>
             <p>Created on: {dateCreated}</p>
             {dateModifed && <p>Modified on: {dateModifed}</p>}
-            <p>Created by: {userId}</p>
+            <p>Created by: {createdBy}</p>
             {error && <p style={{ color: 'red' }} >Error: {error}</p>}
             {+activeUser?.id === userId && <button onClick={handleDeleteComment} >delete comment</button>}
             {activeUser && <CreateComment post={postDetails} parentCommentId={id} replyBoolDefault={false} />}
 
-            {replies && <details open>
-                <summary>{`${replies.length} ${replyMessage}`}</summary>
-                <CommentList comments={replies} />
+            {replies && <details open={depthCounter % 3 !== 0}>
+                <summary >{`${replies.length} ${replyMessage}`}</summary>
+                <CommentList depthCounter={depthCounter} comments={replies} />
             </details>}
         </>
     )

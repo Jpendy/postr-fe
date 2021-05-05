@@ -9,7 +9,6 @@ export default function PostDetail({ match }) {
     const activeUser = useActiveUser()
     const { postDetails: pd, loading } = usePostDetails(match.params.id)
 
-
     if (loading) return <h2>Loading...</h2>
     return (
         <>
@@ -18,7 +17,7 @@ export default function PostDetail({ match }) {
             {pd.body && <p>{pd.body}</p>}
             <p>Score: {pd.voteScore}</p>
             <p>Created on: {pd.dateCreated}</p>
-            <p>Created by: {pd.userId}</p>
+            <p>Created by: {pd.createdBy}</p>
             <p>Board: {pd.boardId}</p>
             {pd.dateModifed && <p>Modified on: {pd.dateModifed}</p>}
 
