@@ -12,6 +12,7 @@ export default function Header() {
         <>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
                 <Link to='/' >Home</Link>
+                <Link to='/create-board' >Create Board</Link>
                 <h3>Hello {activeUser.displayName || activeUser.username}</h3>
                 <button onClick={logout} style={{ height: '40px' }} >Log Out</button>
             </div>

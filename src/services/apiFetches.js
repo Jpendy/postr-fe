@@ -1,6 +1,8 @@
 import { del, get, post } from "./request";
 
 export const fetchAllBoards = () => get('/api/v1/boards')
+export const fetchCreateBoard = body => post('/api/v1/boards', body)
+export const fetchBoardByName = name => get(`/api/v1/boards/${name}`)
 
 export const fetchAllPosts = () => get('/api/v1/posts')
 export const fetchPostDetails = id => get(`/api/v1/posts/${id}`)

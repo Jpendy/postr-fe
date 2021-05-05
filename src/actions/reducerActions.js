@@ -4,6 +4,24 @@ export const setBoards = boards => ({
     payload: boards
 })
 
+export const CREATE_BOARD = 'CREATE_BOARD';
+export const createBoard = payload => ({
+    type: CREATE_BOARD,
+    payload
+})
+
+export const SET_SINGLE_BOARD = 'SET_SINGLE_BOARD';
+export const setSingleBoard = payload => ({
+    type: SET_SINGLE_BOARD,
+    payload
+})
+
+export const UPDATE_BOARD_POST = 'UPDATE_BOARD_POST';
+export const updateBoardPost = payload => ({
+    type: UPDATE_BOARD_POST,
+    payload
+})
+
 export const CREATE_POST = 'CREATE_POST';
 export const createPost = post => ({
     type: CREATE_POST,

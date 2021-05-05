@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createNewVoteHistory, deletePost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
+import { createNewVoteHistory, deletePost, updateBoardPost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getUserPostVoteHistory } from '../../selectors/selectors'
@@ -18,12 +18,14 @@ export default function Post({
     board,
     userId,
     boardId,
-    commentCount
+    commentCount,
+    frontPage
 }) {
 
     const activeUser = useActiveUser()
     const dispatch = useDispatch()
     const postVoteHistory = useSelector(getUserPostVoteHistory)
+
 
     const handleDeletePost = () => {
         const confirm = window.confirm('Are you sure you want to delete this post?')
@@ -32,8 +34,7 @@ export default function Post({
                 .then(post => dispatch(deletePost(post)))
         }
     }
-
-    const currentVote = postVoteHistory.find(voteHistory => voteHistory.postId === id)?.vote
+    const currentVote = postVoteHistory.find(voteHistory => +voteHistory.postId === +id)?.vote
 
     const upvote = () => {
         const body = {
@@ -42,7 +43,9 @@ export default function Post({
         }
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
-                dispatch(updatePostVote(post))
+                if (frontPage) dispatch(updatePostVote(post))
+                else dispatch(updateBoardPost(post))
+
                 if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
             })
@@ -54,8 +57,11 @@ export default function Post({
         }
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
-                dispatch(updatePostVote(post))
-                dispatch(updatePostVoteHistory(voteHistory))
+                if (frontPage) dispatch(updatePostVote(post))
+                else dispatch(updateBoardPost(post))
+
+                if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
+                else dispatch(updatePostVoteHistory(voteHistory))
             })
     }
 
@@ -76,7 +82,10 @@ export default function Post({
             <p>Created on: {dateCreated}</p>
             {dateModifed && <p>Modified on: {dateModifed}</p>}
             <p>Created by: {createdBy}</p>
-            <p>Board: {board}</p>
+
+            <p>Posted to: <Link to={`/board/${board}`} >{board}</Link></p>
+
+
             <p>Comments: {commentCount}</p>
             {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
         </>
