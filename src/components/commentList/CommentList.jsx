@@ -6,7 +6,7 @@ export default function CommentList({ comments }) {
 
     return (
         <ul>
-            {comments.map(comment => <li key={uuidv4()}> <Comment {...comment} /> </li>)}
+            {comments.map((comment, i) => <li key={i}> <Comment {...comment} /> </li>)}
         </ul>
     )
 }

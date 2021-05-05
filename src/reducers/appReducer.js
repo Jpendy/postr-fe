@@ -1,9 +1,10 @@
-import { CREATE_COMMENT_REPLY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS } from "../actions/reducerActions";
+import { CREATE_COMMENT_REPLY, CREATE_NEW_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_USER_POST_VOTE_HISTORY, UPDATE_POST, UPDATE_POST_VOTE, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
 
 export const initialState = {
     boards: [],
     posts: [],
-    postDetails: {}
+    postDetails: {},
+    userPostVoteHistory: []
 };
 
 export default function reducer(state, action) {
@@ -13,6 +14,14 @@ export default function reducer(state, action) {
         }
         case CREATE_POST: {
             return { ...state, posts: [action.payload, ...state.posts] }
+        }
+        case UPDATE_POST_VOTE: {
+            return {
+                ...state, posts: state.posts.map(post => {
+                    if (post.id === action.payload.id) return { ...post, voteScore: action.payload.voteScore }
+                    return post;
+                })
+            }
         }
         case SET_POSTS: {
             return { ...state, posts: action.payload };
@@ -32,8 +41,19 @@ export default function reducer(state, action) {
                 }
             }
         }
-        case CREATE_COMMENT_REPLY: {
-            return { ...state }
+        case SET_USER_POST_VOTE_HISTORY: {
+            return { ...state, userPostVoteHistory: action.payload }
+        }
+        case CREATE_NEW_VOTE_HISTORY: {
+            return { ...state, userPostVoteHistory: [...state.userPostVoteHistory, action.payload] }
+        }
+        case UPDATE_USER_POST_VOTE_HISTORY: {
+            return {
+                ...state, userPostVoteHistory: state.userPostVoteHistory.map(voteHistory => {
+                    if (voteHistory.id === action.payload.id) return action.payload
+                    return voteHistory;
+                })
+            }
         }
         default: return state;
     }

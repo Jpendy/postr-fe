@@ -30,8 +30,6 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
                 setBody('')
             })
             .catch(err => setError(err.message))
-
-        alert('Comment Submitted!')
     }
 
     const replyBoolFn = () => setReplyBool(replyBool ? false : true)
@@ -40,6 +38,7 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
     return (
         <div>
             {!replyBoolDefault && <button onClick={replyBoolFn}>close reply</button>}
+
             <form style={styleObj} onSubmit={handleCommentSubmit} >
                 {error && <h3 style={{ color: 'red' }} >{error.message}</h3>}
                 <textarea value={body} onChange={e => setBody(e.target.value)} />

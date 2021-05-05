@@ -46,7 +46,7 @@ export default function Comment({
             {+activeUser?.id === userId && <button onClick={handleDeleteComment} >delete comment</button>}
             {activeUser && <CreateComment post={postDetails} parentCommentId={id} replyBoolDefault={false} />}
 
-            {replies && <details>
+            {replies && <details open>
                 <summary>{`${replies.length} ${replyMessage}`}</summary>
                 <CommentList comments={replies} />
             </details>}

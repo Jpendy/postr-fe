@@ -34,9 +34,32 @@ export const createPostComment = comment => ({
     payload: comment
 })
 
+export const UPDATE_POST_VOTE = 'UPDATE_POST_VOTE';
+export const updatePostVote = post => ({
+    type: UPDATE_POST_VOTE,
+    payload: post
+})
+
 export const CREATE_COMMENT_REPLY = 'CREATE_COMMENT_REPLY';
 export const createCommentReply = comment => ({
     type: CREATE_COMMENT_REPLY,
     payload: comment
 })
 
+export const SET_USER_POST_VOTE_HISTORY = 'SET_USER_POST_VOTE_HISTORY';
+export const setUserPostVoteHistory = payload => ({
+    type: SET_USER_POST_VOTE_HISTORY,
+    payload
+})
+
+export const CREATE_NEW_VOTE_HISTORY = 'CREATE_NEW_VOTE_HISTORY';
+export const createNewVoteHistory = payload => ({
+    type: CREATE_NEW_VOTE_HISTORY,
+    payload
+})
+
+export const UPDATE_USER_POST_VOTE_HISTORY = 'UPDATE_USER_POST_VOTE_HISTORY';
+export const updatePostVoteHistory = payload => ({
+    type: UPDATE_USER_POST_VOTE_HISTORY,
+    payload
+})

@@ -23,11 +23,13 @@ export default function CreatePost() {
     const [title, setTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     const [boardId, setBoardId] = useState('')
+    const [postError, setPostError] = useState(null)
 
     const { boards, loading, error } = useBoards()
 
     const createPostSubmit = (e) => {
         e.preventDefault()
+        setPostError(null)
         if (!title.trim() || !boardId) return
 
         const post = {
@@ -44,6 +46,7 @@ export default function CreatePost() {
                 setImageUrl('')
                 setPostBody('')
             })
+            .catch(err => setPostError(err.message))
     }
 
     return (
@@ -60,6 +63,7 @@ export default function CreatePost() {
                     }
                 </select>
                 <button disabled={!title.trim() || !boardId} >Submit Post</button>
+                {postError && <p style={{ color: 'red' }}>{postError}</p>}
             </form>
 
         </div >
