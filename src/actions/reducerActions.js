@@ -16,9 +16,9 @@ export const setSingleBoard = payload => ({
     payload
 })
 
-export const UPDATE_BOARD_POST = 'UPDATE_BOARD_POST';
-export const updateBoardPost = payload => ({
-    type: UPDATE_BOARD_POST,
+export const UPDATE_BOARD_POST_VOTE = 'UPDATE_BOARD_POST_VOTE';
+export const updateBoardPostVote = payload => ({
+    type: UPDATE_BOARD_POST_VOTE,
     payload
 })
 

@@ -1,4 +1,4 @@
-import { CREATE_BOARD, CREATE_COMMENT_REPLY, CREATE_NEW_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_SINGLE_BOARD, SET_USER_POST_VOTE_HISTORY, UPDATE_BOARD_POST, UPDATE_POST, UPDATE_POST_VOTE, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
+import { CREATE_BOARD, CREATE_NEW_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_SINGLE_BOARD, SET_USER_POST_VOTE_HISTORY, UPDATE_BOARD_POST_VOTE, UPDATE_POST, UPDATE_POST_VOTE, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
 
 export const initialState = {
     boards: [],
@@ -19,12 +19,12 @@ export default function reducer(state, action) {
         case SET_SINGLE_BOARD: {
             return { ...state, board: action.payload }
         }
-        case UPDATE_BOARD_POST: {
+        case UPDATE_BOARD_POST_VOTE: {
             return {
                 ...state, board: {
                     ...state.board,
                     posts: state.board.posts.map(post => {
-                        if (+post.id === +action.payload.id) return action.payload
+                        if (+post.id === +action.payload.id) return { ...post, voteScore: action.payload.voteScore }
                         return post;
                     })
                 }

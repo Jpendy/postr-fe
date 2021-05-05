@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createNewVoteHistory, deletePost, updateBoardPost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
+import { createNewVoteHistory, deletePost, updateBoardPostVote, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getUserPostVoteHistory } from '../../selectors/selectors'
@@ -44,7 +44,7 @@ export default function Post({
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
                 if (frontPage) dispatch(updatePostVote(post))
-                else dispatch(updateBoardPost(post))
+                else dispatch(updateBoardPostVote(post))
 
                 if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
@@ -58,7 +58,7 @@ export default function Post({
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
                 if (frontPage) dispatch(updatePostVote(post))
-                else dispatch(updateBoardPost(post))
+                else dispatch(updateBoardPostVote(post))
 
                 if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
