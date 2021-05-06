@@ -18,7 +18,7 @@ export default function PostDetail({ match }) {
             <p>Score: {pd.voteScore}</p>
             <p>Created on: {pd.dateCreated}</p>
             <p>Created by: {pd.createdBy}</p>
-            <p>Board: {pd.boardId}</p>
+            <p>Board: {pd.board}</p>
             {pd.dateModifed && <p>Modified on: {pd.dateModifed}</p>}
 
             {activeUser && <CreateComment postDetails={pd} parentCommentId={null} replyBoolDefault={true} />}

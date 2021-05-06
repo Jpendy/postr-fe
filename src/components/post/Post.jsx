@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createNewVoteHistory, deletePost, updateBoardPostVote, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
+import { createNewPostVoteHistory, deletePost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getUserPostVoteHistory } from '../../selectors/selectors'
@@ -24,7 +24,15 @@ export default function Post({
     const activeUser = useActiveUser()
     const dispatch = useDispatch()
     const postVoteHistory = useSelector(getUserPostVoteHistory)
+    const [loading, setLoading] = useState(false)
+    const [currentVote, setCurrentVote] = useState(null)
 
+    useEffect(() => {
+        setLoading(true)
+        const vote = postVoteHistory.find(voteHistory => +voteHistory.postId === +id)?.vote
+        setCurrentVote(vote)
+        setLoading(false)
+    }, [postVoteHistory])
 
     const handleDeletePost = () => {
         const confirm = window.confirm('Are you sure you want to delete this post?')
@@ -33,21 +41,28 @@ export default function Post({
                 .then(post => dispatch(deletePost(post)))
         }
     }
-    const currentVote = postVoteHistory.find(voteHistory => +voteHistory.postId === +id)?.vote
+    // const currentVote = postVoteHistory.find(voteHistory => +voteHistory.postId === +id)?.vote
+    console.log('history', postVoteHistory)
+    console.log('current vote', currentVote)
 
     const upvote = () => {
+        setLoading(true)
         const body = {
             voteHistory: currentVote,
             vote: 1
         }
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
+                console.log('votehistory', voteHistory)
                 dispatch(updatePostVote(post))
-                if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
+                if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
+
+                setLoading(false)
             })
     }
     const downvote = () => {
+        setLoading(true)
         const body = {
             voteHistory: currentVote,
             vote: -1
@@ -55,8 +70,10 @@ export default function Post({
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
                 dispatch(updatePostVote(post))
-                if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
+                if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
+
+                setLoading(false)
             })
     }
 
@@ -69,14 +86,15 @@ export default function Post({
             {body && <p>{body}</p>}
 
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                {activeUser && <button onClick={upvote} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'green' }} >upvote</button>}
+                {activeUser && <button onClick={upvote} disabled={loading} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'green' }} >upvote</button>}
                 <p>Score: {voteScore}</p>
-                {activeUser && <button onClick={downvote} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>downvote</button>}
+                {activeUser && <button onClick={downvote} disabled={loading} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>downvote</button>}
             </div>
 
-            <p>Created on: {dateCreated}</p>
+            <p>Posted on: {dateCreated}</p>
             {dateModifed && <p>Modified on: {dateModifed}</p>}
-            <p>Created by: {createdBy}</p>
+
+            <p>Created by: <Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
 
             <p>Posted to: <Link to={`/board/${board}`} >{board}</Link></p>
 

@@ -12,7 +12,7 @@ export default function AuthProvider({ children }) {
         setAuthLoading(true)
         verifyUser()
             .then(user => setActiveUser(user))
-            .catch(err => setAuthError(err))
+            // .catch(err => setAuthError(err.message))
             .finally(() => setAuthLoading(false))
     }, [])
 

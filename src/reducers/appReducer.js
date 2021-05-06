@@ -1,11 +1,12 @@
-import { CREATE_BOARD, CREATE_NEW_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_SINGLE_BOARD, SET_USER_POST_VOTE_HISTORY, UPDATE_BOARD_POST_VOTE, UPDATE_POST, UPDATE_POST_VOTE, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
+import { CREATE_BOARD, CREATE_NEW_COMMENT_VOTE_HISTORY, CREATE_NEW_POST_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_SINGLE_BOARD, SET_USER_COMMENT_VOTE_HISTORY, SET_USER_POST_VOTE_HISTORY, UPDATE_BOARD_POST_VOTE, UPDATE_POST, UPDATE_POST_DETAIL_COMMENT_VOTE, UPDATE_POST_VOTE, UPDATE_USER_COMMENT_VOTE_HISTORY, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
 
 export const initialState = {
     boards: [],
     posts: [],
     postDetails: {},
     board: {},
-    userPostVoteHistory: []
+    userPostVoteHistory: [],
+    userCommentVoteHistory: []
 };
 
 export default function reducer(state, action) {
@@ -25,7 +26,7 @@ export default function reducer(state, action) {
         case UPDATE_POST_VOTE: {
             return {
                 ...state, posts: state.posts.map(post => {
-                    if (+post.id === +action.payload.id) return { ...post, voteScore: action.payload.voteScore }
+                    if (+post.id === +action.payload.id) return { ...post, voteScore: +action.payload.voteScore }
                     return post;
                 })
             }
@@ -34,7 +35,7 @@ export default function reducer(state, action) {
             return { ...state, posts: action.payload };
         }
         case DELETE_POST: {
-            return { ...state, posts: state.posts.filter(post => post.id !== action.payload.id) }
+            return { ...state, posts: state.posts.filter(post => +post.id !== +action.payload.id) }
         }
         case SET_POST_DETAILS: {
             return { ...state, postDetails: action.payload }
@@ -51,15 +52,44 @@ export default function reducer(state, action) {
         case SET_USER_POST_VOTE_HISTORY: {
             return { ...state, userPostVoteHistory: action.payload }
         }
-        case CREATE_NEW_VOTE_HISTORY: {
+        case CREATE_NEW_POST_VOTE_HISTORY: {
             return { ...state, userPostVoteHistory: [...state.userPostVoteHistory, action.payload] }
         }
         case UPDATE_USER_POST_VOTE_HISTORY: {
             return {
                 ...state, userPostVoteHistory: state.userPostVoteHistory.map(voteHistory => {
-                    if (voteHistory.id === action.payload.id) return action.payload
+                    if (+voteHistory.id === +action.payload.id) return action.payload
                     return voteHistory;
                 })
+            }
+        }
+        case SET_USER_COMMENT_VOTE_HISTORY: {
+            return { ...state, userCommentVoteHistory: action.payload }
+        }
+        case CREATE_NEW_COMMENT_VOTE_HISTORY: {
+            return { ...state, userCommentVoteHistory: [...state.userCommentVoteHistory, action.payload] }
+        }
+        case UPDATE_USER_COMMENT_VOTE_HISTORY: {
+            return {
+                ...state, userCommentVoteHistory: state.userCommentVoteHistory.map(voteHistory => {
+                    if (+voteHistory.id === +action.payload.id) return action.payload
+                    return voteHistory
+                })
+            }
+        }
+        case UPDATE_POST_DETAIL_COMMENT_VOTE: {
+            return {
+                ...state, postDetails: {
+                    ...state.postDetails, comments: state.postDetails.comments.map(comment => {
+                        if (+comment.id === +action.payload.id) {
+                            return {
+                                ...comment,
+                                voteScore: +action.payload.voteScore
+                            }
+                        }
+                        return comment;
+                    })
+                }
             }
         }
         default: return state;

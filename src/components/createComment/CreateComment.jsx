@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { createPostComment, setPostDetails } from '../../actions/reducerActions'
-import { useDispatch, useSelector } from '../../providers/AppProvider'
-import { getPosts } from '../../selectors/selectors'
+import { useDispatch } from '../../providers/AppProvider'
 import { fetchCreateComment, fetchPostDetails } from '../../services/apiFetches'
 
 const styleObj = {
@@ -16,8 +15,6 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
     const [body, setBody] = useState('')
     const [error, setError] = useState(null)
     const [replyBool, setReplyBool] = useState(replyBoolDefault)
-
-    const posts = useSelector(getPosts)
 
     const handleCommentSubmit = e => {
         e.preventDefault()

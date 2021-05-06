@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useActiveUser, useLogout } from '../../providers/AuthProvider'
+import { useActiveUser, useAuthError, useLogout } from '../../providers/AuthProvider'
 import { login } from '../../services/auth'
 
 export default function Header() {
 
     const activeUser = useActiveUser()
     const logout = useLogout()
+    const authError = useAuthError()
 
     if (activeUser) return (
         <>
@@ -20,6 +21,7 @@ export default function Header() {
     )
     return (
         <div>
+            {authError && <p style={{ color: 'red' }} >{authError}</p>}
             <button onClick={login} >Login</button>
         </div>
     )
