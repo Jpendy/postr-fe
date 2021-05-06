@@ -19,24 +19,13 @@ export default function reducer(state, action) {
         case SET_SINGLE_BOARD: {
             return { ...state, board: action.payload }
         }
-        case UPDATE_BOARD_POST_VOTE: {
-            return {
-                ...state, board: {
-                    ...state.board,
-                    posts: state.board.posts.map(post => {
-                        if (+post.id === +action.payload.id) return { ...post, voteScore: action.payload.voteScore }
-                        return post;
-                    })
-                }
-            }
-        }
         case CREATE_POST: {
             return { ...state, posts: [action.payload, ...state.posts] }
         }
         case UPDATE_POST_VOTE: {
             return {
                 ...state, posts: state.posts.map(post => {
-                    if (post.id === action.payload.id) return { ...post, voteScore: action.payload.voteScore }
+                    if (+post.id === +action.payload.id) return { ...post, voteScore: action.payload.voteScore }
                     return post;
                 })
             }

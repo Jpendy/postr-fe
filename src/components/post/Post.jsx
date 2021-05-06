@@ -18,8 +18,7 @@ export default function Post({
     board,
     userId,
     boardId,
-    commentCount,
-    frontPage
+    commentCount
 }) {
 
     const activeUser = useActiveUser()
@@ -43,9 +42,7 @@ export default function Post({
         }
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
-                if (frontPage) dispatch(updatePostVote(post))
-                else dispatch(updateBoardPostVote(post))
-
+                dispatch(updatePostVote(post))
                 if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
             })
@@ -57,9 +54,7 @@ export default function Post({
         }
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
-                if (frontPage) dispatch(updatePostVote(post))
-                else dispatch(updateBoardPostVote(post))
-
+                dispatch(updatePostVote(post))
                 if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
             })
