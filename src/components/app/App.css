@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    /* background: #C4DBF6 */
+    background: #5b7da5
+
+}

@@ -13,6 +13,7 @@ import Header from '../header/Header'
 import CreateBoardPage from '../../containers/createBoardPage/CreateBoardPage';
 import BoardPage from '../../containers/boardPage/BoardPage';
 import UserDetailPage from '../../containers/userDetailPage/UserDetailPage';
+import './App.css'
 
 export default function App() {
   return (

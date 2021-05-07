@@ -1,0 +1,39 @@
+
+.post {
+    display: 'flex';
+    justify-content: 'center';
+    margin: 20px;
+    padding: 50px;
+    width: 100%;
+    background-color: #E7E3D4;
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 1px 1px 3px;
+    font-family: verdana, arial, helvetica, sans-serif;
+}
+
+.post img {
+    width: 100%;
+    height: 100%;
+}
+
+.votingArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 1.1rem;
+}
+
+.votingArea button {
+    width: 90px;
+    cursor: pointer;
+}
+
+.post a {
+    text-decoration: none;
+    color: #c23104;
+}
+
+.post a:hover {
+    color: rgb(49, 4, 155)
+}

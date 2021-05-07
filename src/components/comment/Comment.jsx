@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { createNewCommentVoteHistory, setPostDetails, updateUserCommentVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
@@ -39,7 +40,6 @@ export default function Comment({
     }
 
     const currentVote = commentVoteHistory.find(voteHistory => +voteHistory.commentId === +id)?.vote
-    console.log('current vote', currentVote, 'history', commentVoteHistory)
 
     const upvote = () => {
         setLoading(true)
@@ -61,7 +61,6 @@ export default function Comment({
             })
     }
 
-
     const downvote = () => {
         setLoading(true)
         const body = {
@@ -70,7 +69,6 @@ export default function Comment({
         }
         fetchVoteOnComment(id, body)
             .then(({ voteHistory }) => {
-
                 if (currentVote === undefined) dispatch(createNewCommentVoteHistory(voteHistory))
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
             })
@@ -94,7 +92,7 @@ export default function Comment({
 
             <p>Created on: {dateCreated}</p>
             {dateModifed && <p>Modified on: {dateModifed}</p>}
-            <p>Created by: {createdBy}</p>
+            <p>Comment by: <Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
             {error && <p style={{ color: 'red' }} >Error: {error}</p>}
             {+activeUser?.id === userId && <button onClick={handleDeleteComment} >delete comment</button>}
             {activeUser && <CreateComment post={postDetails} parentCommentId={id} replyBoolDefault={false} />}
