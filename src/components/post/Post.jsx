@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createNewVoteHistory, deletePost, updateBoardPostVote, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
+import { createNewPostVoteHistory, deletePost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getUserPostVoteHistory } from '../../selectors/selectors'
 import { fetchDeletePost, fetchVoteOnPost } from '../../services/apiFetches'
+import styles from './Post.css'
 
 export default function Post({
     id,
@@ -18,14 +19,13 @@ export default function Post({
     board,
     userId,
     boardId,
-    commentCount,
-    frontPage
+    commentCount
 }) {
 
     const activeUser = useActiveUser()
     const dispatch = useDispatch()
     const postVoteHistory = useSelector(getUserPostVoteHistory)
-
+    const [loading, setLoading] = useState(false)
 
     const handleDeletePost = () => {
         const confirm = window.confirm('Are you sure you want to delete this post?')
@@ -37,57 +37,60 @@ export default function Post({
     const currentVote = postVoteHistory.find(voteHistory => +voteHistory.postId === +id)?.vote
 
     const upvote = () => {
+        setLoading(true)
         const body = {
             voteHistory: currentVote,
             vote: 1
         }
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
-                if (frontPage) dispatch(updatePostVote(post))
-                else dispatch(updateBoardPostVote(post))
-
-                if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
+                dispatch(updatePostVote(post))
+                if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
+
+                setLoading(false)
             })
     }
     const downvote = () => {
+        setLoading(true)
         const body = {
             voteHistory: currentVote,
             vote: -1
         }
         fetchVoteOnPost(id, body)
             .then(({ post, voteHistory }) => {
-                if (frontPage) dispatch(updatePostVote(post))
-                else dispatch(updateBoardPostVote(post))
-
-                if (currentVote === undefined) dispatch(createNewVoteHistory(voteHistory))
+                dispatch(updatePostVote(post))
+                if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
+
+                setLoading(false)
             })
     }
 
     return (
-        <>
+        <div className={styles.post} >
             <Link to={`/post-detail/${id}`} >
                 <h2>{title}</h2>
                 {imageUrl && <img src={imageUrl} />}
             </Link>
             {body && <p>{body}</p>}
 
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                {activeUser && <button onClick={upvote} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'green' }} >upvote</button>}
+            <div className={styles.votingArea}>
+                {activeUser && <button onClick={upvote} disabled={loading} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'limegreen' }} >Like</button>}
                 <p>Score: {voteScore}</p>
-                {activeUser && <button onClick={downvote} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>downvote</button>}
+                {activeUser && <button onClick={downvote} disabled={loading} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>Dislike</button>}
             </div>
 
-            <p>Created on: {dateCreated}</p>
+            <p>Posted on: {dateCreated.slice(0, 16)}</p>
             {dateModifed && <p>Modified on: {dateModifed}</p>}
-            <p>Created by: {createdBy}</p>
+
+            <p>Created by: <Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
 
             <p>Posted to: <Link to={`/board/${board}`} >{board}</Link></p>
 
 
-            <p>Comments: {commentCount}</p>
+            <p>Comments:  <Link to={`/post-detail/${id}`} >{commentCount}</Link></p>
             {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
-        </>
+        </div>
     )
 }

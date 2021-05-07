@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { setSingleBoard } from '../../actions/reducerActions'
+import { setPosts, setSingleBoard } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { getSingleBoard } from '../../selectors/selectors'
 import { fetchBoardByName } from '../../services/apiFetches'
 import PostList from '../../components/postList/PostList'
+import usePosts from '../../hooks/usePosts'
 
 export default function BoardPage({ match }) {
 
@@ -11,12 +12,16 @@ export default function BoardPage({ match }) {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    const { name, bannerImageUrl, posts } = useSelector(getSingleBoard)
+    const { name, bannerImageUrl } = useSelector(getSingleBoard)
+    const { posts } = usePosts()
 
     useEffect(() => {
         setError(null)
         fetchBoardByName(match.params.name)
-            .then(board => dispatch(setSingleBoard(board)))
+            .then(board => {
+                dispatch(setSingleBoard(board))
+                dispatch(setPosts(board.posts))
+            })
             .catch(err => setError(err.message))
             .finally(() => setLoading(false))
     }, [])

@@ -16,12 +16,6 @@ export const setSingleBoard = payload => ({
     payload
 })
 
-export const UPDATE_BOARD_POST_VOTE = 'UPDATE_BOARD_POST_VOTE';
-export const updateBoardPostVote = payload => ({
-    type: UPDATE_BOARD_POST_VOTE,
-    payload
-})
-
 export const CREATE_POST = 'CREATE_POST';
 export const createPost = post => ({
     type: CREATE_POST,
@@ -70,14 +64,38 @@ export const setUserPostVoteHistory = payload => ({
     payload
 })
 
-export const CREATE_NEW_VOTE_HISTORY = 'CREATE_NEW_VOTE_HISTORY';
-export const createNewVoteHistory = payload => ({
-    type: CREATE_NEW_VOTE_HISTORY,
+export const CREATE_NEW_POST_VOTE_HISTORY = 'CREATE_NEW_POST_VOTE_HISTORY';
+export const createNewPostVoteHistory = payload => ({
+    type: CREATE_NEW_POST_VOTE_HISTORY,
     payload
 })
 
 export const UPDATE_USER_POST_VOTE_HISTORY = 'UPDATE_USER_POST_VOTE_HISTORY';
 export const updatePostVoteHistory = payload => ({
     type: UPDATE_USER_POST_VOTE_HISTORY,
+    payload
+})
+
+export const SET_USER_COMMENT_VOTE_HISTORY = 'SET_USER_COMMENT_VOTE_HISTORY';
+export const setUserCommentVoteHistory = payload => ({
+    type: SET_USER_COMMENT_VOTE_HISTORY,
+    payload
+})
+
+export const CREATE_NEW_COMMENT_VOTE_HISTORY = 'CREATE_NEW_COMMENT_VOTE_HISTORY';
+export const createNewCommentVoteHistory = payload => ({
+    type: CREATE_NEW_COMMENT_VOTE_HISTORY,
+    payload
+})
+
+export const UPDATE_USER_COMMENT_VOTE_HISTORY = 'UPDATE_USER_COMMENT_VOTE_HISTORY';
+export const updateUserCommentVoteHistory = payload => ({
+    type: UPDATE_USER_COMMENT_VOTE_HISTORY,
+    payload
+})
+
+export const UPDATE_POST_DETAIL_COMMENT_VOTE = 'UPDATE_POST_COMMENT_VOTE';
+export const updatePostDetailCommentVote = payload => ({
+    type: UPDATE_POST_DETAIL_COMMENT_VOTE,
     payload
 })
