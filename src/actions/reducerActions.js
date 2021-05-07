@@ -99,3 +99,9 @@ export const updateCommentVote = payload => ({
     type: UPDATE_COMMENT_VOTE,
     payload
 })
+
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const deleteComment = payload => ({
+    type: DELETE_COMMENT,
+    payload
+})

@@ -1,6 +1,6 @@
 
 export default function mapAndDeleteComment(post, id) {
-    if (!post.comments.length) {
+    if (post.comments.length) {
         return {
             ...post,
             comments: recurse(post.comments, id)
@@ -15,11 +15,11 @@ function recurse(comments, id = null) {
     if (comments.length) return comments.reduce((acc, comment) => {
 
         if (comment.id === id) return acc;
-        if (!comment.replies.length) acc.push(comment)
+        if (!comment.replies?.length) acc.push(comment)
 
         else acc.push({
             ...comment,
-            comments: recurse(comment.replies, id)
+            replies: recurse(comment.replies, id)
         })
 
         return acc;
