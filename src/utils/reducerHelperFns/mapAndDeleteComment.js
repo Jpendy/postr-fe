@@ -7,7 +7,6 @@ export default function mapAndDeleteComment(post, id) {
         }
     }
     else return post
-
 }
 
 function recurse(comments, id = null) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { createPostComment, setPostDetails } from '../../actions/reducerActions'
+import { createCommentReply, createPostComment, setPostDetails } from '../../actions/reducerActions'
 import { useDispatch } from '../../providers/AppProvider'
 import { fetchCreateComment, fetchPostDetails } from '../../services/apiFetches'
 
@@ -24,7 +24,7 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
             .then(newComment => {
                 console.log(newComment)
                 if (!newComment.parentCommentId) dispatch(createPostComment(newComment))
-                else fetchPostDetails(post.id).then(post => dispatch(setPostDetails(post)))
+                else dispatch(createCommentReply(newComment))
                 setBody('')
             })
             .catch(err => setError(err.message))
