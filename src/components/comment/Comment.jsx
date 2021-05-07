@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createNewCommentVoteHistory, setPostDetails, updateUserCommentVoteHistory } from '../../actions/reducerActions'
+import { createNewCommentVoteHistory, setPostDetails, updateCommentVote, updateUserCommentVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getPostDetails, getUserCommentVoteHistory } from '../../selectors/selectors'
@@ -48,17 +48,15 @@ export default function Comment({
             vote: 1
         }
         fetchVoteOnComment(id, body)
-            .then(({ voteHistory }) => {
+            .then(({ comment, voteHistory }) => {
                 if (currentVote === undefined) dispatch(createNewCommentVoteHistory(voteHistory))
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
 
-                // if (!parentCommentId) fetchPostDetails(postDetails.id).then(post => dispatch(setPostDetails(post)))
-            })
-            .then(() => fetchPostDetails(postDetails.id))
-            .then(post => {
-                dispatch(setPostDetails(post))
+
+                dispatch(updateCommentVote({ id, score: comment.voteScore }))
                 setLoading(false)
             })
+
     }
 
     const downvote = () => {
@@ -68,13 +66,11 @@ export default function Comment({
             vote: -1
         }
         fetchVoteOnComment(id, body)
-            .then(({ voteHistory }) => {
+            .then(({ comment, voteHistory }) => {
                 if (currentVote === undefined) dispatch(createNewCommentVoteHistory(voteHistory))
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
-            })
-            .then(() => fetchPostDetails(postDetails.id))
-            .then(post => {
-                dispatch(setPostDetails(post))
+
+                dispatch(updateCommentVote({ id, score: comment.voteScore }))
                 setLoading(false)
             })
     }
