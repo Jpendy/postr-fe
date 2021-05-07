@@ -24,7 +24,6 @@ function recurse(replies, insertObj = {}) {
             ...comment,
             replies: recurse(comment.replies, insertObj)
         }
-
     })
 
     else return replies
