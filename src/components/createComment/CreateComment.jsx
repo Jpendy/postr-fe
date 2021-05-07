@@ -22,6 +22,7 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
 
         fetchCreateComment({ body, postId: postDetails?.id, parentCommentId })
             .then(newComment => {
+                console.log(newComment)
                 if (!newComment.parentCommentId) dispatch(createPostComment(newComment))
                 else fetchPostDetails(post.id).then(post => dispatch(setPostDetails(post)))
                 setBody('')
