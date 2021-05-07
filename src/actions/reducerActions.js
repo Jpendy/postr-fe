@@ -94,8 +94,8 @@ export const updateUserCommentVoteHistory = payload => ({
     payload
 })
 
-export const UPDATE_POST_DETAIL_COMMENT_VOTE = 'UPDATE_POST_COMMENT_VOTE';
-export const updatePostDetailCommentVote = payload => ({
-    type: UPDATE_POST_DETAIL_COMMENT_VOTE,
+export const UPDATE_COMMENT_VOTE = 'UPDATE_COMMENT_VOTE';
+export const updateCommentVote = payload => ({
+    type: UPDATE_COMMENT_VOTE,
     payload
 })

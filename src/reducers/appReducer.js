@@ -1,4 +1,5 @@
-import { CREATE_BOARD, CREATE_NEW_COMMENT_VOTE_HISTORY, CREATE_NEW_POST_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_SINGLE_BOARD, SET_USER_COMMENT_VOTE_HISTORY, SET_USER_POST_VOTE_HISTORY, UPDATE_BOARD_POST_VOTE, UPDATE_POST, UPDATE_POST_DETAIL_COMMENT_VOTE, UPDATE_POST_VOTE, UPDATE_USER_COMMENT_VOTE_HISTORY, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
+import { CREATE_BOARD, CREATE_NEW_COMMENT_VOTE_HISTORY, CREATE_NEW_POST_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_SINGLE_BOARD, SET_USER_COMMENT_VOTE_HISTORY, SET_USER_POST_VOTE_HISTORY, UPDATE_BOARD_POST_VOTE, UPDATE_COMMENT_VOTE, UPDATE_POST, UPDATE_POST_DETAIL_COMMENT_VOTE, UPDATE_POST_VOTE, UPDATE_USER_COMMENT_VOTE_HISTORY, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
+import mapAndUpdateCommentScore from "../utils/mapAndInsertCommentScore";
 
 export const initialState = {
     boards: [],
@@ -77,20 +78,8 @@ export default function reducer(state, action) {
                 })
             }
         }
-        case UPDATE_POST_DETAIL_COMMENT_VOTE: {
-            return {
-                ...state, postDetails: {
-                    ...state.postDetails, comments: state.postDetails.comments.map(comment => {
-                        if (+comment.id === +action.payload.id) {
-                            return {
-                                ...comment,
-                                voteScore: +action.payload.voteScore
-                            }
-                        }
-                        return comment;
-                    })
-                }
-            }
+        case UPDATE_COMMENT_VOTE: {
+            return { ...state, postDetails: mapAndUpdateCommentScore(state.postDetails, action.payload) }
         }
         default: return state;
     }

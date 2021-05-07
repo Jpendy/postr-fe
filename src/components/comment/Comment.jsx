@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createNewCommentVoteHistory, setPostDetails, updateUserCommentVoteHistory } from '../../actions/reducerActions'
+import { createNewCommentVoteHistory, setPostDetails, updateCommentVote, updateUserCommentVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getPostDetails, getUserCommentVoteHistory } from '../../selectors/selectors'
@@ -48,17 +48,15 @@ export default function Comment({
             vote: 1
         }
         fetchVoteOnComment(id, body)
-            .then(({ voteHistory }) => {
+            .then(({ comment, voteHistory }) => {
                 if (currentVote === undefined) dispatch(createNewCommentVoteHistory(voteHistory))
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
 
-                // if (!parentCommentId) fetchPostDetails(postDetails.id).then(post => dispatch(setPostDetails(post)))
-            })
-            .then(() => fetchPostDetails(postDetails.id))
-            .then(post => {
-                dispatch(setPostDetails(post))
+
+                dispatch(updateCommentVote({ id, score: comment.voteScore }))
                 setLoading(false)
             })
+
     }
 
     const downvote = () => {
@@ -68,13 +66,11 @@ export default function Comment({
             vote: -1
         }
         fetchVoteOnComment(id, body)
-            .then(({ voteHistory }) => {
+            .then(({ comment, voteHistory }) => {
                 if (currentVote === undefined) dispatch(createNewCommentVoteHistory(voteHistory))
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
-            })
-            .then(() => fetchPostDetails(postDetails.id))
-            .then(post => {
-                dispatch(setPostDetails(post))
+
+                dispatch(updateCommentVote({ id, score: comment.voteScore }))
                 setLoading(false)
             })
     }
@@ -85,9 +81,9 @@ export default function Comment({
             <p>{body}</p>
 
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                {activeUser && <button onClick={upvote} disabled={loading} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'green' }} >upvote</button>}
+                {activeUser && <button onClick={upvote} disabled={loading} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'limegreen' }} >Like</button>}
                 <p>Score: {voteScore}</p>
-                {activeUser && <button onClick={downvote} disabled={loading} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>downvote</button>}
+                {activeUser && <button onClick={downvote} disabled={loading} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>Dislike</button>}
             </div>
 
             <p>Created on: {dateCreated}</p>
