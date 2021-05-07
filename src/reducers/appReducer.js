@@ -1,6 +1,6 @@
 import { CREATE_BOARD, CREATE_NEW_COMMENT_VOTE_HISTORY, CREATE_NEW_POST_VOTE_HISTORY, CREATE_POST, CREATE_POST_COMMENT, DELETE_COMMENT, DELETE_POST, SET_BOARDS, SET_POSTS, SET_POST_DETAILS, SET_SINGLE_BOARD, SET_USER_COMMENT_VOTE_HISTORY, SET_USER_POST_VOTE_HISTORY, UPDATE_BOARD_POST_VOTE, UPDATE_COMMENT_VOTE, UPDATE_POST, UPDATE_POST_DETAIL_COMMENT_VOTE, UPDATE_POST_VOTE, UPDATE_USER_COMMENT_VOTE_HISTORY, UPDATE_USER_POST_VOTE_HISTORY } from "../actions/reducerActions";
 import mapAndDeleteComment from "../utils/reducerHelperFns/mapAndDeleteComment";
-import mapAndUpdateCommentScore from "../utils/reducerHelperFns/mapAndInsertCommentScore";
+import mapAndUpdateCommentScore from "../utils/reducerHelperFns/mapAndUpdateCommentScore";
 
 export const initialState = {
     boards: [],
