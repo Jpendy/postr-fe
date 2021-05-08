@@ -14,6 +14,7 @@ import CreateBoardPage from '../../containers/createBoardPage/CreateBoardPage';
 import BoardPage from '../../containers/boardPage/BoardPage';
 import UserDetailPage from '../../containers/userDetailPage/UserDetailPage';
 import './App.css'
+import CreatePost from '../createPost/CreatePost';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
               <Route exact path="/create-board" component={CreateBoardPage} />
               <Route exact path="/board/:name" component={BoardPage} />
               <Route exact path="/user-page/:id" component={UserDetailPage} />
+              <Route exacgt path="/uploader" component={CreatePost} />
             </Switch>
           </AppProvider>
         </AuthProvider>

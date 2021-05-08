@@ -19,3 +19,5 @@ export const fetchVoteOnPost = (id, body) => post(`/api/v1/posts/vote/${id}`, bo
 export const fetchVoteOnComment = (id, body) => post(`/api/v1/comments/vote/${id}`, body)
 
 export const fetchUserAndUserPosts = id => get(`/api/v1/users/user-posts/${id}`)
+
+export const fetchUploadPost = body => post('/api/v1/cloudinary', body)
