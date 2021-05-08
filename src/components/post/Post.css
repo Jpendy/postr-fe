@@ -2,7 +2,7 @@
 .post {
     display: 'flex';
     justify-content: 'center';
-    margin: 20px;
+    margin-bottom: 40px;
     padding: 20px 50px;
     width: 100%;
     background-color: #E7E3D4;

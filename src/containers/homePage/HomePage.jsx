@@ -3,6 +3,7 @@ import PostList from '../../components/postList/PostList'
 import CreatePost from '../../components/createPost/CreatePost'
 import { useActiveUser } from '../../providers/AuthProvider'
 import usePosts from '../../hooks/usePosts'
+import Sort from '../../components/sort/Sort'
 
 export default function HomePage() {
 
@@ -14,6 +15,7 @@ export default function HomePage() {
     return (
         <div  >
             {activeUser && <CreatePost />}
+            <Sort />
             <PostList frontPage={true} posts={posts} />
         </div>
     )
