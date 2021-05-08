@@ -17,20 +17,18 @@ const styleObj = {
 export default function CreatePost() {
 
     const dispatch = useDispatch()
+    const { boards, loading, error } = useBoards()
 
     const [title, setTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     const [boardId, setBoardId] = useState('')
-    const [postError, setPostError] = useState(null)
-
     const [imagePreviewSource, setImagePreviewSource] = useState('')
     const [file, setFile] = useState('')
+    const [postError, setPostError] = useState(null)
 
-    const { boards, loading, error } = useBoards()
 
     const handleFileInputChange = e => {
         const file = e.target.files[0];
-
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => setImagePreviewSource(reader.result)
@@ -64,17 +62,15 @@ export default function CreatePost() {
         <div style={{ display: 'flex', justifyContent: 'center' }} >
             <form style={styleObj} onSubmit={createPostSubmit} >
                 Create Post
-                {/* <input value={imageUrl} type="text" placeholder="Image Url" onChange={e => setImageUrl(e.target.value)} /> */}
                 <input value={title} type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
                 <textarea value={postBody} placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
 
                 <select id="board-list" onChange={e => setBoardId(e.target.value)} >
                     <option value="">choose board</option>
-                    {boards.map((board, i) => <option key={i - 9999} value={board.id}> {board.name} </option>)
-                    }
+                    {boards.map((board, i) => <option key={i - 9999} value={board.id}> {board.name} </option>)}
                 </select>
 
-                <input type="file" name="file" onChange={handleFileInputChange} value={file} />
+                <input type="file" name="image-upload" onChange={handleFileInputChange} value={file} />
 
                 <button disabled={!title.trim() || !boardId} >Submit Post</button>
                 {postError && <p style={{ color: 'red' }}>{postError}</p>}

@@ -9,7 +9,7 @@ export default function PostDetail({ match }) {
 
     const activeUser = useActiveUser()
     const { postDetails: pd, loading } = usePostDetails(match.params.id)
-
+    console.log(pd)
     if (loading) return <h2>Loading...</h2>
     return (
         <>
