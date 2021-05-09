@@ -7,6 +7,7 @@ import styles from './Header.css'
 export default function Header() {
 
     const activeUser = useActiveUser()
+    console.log(activeUser)
     const logout = useLogout()
 
     if (activeUser) return (
@@ -19,7 +20,7 @@ export default function Header() {
                 </div>
 
                 <div className={styles['header-right-area']} >
-                    <h3>Hello {activeUser.displayName || activeUser.username}</h3>
+                    <h3>Hello {activeUser.displayName || activeUser.email.split('|')[0]}</h3>
                     <button onClick={logout} style={{ height: '40px' }} >Log Out</button>
                 </div>
             </div>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { createCommentReply, createPostComment, setPostDetails } from '../../actions/reducerActions'
 import { useDispatch } from '../../providers/AppProvider'
+import { useActiveUser } from '../../providers/AuthProvider'
 import { fetchCreateComment, fetchPostDetails } from '../../services/apiFetches'
 
 const styleObj = {
@@ -10,7 +12,9 @@ const styleObj = {
 }
 
 export default function CreateComment({ post, postDetails, parentCommentId, replyBoolDefault }) {
+    const activeUser = useActiveUser()
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const [body, setBody] = useState('')
     const [error, setError] = useState(null)

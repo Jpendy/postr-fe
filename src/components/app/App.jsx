@@ -15,6 +15,9 @@ import BoardPage from '../../containers/boardPage/BoardPage';
 import UserDetailPage from '../../containers/userDetailPage/UserDetailPage';
 import './App.css'
 import CreatePost from '../createPost/CreatePost';
+import SetDisplayName from '../../containers/setDisplayName/SetDisplayName';
+import PrivateRoute from '../privateRoute/PrivateRoute';
+import CheckForDisplayName from '../../wrappers/CheckForDisplayName';
 
 export default function App() {
   return (
@@ -22,15 +25,17 @@ export default function App() {
       <Router>
         <AuthProvider>
           <AppProvider>
+            <CheckForDisplayName />
             <Header />
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/login" component={LoginDevelopment} />
               <Route exact path="/post-detail/:id" component={PostDetail} />
-              <Route exact path="/create-board" component={CreateBoardPage} />
+              <PrivateRoute exact path="/create-board" component={CreateBoardPage} />
               <Route exact path="/board/:name" component={BoardPage} />
               <Route exact path="/user-page/:id" component={UserDetailPage} />
-              <Route exacgt path="/uploader" component={CreatePost} />
+              <Route exact path="/display-name" component={SetDisplayName} />
+
             </Switch>
           </AppProvider>
         </AuthProvider>
