@@ -78,11 +78,12 @@ export default function Comment({
     const date = new Date(+dateCreated).toString()
     const dateMod = new Date(+dateModifed).toString()
 
-    const replyMessage = replies?.length > 1 ? 'replies' : 'reply'
+    const replyMessage = replies?.length === 1 ? 'reply' : 'replies'
 
     return (
         <div className={styles.commentArea} >
             <p><Link to={`/user-page/${userId}`} >{createdBy}</Link> - {date.slice(0, 16)}</p>
+
             <p className={styles.body} >{body}</p>
 
             <div className={styles.voteArea}>
@@ -110,7 +111,7 @@ export default function Comment({
 
             {error && <p style={{ color: 'red' }} >Error: {error}</p>}
 
-            {+activeUser?.id === +userId && <button onClick={handleDeleteComment} >delete comment</button>}
+            {+activeUser?.id === +userId && <button onClick={handleDeleteComment} >delete</button>}
             {activeUser && <CreateComment post={postDetails} parentCommentId={id} replyBoolDefault={false} />}
 
             {replies && <details open={depthCounter % 3 !== 0}>

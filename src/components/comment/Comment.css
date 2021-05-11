@@ -8,6 +8,10 @@
     border-left: solid .2px black;
     font-family: verdana, arial, helvetica, sans-serif;
 
+    .body {
+        font-size: 1.1rem;
+    }
+
     .voteArea {
         display: flex;
         align-items: center;

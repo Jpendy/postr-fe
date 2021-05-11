@@ -36,7 +36,7 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
 
     const replyBoolFn = () => setReplyBool(replyBool ? false : true)
 
-    if (!replyBool) return <button onClick={replyBoolFn} >Reply to comment</button>
+    if (!replyBool) return <button onClick={replyBoolFn} >reply</button>
 
     return (
         <div className={styles.createComment} >
