@@ -18,6 +18,8 @@ import CreatePost from '../createPost/CreatePost';
 import SetDisplayName from '../../containers/setDisplayName/SetDisplayName';
 import PrivateRoute from '../privateRoute/PrivateRoute';
 import CheckForDisplayName from '../../wrappers/CheckForDisplayName';
+import Signup from '../../containers/signup/Signup';
+import Login from '../../containers/login/Login';
 
 export default function App() {
   return (
@@ -29,13 +31,13 @@ export default function App() {
             <Header />
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/login" component={LoginDevelopment} />
               <Route exact path="/post-detail/:id" component={PostDetail} />
               <PrivateRoute exact path="/create-board" component={CreateBoardPage} />
               <Route exact path="/board/:name" component={BoardPage} />
               <Route exact path="/user-page/:id" component={UserDetailPage} />
               <Route exact path="/display-name" component={SetDisplayName} />
-
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/login" component={Login} />
             </Switch>
           </AppProvider>
         </AuthProvider>

@@ -6,7 +6,7 @@ export default function CommentList({ depthCounter = 0, comments }) {
     depthCounter++
     return (
         <ul>
-            {comments.map((comment, i) => <li key={i + 9999}> <Comment depthCounter={depthCounter} {...comment} /> </li>)}
+            {comments.map(comment => <li key={comment.id}> <Comment depthCounter={depthCounter} {...comment} /> </li>)}
         </ul>
     )
 }

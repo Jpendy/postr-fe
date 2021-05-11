@@ -8,7 +8,7 @@ export default function PostList({ posts }) {
 
     return (
         <ul className={styles.postList}>
-            {posts.map((post, i) => <li key={i + 5555}><Post {...post} /></li>)}
+            {posts.map(post => <li key={post.id}><Post {...post} /></li>)}
         </ul>
     )
 }

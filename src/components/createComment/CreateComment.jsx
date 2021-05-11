@@ -4,6 +4,7 @@ import { createCommentReply, createPostComment, setPostDetails } from '../../act
 import { useDispatch } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { fetchCreateComment, fetchPostDetails } from '../../services/apiFetches'
+import styles from './CreateComment.css'
 
 const styleObj = {
     display: 'flex',
@@ -26,7 +27,6 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
 
         fetchCreateComment({ body, postId: postDetails?.id, parentCommentId })
             .then(newComment => {
-                console.log(newComment)
                 if (!newComment.parentCommentId) dispatch(createPostComment(newComment))
                 else dispatch(createCommentReply(newComment))
                 setBody('')
@@ -37,8 +37,9 @@ export default function CreateComment({ post, postDetails, parentCommentId, repl
     const replyBoolFn = () => setReplyBool(replyBool ? false : true)
 
     if (!replyBool) return <button onClick={replyBoolFn} >Reply to comment</button>
+
     return (
-        <div>
+        <div className={styles.createComment} >
             {!replyBoolDefault && <button onClick={replyBoolFn}>close reply</button>}
 
             <form style={styleObj} onSubmit={handleCommentSubmit} >

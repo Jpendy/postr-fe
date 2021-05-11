@@ -1,0 +1,38 @@
+
+.commentArea {
+    background-color: lightblue;
+    padding: 15px 70px;
+    margin-top: 20px;
+    width: 100%;
+    border-top: solid .2px black;
+    border-left: solid .2px black;
+    font-family: verdana, arial, helvetica, sans-serif;
+
+    .voteArea {
+        display: flex;
+        align-items: center;
+    }
+
+    .voteArea img {
+        width: 17px;
+        margin: 10px;
+        cursor: pointer;
+    }
+  
+    a {
+        text-decoration: none;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    summary {
+        margin-top: 15px;
+        cursor: pointer;
+    }
+
+    button {
+        cursor: pointer;
+    }
+}

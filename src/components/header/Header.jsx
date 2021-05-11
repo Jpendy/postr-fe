@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useActiveUser, useAuthError, useLogout } from '../../providers/AuthProvider'
-import { login } from '../../services/auth'
+import { googleOAuth } from '../../services/auth'
 import styles from './Header.css'
 
 export default function Header() {
 
     const activeUser = useActiveUser()
-    console.log(activeUser)
     const logout = useLogout()
 
     if (activeUser) return (
@@ -20,12 +19,13 @@ export default function Header() {
                 </div>
 
                 <div className={styles['header-right-area']} >
-                    <h3>Hello {activeUser.displayName || activeUser.email.split('|')[0]}</h3>
+                    <h3>Hello {activeUser.displayName || activeUser.email}</h3>
                     <button onClick={logout} style={{ height: '40px' }} >Log Out</button>
                 </div>
             </div>
         </>
     )
+
     return (
         <div>
             <div className={styles['header-body']} >
@@ -34,7 +34,8 @@ export default function Header() {
 
                 <div className={styles['link-buttons']} >
                     <Link to='/signup' >Sign Up</Link>
-                    <button onClick={login} >Login</button>
+                    <Link to='/login' >Login</Link>
+                    <button onClick={googleOAuth} >Login</button>
                     <Link to='/' >Front Page</Link>
                 </div>
             </div>

@@ -1,0 +1,51 @@
+
+.login-area {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 1px 1px 2px black;
+    background: #E7E3D4;
+    border: 1px solid black;
+
+    img {
+        width: 50%;
+    }
+}
+
+.login-area, .login-area form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-area input {
+    height: 30px;
+    width: 250px;
+    margin: 10px;
+    border-top: 1px black;
+    border-left: 1px black;
+
+}
+
+.login-area button {
+    margin: 10px;
+    height: 30px;
+    width: 60px;
+    cursor: pointer;
+}
+
+.login-area .googleButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    width: 250px;
+
+    img {
+        margin-right: 6px;
+        width: 17px;
+    }
+}

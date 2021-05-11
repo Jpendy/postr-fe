@@ -66,13 +66,15 @@ export default function Post({
                 setLoading(false)
             })
     }
-
+    const date = new Date(+dateCreated).toString()
+    const dateMod = new Date(+dateModifed).toString()
     return (
         <div className={styles.post} >
             <Link to={`/post-detail/${id}`} >
                 <h2>{title}</h2>
                 {imageUrl && <img src={imageUrl} />}
             </Link>
+
             {body && <p>{body}</p>}
 
             <div className={styles.votingArea}>
@@ -81,8 +83,8 @@ export default function Post({
                 {activeUser && <button onClick={downvote} disabled={loading} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>Dislike</button>}
             </div>
 
-            <p>Posted on: {dateCreated.slice(0, 16)}</p>
-            {dateModifed && <p>Modified on: {dateModifed}</p>}
+            <p>Posted on: {date}</p>
+            {dateModifed && <p>Modified on: {DatedateModifed}</p>}
 
             <p>Created by: <Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
 

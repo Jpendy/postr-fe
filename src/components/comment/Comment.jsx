@@ -7,6 +7,7 @@ import { getPostDetails, getUserCommentVoteHistory } from '../../selectors/selec
 import { fetchDeleteComment, fetchPostDetails, fetchVoteOnComment } from '../../services/apiFetches'
 import CommentList from '../commentList/CommentList'
 import CreateComment from '../createComment/CreateComment'
+import styles from './Comment.css'
 
 export default function Comment({
     id,
@@ -74,21 +75,41 @@ export default function Comment({
             })
     }
 
-    const replyMessage = replies?.length > 1 ? 'replies' : 'reply'
-    return (
-        <>
-            <p>{body}</p>
+    const date = new Date(+dateCreated).toString()
+    const dateMod = new Date(+dateModifed).toString()
 
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                {activeUser && <button onClick={upvote} disabled={loading} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'limegreen' }} >Like</button>}
-                <p>Score: {voteScore}</p>
-                {activeUser && <button onClick={downvote} disabled={loading} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>Dislike</button>}
+    const replyMessage = replies?.length > 1 ? 'replies' : 'reply'
+
+    return (
+        <div className={styles.commentArea} >
+            <p><Link to={`/user-page/${userId}`} >{createdBy}</Link> - {date.slice(0, 16)}</p>
+            <p className={styles.body} >{body}</p>
+
+            <div className={styles.voteArea}>
+
+                {activeUser && <img
+                    src="/upArrow.png"
+                    onClick={upvote}
+                    disabled={loading}
+                    style={{ filter: currentVote === 1 && 'drop-shadow(1.5px 1.5px 2px orangered)' }}
+                />}
+
+
+                <p>{voteScore}</p>
+                {activeUser && <img
+                    src="/downArrow.png"
+                    onClick={downvote}
+                    disabled={loading}
+                    style={{ filter: currentVote === -1 && 'drop-shadow(1.5px 1.5px 2px blue)' }}
+                />
+                }
+
             </div>
 
-            <p>Created on: {dateCreated}</p>
-            {dateModifed && <p>Modified on: {dateModifed}</p>}
-            <p>Comment by: <Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
+            {dateModifed && <p>Modified on: {dateMod}</p>}
+
             {error && <p style={{ color: 'red' }} >Error: {error}</p>}
+
             {+activeUser?.id === +userId && <button onClick={handleDeleteComment} >delete comment</button>}
             {activeUser && <CreateComment post={postDetails} parentCommentId={id} replyBoolDefault={false} />}
 
@@ -96,6 +117,6 @@ export default function Comment({
                 <summary >{`${replies.length} ${replyMessage}`}</summary>
                 <CommentList depthCounter={depthCounter} comments={replies} />
             </details>}
-        </>
+        </div>
     )
 }
