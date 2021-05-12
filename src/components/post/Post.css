@@ -1,40 +1,57 @@
 
 .post {
-    display: 'flex';
-    justify-content: 'center';
+    display: grid;
+    grid-template-columns: 1fr 5fr;
     margin-bottom: 40px;
-    padding: 20px 50px;
-    width: 100%;
+    padding: 20px 40px 10px 10px; 
+    width: 60vw; 
     background-color: #E7E3D4;
-    text-align: center;
+    min-width: 400px;
     border: 1px solid black;
     box-shadow: 1px 1px 3px;
     font-family: verdana, arial, helvetica, sans-serif;
 
+    .postTopArea {
+        display: flex;
+    }
+
+    .votingArea {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 1.1rem;
+    }
+
+    .votingArea img {
+        width: 17px;
+        cursor: pointer;
+    }
+
+    .postImage {
+        width: 350px;
+        
+    }
+
+    a {
+        text-decoration: none;
+        color: #c23104;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: rgb(49, 4, 155)
+    }
 }
 
-.post img {
-    width: 350px;
-    height: 100%;
-}
-
+/*
 .votingArea {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
     font-size: 1.1rem;
 }
+*/
 
-.votingArea button {
-    width: 90px;
-    cursor: pointer;
-}
 
-.post a {
-    text-decoration: none;
-    color: #c23104;
-}
-
-.post a:hover {
-    color: rgb(49, 4, 155)
-}

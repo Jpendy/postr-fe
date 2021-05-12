@@ -1,6 +1,5 @@
 
 .postArea {
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,8 +26,6 @@
             color: #c23104;
         }
     }
-
-    
 
     img {
         width: 350px;

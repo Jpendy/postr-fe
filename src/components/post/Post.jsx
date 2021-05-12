@@ -70,29 +70,48 @@ export default function Post({
     const dateMod = new Date(+dateModifed).toString()
     return (
         <div className={styles.post} >
-            <Link to={`/post-detail/${id}`} >
-                <h2>{title}</h2>
-                {imageUrl && <img src={imageUrl} />}
-            </Link>
-
-            {body && <p>{body}</p>}
 
             <div className={styles.votingArea}>
-                {activeUser && <button onClick={upvote} disabled={loading} style={{ height: '25px', marginRight: '5px', color: currentVote === 1 && 'limegreen' }} >Like</button>}
-                <p>Score: {voteScore}</p>
-                {activeUser && <button onClick={downvote} disabled={loading} style={{ height: '25px', marginLeft: '5px', color: currentVote === -1 && 'red' }}>Dislike</button>}
+                {activeUser && <img
+                    src="/upArrow.png"
+                    onClick={upvote}
+                    disabled={loading}
+                    style={{ filter: currentVote === 1 && 'drop-shadow(1.5px 1.5px 2px orangered)' }}
+                />}
+
+                <p>{voteScore}</p>
+
+                {activeUser && <img
+                    src="/downArrow.png"
+                    onClick={downvote}
+                    disabled={loading}
+                    style={{ filter: currentVote === -1 && 'drop-shadow(1.5px 1.5px 2px blue)' }}
+                />}
+
             </div>
 
-            <p>Posted on: {date}</p>
-            {dateModifed && <p>Modified on: {DatedateModifed}</p>}
+            <div className={styles.postArea} >
+                <div className={styles.postTopArea} >
+                    <p>Posted to <Link to={`/board/${board}`} >{board}</Link> by&nbsp;</p>
+                    <p><Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
+                    <p>&nbsp;on {date.slice(0, 16)}</p>
+                </div>
 
-            <p>Created by: <Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
+                <Link to={`/post-detail/${id}`} >
+                    <h2>{title}</h2>
+                </Link>
 
-            <p>Posted to: <Link to={`/board/${board}`} >{board}</Link></p>
+                {imageUrl && <Link to={`/post-detail/${id}`} ><img className={styles.postImage} src={imageUrl} /></Link>}
+                {body && <p>{body}</p>}
 
 
-            <p>Comments:  <Link to={`/post-detail/${id}`} >{commentCount}</Link></p>
-            {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
+                {dateModifed && <p>Modified on: {DatedateModifed}</p>}
+
+                <p><Link to={`/post-detail/${id}`} >{commentCount} comments</Link></p>
+                {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
+            </div>
+
+
         </div>
     )
 }
