@@ -23,9 +23,13 @@ export default function PostDetail({ match }) {
                 {pd.imageUrl && <img src={pd.imageUrl} />}
                 {pd.body && <p>{pd.body}</p>}
                 <p>Score: {pd.voteScore}</p>
-                <p>Created on: {date}</p>
-                <p>Posted by: <Link to={`/user-page/${pd.userId}`} >{pd.createdBy}</Link></p>
-                <p>Board: {pd.board}</p>
+                <p>Created on {date.slice(0, 16)}</p>
+
+                <div className={styles.postedBy} >
+                    <p>Posted by <Link to={`/user-page/${pd.userId}`} >{pd.createdBy}</Link> to&nbsp;</p>
+                    <p><Link to={`/board/${pd.board}`} > {pd.board}</Link></p>
+                </div>
+
                 {pd.dateModifed && <p>Modified on: {dateMod}</p>}
             </div>
 

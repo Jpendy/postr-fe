@@ -18,7 +18,17 @@
     box-shadow: 1px 1px 3px;
     font-family: verdana, arial, helvetica, sans-serif;
 
+            h2 {
+            color: #c23104;
+        }
+
+        a {
+            text-decoration: none;
+            color: #c23104;
+        }
     }
+
+    
 
     img {
         width: 350px;
@@ -27,5 +37,14 @@
 
     ul {
         list-style: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .postedBy {
+        display: flex;
+        justify-content: center;
     }
 }
