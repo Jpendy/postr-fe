@@ -12,9 +12,9 @@ export default function BoardPage({ match }) {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    const { name, bannerImageUrl } = useSelector(getSingleBoard)
+    const board = useSelector(getSingleBoard)
     const { posts } = usePosts()
-
+    console.log(board)
     useEffect(() => {
         setError(null)
         fetchBoardByName(match.params.name)
@@ -29,9 +29,10 @@ export default function BoardPage({ match }) {
     if (loading) return <h3>Loading...</h3>
     return (
         <div>
-            {bannerImageUrl && <img style={{ width: '100%', height: '250px' }} src={bannerImageUrl} alt="banner image" />}
-            <h2>{name}</h2>
-            {posts && <PostList posts={posts} />}
+            {error && <p style={{ color: 'red' }} >{error}</p>}
+            {board?.bannerImageUrl && <img style={{ width: '100%', height: '250px' }} src={board?.bannerImageUrl} alt="banner image" />}
+            <h2>{board?.name}</h2>
+            {posts && <PostList posts={board?.posts} />}
         </div>
     )
 }

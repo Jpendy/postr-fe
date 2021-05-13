@@ -23,11 +23,12 @@ export default function BoardSearch() {
         </li>
     ))
 
+    const height = 85 + boardsList.length * 26;
 
     return (
-        <div className={styles.boardSearch} >
+        <div style={{ height: `${height}px` }} className={styles.boardSearch}  >
             <input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} />
-            <ul>
+            <ul >
                 {list}
             </ul>
         </div>

@@ -1,16 +1,13 @@
 .homePage {
     display: grid;
-    justify-content: space-evenly;
-    align-items: space-evenly;
-    grid-template-columns: 3fr 1fr;
-
+    grid-gap: 25px;
+    grid-template-columns: 5fr 2.5fr;
 
     .boardSearch {
         display: flex;
         justify-content: center;
-        margin-top: 46px;
-        height: 600px;
-        margin-right: 50px;
+        margin-top: 47px;
+        margin-right: 40px;
         min-width: 210px;
     }
 }
