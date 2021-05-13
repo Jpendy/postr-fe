@@ -69,6 +69,7 @@ export default function Post({
                 setLoading(false)
             })
     }
+
     const date = new Date(+dateCreated).toString()
     const dateMod = new Date(+dateModifed).toString()
     return (
@@ -106,14 +107,17 @@ export default function Post({
 
                 <details open={!allPostsClosed}>
                     <summary className={styles.summary} onClick={() => handleOpenDetails(id)} >
-                        <img className={styles.summaryIcon} src={closedPosts.includes(id) ? '/open-icon.png' : '/x-close.png'} alt='' />
+                        <img className={styles.summaryIcon}
+                            src={closedPosts.includes(id) ? imageUrl : '/x-close.png'}
+                            style={{
+                                height: closedPosts.includes(id) ? '70px' : '15px',
+                                width: closedPosts.includes(id) ? '70px' : '15px',
+                            }}
+                            alt='post image icon' />
                     </summary>
                     {imageUrl && <Link to={`/post-detail/${id}`} ><img className={styles.postImage} src={imageUrl} /></Link>}
                     {body && <p>{body}</p>}
                 </details>
-
-
-
 
                 {dateModifed && <p>Modified on: {DatedateModifed}</p>}
 

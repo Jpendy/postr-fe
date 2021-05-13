@@ -6,8 +6,8 @@ import styles from './PostList.css'
 
 export default function PostList({ posts }) {
 
-    const [closedPosts, setClosedPosts] = useState([])
-    const [allPostsClosed, setAllPostsClosed] = useState(false)
+    const [closedPosts, setClosedPosts] = useState(posts.map(post => post.id))
+    const [allPostsClosed, setAllPostsClosed] = useState(true)
 
     const handleOpenDetails = (id) => {
         closedPosts.includes(id) ?
@@ -24,7 +24,8 @@ export default function PostList({ posts }) {
 
     return (
         <>
-            <button onClick={handleCloseAllPosts} >{allPostsClosed ? 'open all' : 'close all'}</button>
+            <button className={styles.closePostsButton} onClick={handleCloseAllPosts} >{allPostsClosed ? 'open all' : 'close all'}</button>
+
             <ul className={styles.postList}>
                 {posts.map(post => (
                     <li key={post.id}>
