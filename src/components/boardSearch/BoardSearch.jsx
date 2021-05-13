@@ -12,7 +12,7 @@ export default function BoardSearch() {
 
     const boardsList = boards
         .filter(board => {
-            if (search.trim()) return board.name.toLowerCase().includes(search.toLowerCase())
+            if (search.trim()) return board.name.toLowerCase().includes(search.toLowerCase().trim())
             return true;
         })
         .sort((a, b) => b.postCount - a.postCount)
