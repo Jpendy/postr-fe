@@ -19,7 +19,10 @@ export default function Post({
     board,
     userId,
     boardId,
-    commentCount
+    commentCount,
+    handleOpenDetails,
+    closedPosts,
+    allPostsClosed
 }) {
 
     const activeUser = useActiveUser()
@@ -101,8 +104,15 @@ export default function Post({
                     <h2>{title}</h2>
                 </Link>
 
-                {imageUrl && <Link to={`/post-detail/${id}`} ><img className={styles.postImage} src={imageUrl} /></Link>}
-                {body && <p>{body}</p>}
+                <details open={!allPostsClosed}>
+                    <summary className={styles.summary} onClick={() => handleOpenDetails(id)} >
+                        <img className={styles.summaryIcon} src={closedPosts.includes(id) ? '/open-icon.png' : '/x-close.png'} alt='' />
+                    </summary>
+                    {imageUrl && <Link to={`/post-detail/${id}`} ><img className={styles.postImage} src={imageUrl} /></Link>}
+                    {body && <p>{body}</p>}
+                </details>
+
+
 
 
                 {dateModifed && <p>Modified on: {DatedateModifed}</p>}

@@ -10,17 +10,24 @@
     border: 1px solid black;
     box-shadow: 1px 1px 3px;
     font-family: verdana, arial, helvetica, sans-serif;
+    summary::-webkit-details-marker {display: none; }
 
     .postTopArea {
         display: flex;
+        height: 30px;
     }
 
     .votingArea {
+        margin-top: 17px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         font-size: 1.1rem;
+    }
+
+    .votingArea p {
+        margin: 4px;
     }
 
     .votingArea img {
@@ -42,16 +49,16 @@
         text-decoration: underline;
         color: rgb(49, 4, 155)
     }
-}
 
-/*
-.votingArea {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    font-size: 1.1rem;
+   .summaryIcon {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+    }
+    summary{ list-style: none }
 }
-*/
+ 
+
+
 
 
