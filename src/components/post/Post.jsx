@@ -73,6 +73,8 @@ export default function Post({
             })
     }
 
+    const commentMessage = +commentCount === 1 ? 'comment' : 'comments'
+
     const date = new Date(+dateCreated).toString()
     const dateMod = new Date(+dateModifed).toString()
     return (
@@ -124,7 +126,7 @@ export default function Post({
 
                 {dateModifed && <p>Modified on: {DatedateModifed}</p>}
 
-                <p><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{commentCount} comments</Link></p>
+                <p><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`${commentCount} ${commentMessage}`} </Link></p>
                 {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
             </div>
 
