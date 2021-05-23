@@ -14,14 +14,14 @@ const styleObj = {
     width: '50%',
 }
 
-export default function CreatePost() {
+export default function CreatePost({ boardId }) {
 
     const dispatch = useDispatch()
     const { boards, loading, error } = useBoards()
 
     const [title, setTitle] = useState('')
     const [postBody, setPostBody] = useState('')
-    const [boardId, setBoardId] = useState('')
+
     const [imagePreviewSource, setImagePreviewSource] = useState('')
     const [file, setFile] = useState('')
     const [postError, setPostError] = useState(null)
@@ -44,7 +44,7 @@ export default function CreatePost() {
             title,
             imageData: imagePreviewSource,
             body: postBody,
-            boardId: boardId
+            boardId
         }
 
         fetchCreatePost(post)
@@ -65,10 +65,10 @@ export default function CreatePost() {
                 <input value={title} type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
                 <textarea value={postBody} placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
 
-                <select id="board-list" onChange={e => setBoardId(e.target.value)} >
+                {/* <select id="board-list" onChange={e => setBoardId(e.target.value)} >
                     <option value="">choose board</option>
                     {boards.map((board, i) => <option key={i - 9999} value={board.id}> {board.name} </option>)}
-                </select>
+                </select> */}
 
                 <input type="file" name="image-upload" onChange={handleFileInputChange} value={file} />
 

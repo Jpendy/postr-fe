@@ -22,7 +22,10 @@ export default function Post({
     commentCount,
     handleOpenDetails,
     closedPosts,
-    allPostsClosed
+    allPostsClosed,
+    postColor,
+    fontColor,
+    linkColor
 }) {
 
     const activeUser = useActiveUser()
@@ -73,7 +76,7 @@ export default function Post({
     const date = new Date(+dateCreated).toString()
     const dateMod = new Date(+dateModifed).toString()
     return (
-        <div className={styles.post} >
+        <div style={{ backgroundColor: postColor, color: fontColor }} className={styles.post} >
 
             <div className={styles.votingArea}>
                 {activeUser && <img
@@ -96,12 +99,12 @@ export default function Post({
 
             <div className={styles.postArea} >
                 <div className={styles.postTopArea} >
-                    <p>Posted to <Link to={`/board/${board}`} >{board}</Link> by&nbsp;</p>
-                    <p><Link to={`/user-page/${userId}`} >{createdBy}</Link></p>
+                    <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;</p>
+                    <p><Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
                     <p>&nbsp;on {date.slice(0, 16)}</p>
                 </div>
 
-                <Link to={`/post-detail/${id}`} >
+                <Link to={`/post-detail/${id}`} style={{ color: linkColor }} >
                     <h2>{title}</h2>
                 </Link>
 
@@ -115,13 +118,13 @@ export default function Post({
                             }}
                             alt='post image icon' />
                     </summary>
-                    {imageUrl && <Link to={`/post-detail/${id}`} ><img className={styles.postImage} src={imageUrl} /></Link>}
+                    {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
                     {body && <p>{body}</p>}
                 </details>
 
                 {dateModifed && <p>Modified on: {DatedateModifed}</p>}
 
-                <p><Link to={`/post-detail/${id}`} >{commentCount} comments</Link></p>
+                <p><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{commentCount} comments</Link></p>
                 {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
             </div>
 

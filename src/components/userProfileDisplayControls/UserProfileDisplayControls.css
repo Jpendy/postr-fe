@@ -1,0 +1,14 @@
+
+.ProfileDisplayControls {
+    display: flex;
+    justify-content: center;
+
+    button {
+        margin: 10px;
+        cursor: pointer;
+    }
+
+
+
+
+}

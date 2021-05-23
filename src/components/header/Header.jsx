@@ -14,6 +14,7 @@ export default function Header() {
 
             <div className={styles['link-buttons']} >
                 <Link to='/create-board' >Create Board</Link>
+                <Link to='/user-profile' >My Profile</Link>
             </div>
 
             <div className={styles['header-right-area']} >

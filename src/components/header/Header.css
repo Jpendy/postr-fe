@@ -37,12 +37,14 @@
 }
 
 .link-buttons {
-   
     display: flex;
 }
 
+
+
 .link-buttons > a {
     display: flex;
+    height: 40px;
     width: 80px;
     justify-content: center;
     align-items: center;

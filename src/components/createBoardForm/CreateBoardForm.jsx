@@ -15,9 +15,10 @@ export default function CreateBoardForm() {
     const dispatch = useDispatch()
 
     const [name, setName] = useState('')
-    const [primaryColor, setPrimaryColor] = useState('')
-    const [secondaryColor, setSecondaryColor] = useState('')
-    const [tertiaryColor, setTertiaryColor] = useState('')
+    const [bgColor, setBgColor] = useState('')
+    const [postColor, setPostColor] = useState('')
+    const [fontColor, setFontColor] = useState('')
+    const [linkColor, setLinkColor] = useState('')
     const [bannerImageUrl, setBannerImageUrl] = useState('')
     const [error, setError] = useState(null)
 
@@ -26,9 +27,10 @@ export default function CreateBoardForm() {
 
         fetchCreateBoard({
             name,
-            primaryColor,
-            secondaryColor,
-            tertiaryColor,
+            bgColor,
+            postColor,
+            fontColor,
+            linkColor,
             bannerImageUrl
         })
             .then(board => {
@@ -44,9 +46,11 @@ export default function CreateBoardForm() {
             {error && <p style={{ color: 'red' }} >{error}</p>}
             <input type="text" placeholder="board name - required" onChange={e => setName(e.target.value)} />
             <input type="text" placeholder="banner image url" onChange={e => setBannerImageUrl(e.target.value)} />
-            <label htmlFor="">Primary Color:  <input type="color" onChange={e => setPrimaryColor(e.target.value)} /></label>
-            <label htmlFor="">Secondary Color: <input type="color" onChange={e => setSecondaryColor(e.target.value)} /></label>
-            <label htmlFor="">Tertiary Color: <input type="color" onChange={e => setTertiaryColor(e.target.value)} /></label>
+            <label >Background Color:  <input type="color" onChange={e => setBgColor(e.target.value)} /></label>
+            <label >Post Color: <input type="color" onChange={e => setPostColor(e.target.value)} /></label>
+            <label >Font Color: <input type="color" onChange={e => setFontColor(e.target.value)} /></label>
+            <label >Url Color: <input type="color" onChange={e => setLinkColor(e.target.value)} /></label>
+
             <button disabled={!name.trim()} >create board</button>
         </form>
     )

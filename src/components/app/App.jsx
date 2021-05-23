@@ -20,6 +20,7 @@ import PrivateRoute from '../privateRoute/PrivateRoute';
 import CheckForDisplayName from '../../wrappers/CheckForDisplayName';
 import Signup from '../../containers/signup/Signup';
 import Login from '../../containers/login/Login';
+import UserProfile from '../../containers/userProfile/UserProfile';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/post-detail/:id" component={PostDetail} />
+              <PrivateRoute exact path="/user-profile" component={UserProfile} />
               <PrivateRoute exact path="/create-board" component={CreateBoardPage} />
               <Route exact path="/board/:name" component={BoardPage} />
               <Route exact path="/user-page/:id" component={UserDetailPage} />
