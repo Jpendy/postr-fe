@@ -1,6 +1,7 @@
 import { del, get, post, put } from "./request";
 
 export const fetchUpdateUserDisplayName = body => put('/api/v1/users/update-display-name', body)
+export const fetchUpdateUserInfo = (id, body) => put(`/api/v1/users/${id}`, body)
 
 export const fetchAllBoards = () => get('/api/v1/boards')
 export const fetchCreateBoard = body => post('/api/v1/boards', body)
