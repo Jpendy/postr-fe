@@ -30,7 +30,7 @@ export default function Modal({ children, open, handleCloseModal }) {
         <>
             <div style={overlayStyles} />
             <div style={modalStyles}>
-                <button onClick={handleCloseModal} >close</button>
+                <button onClick={handleCloseModal} style={{ cursor: 'pointer' }} >close</button>
                 {children}
             </div>
         </>,
