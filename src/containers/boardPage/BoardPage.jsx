@@ -4,10 +4,8 @@ import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { getSingleBoard } from '../../selectors/selectors'
 import { fetchBoardByName } from '../../services/apiFetches'
 import PostList from '../../components/postList/PostList'
-import usePosts from '../../hooks/usePosts'
 import CreatePost from '../../components/createPost/CreatePost'
 import { useActiveUser } from '../../providers/AuthProvider'
-import { postcss } from 'autoprefixer'
 
 export default function BoardPage({ match }) {
 
@@ -17,7 +15,6 @@ export default function BoardPage({ match }) {
     const [loading, setLoading] = useState(true)
 
     const board = useSelector(getSingleBoard)
-    const { posts } = usePosts()
 
     const [bgColor, setBgColor] = useState('')
     const [postColor, setPostColor] = useState('')
@@ -52,7 +49,7 @@ export default function BoardPage({ match }) {
 
             {error && <p style={{ color: 'red' }} >{error}</p>}
             {board?.bannerImageUrl && <img style={{ width: '100%', height: '250px' }} src={board?.bannerImageUrl} alt="banner image" />}
-            <h2>{board?.name}</h2>
+            <h2 style={{ margin: '0px', textAlign: 'center' }} >{board?.name}</h2>
 
             {owner && <div>
                 <input type="color" onChange={e => setBgColor(e.target.value)} />

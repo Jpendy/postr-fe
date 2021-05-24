@@ -1,13 +1,12 @@
 .header-body {
-    height: 80px;
+    height: 100px;
     padding: 0px 25px;
     background: #E7E3D4;
-    border-bottom: 1px initial black;
-    box-shadow: 1px 1px 1px black;
+    border-bottom: 1px solid black;
+    box-shadow: 1px 1px 3px black;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
     font-family: verdana, arial, helvetica, sans-serif;
 
 }
