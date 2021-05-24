@@ -5,7 +5,7 @@ import mapAndUpdateCommentScore from "../utils/reducerHelperFns/mapAndUpdateComm
 
 export const initialState = {
     boards: [],
-    posts: [],
+    posts: {},
     postDetails: {},
     board: {},
     userPostVoteHistory: [],
@@ -23,9 +23,6 @@ export default function reducer(state, action) {
         case SET_SINGLE_BOARD: {
             return { ...state, board: action.payload }
         }
-        // case CREATE_POST: {
-        //     return { ...state, posts: [action.payload, ...state.posts] }
-        // }
         case CREATE_POST: {
             return { ...state, board: { ...state.board, posts: [action.payload, ...state.board.posts] } }
         }
