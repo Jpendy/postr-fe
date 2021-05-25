@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { setPosts, setSingleBoard } from '../../actions/reducerActions'
+import { setPosts, setSingleBoard, updateBoardPostVote } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { getSingleBoard } from '../../selectors/selectors'
 import { fetchBoardByName } from '../../services/apiFetches'
@@ -21,8 +21,6 @@ export default function BoardPage({ match }) {
     const [fontColor, setFontColor] = useState('')
     const [linkColor, setLinkColor] = useState('')
 
-    console.log(board)
-
     const owner = board.userId === activeUser?.id
 
     useEffect(() => {
@@ -30,7 +28,7 @@ export default function BoardPage({ match }) {
         fetchBoardByName(match.params.name)
             .then(board => {
                 dispatch(setSingleBoard(board))
-                dispatch(setPosts(board.posts))
+                // dispatch(setPosts(board.posts))
             })
             .catch(err => setError(err.message))
             .finally(() => setLoading(false))
@@ -63,6 +61,7 @@ export default function BoardPage({ match }) {
             {board.posts && <PostList
                 posts={board?.posts}
                 bgColor={bgColor || board.bgColor}
+                upDateVoteFn={updateBoardPostVote}
                 postColor={postColor || board.postColor}
                 fontColor={fontColor || board.fontColor}
                 linkColor={linkColor || board.linkColor}

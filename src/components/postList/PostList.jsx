@@ -4,7 +4,7 @@ import usePosts from '../../hooks/usePosts'
 import { v4 as uuidv4 } from 'uuid'
 import styles from './PostList.css'
 
-export default function PostList({ bgColor, postColor, fontColor, linkColor, posts, page, PageButtons }) {
+export default function PostList({ bgColor, postColor, fontColor, linkColor, posts, page, PageButtons, upDateVoteFn }) {
 
     const [closedPosts, setClosedPosts] = useState(posts.map(post => post.id))
     const [allPostsClosed, setAllPostsClosed] = useState(true)
@@ -37,6 +37,7 @@ export default function PostList({ bgColor, postColor, fontColor, linkColor, pos
                             handleOpenDetails={handleOpenDetails}
                             closedPosts={closedPosts}
                             allPostsClosed={allPostsClosed}
+                            upDateVoteFn={upDateVoteFn}
                         />
                     </li>
                 ))}

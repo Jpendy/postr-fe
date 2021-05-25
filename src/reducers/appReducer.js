@@ -5,7 +5,9 @@ import mapAndUpdateCommentScore from "../utils/reducerHelperFns/mapAndUpdateComm
 
 export const initialState = {
     boards: [],
-    posts: {},
+    posts: {
+        postArray: []
+    },
     postDetails: {},
     board: {},
     userPostVoteHistory: [],
@@ -28,11 +30,23 @@ export default function reducer(state, action) {
         }
         case UPDATE_POST_VOTE: {
             return {
-                ...state, posts: state.posts.map(post => {
-                    if (+post.id === +action.payload.id) return { ...post, voteScore: +action.payload.voteScore }
-                    return post;
-                }),
+                ...state, posts: {
+                    ...state.posts, postArray: state.posts.postArray.map(post => {
+                        if (+post.id === +action.payload.id) return { ...post, voteScore: +action.payload.voteScore }
+                        return post;
+                    })
+                },
                 board: {
+                    ...state.board, posts: state.board.posts && state.board.posts.map(post => {
+                        if (+post.id === +action.payload.id) return { ...post, voteScore: +action.payload.voteScore }
+                        return post;
+                    })
+                }
+            }
+        }
+        case UPDATE_BOARD_POST_VOTE: {
+            return {
+                ...state, board: {
                     ...state.board, posts: state.board.posts && state.board.posts.map(post => {
                         if (+post.id === +action.payload.id) return { ...post, voteScore: +action.payload.voteScore }
                         return post;
