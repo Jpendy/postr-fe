@@ -3,6 +3,7 @@ import Modal from '../modal/Modal'
 import styles from './UserInfo.css'
 import UpdateUser from '../updateUser/UpdateUser'
 import { useActiveUser } from '../../providers/AuthProvider'
+import Login from '../../containers/login/Login'
 
 export default function UserInfo({ id, displayName, aboutMe, userImageUrl }) {
 
@@ -29,6 +30,7 @@ export default function UserInfo({ id, displayName, aboutMe, userImageUrl }) {
                         open={updateUserModalOpen}
                         handleCloseModal={handleCloseModal}
                     >
+                        {/* <Login /> */}
                         <UpdateUser handleCloseModal={handleCloseModal} />
                     </Modal>
                 </>

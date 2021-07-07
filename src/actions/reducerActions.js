@@ -52,6 +52,12 @@ export const updatePostVote = post => ({
     payload: post
 })
 
+export const UPDATE_BOARD_POST_VOTE = 'UPDATE_BOARD_POST_VOTE';
+export const updateBoardPostVote = post => ({
+    type: UPDATE_BOARD_POST_VOTE,
+    payload: post
+})
+
 export const CREATE_COMMENT_REPLY = 'CREATE_COMMENT_REPLY';
 export const createCommentReply = comment => ({
     type: CREATE_COMMENT_REPLY,

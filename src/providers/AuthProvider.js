@@ -20,31 +20,33 @@ export default function AuthProvider({ children }) {
     }, [])
 
     const postrSignup = body => {
+        setAuthError(null)
         setAuthLoading(true)
-        fetchPostrSignup(body)
-            .then(user => {
-                setActiveUser(user)
-                history.push('/')
+        return fetchPostrSignup(body)
+            .then(setActiveUser)
+            .catch(err => {
+                setAuthError(err.message)
+                throw new Error(err.message)
             })
-            .catch(err => setAuthError(err.message))
             .finally(() => setAuthLoading(false))
     }
 
     const postrLogin = body => {
+        setAuthError(null)
         setAuthLoading(true)
-        fetchPostrLogin(body)
-            .then(user => {
-                setActiveUser(user)
-                history.push('/')
+        return fetchPostrLogin(body)
+            .then(setActiveUser)
+            .catch(err => {
+                setAuthError(err.message)
+                throw new Error(err.message)
             })
-            .catch(err => setAuthError(err.message))
             .finally(() => setAuthLoading(false))
     }
 
     const googleOAuth = () => {
         setAuthLoading(true)
         fetchGoogleOAuth()
-            .then(user => setActiveUser(user))
+            .then(setActiveUser)
             .catch(err => setAuthError(err.message))
             .finally(() => setAuthLoading(false))
     }
