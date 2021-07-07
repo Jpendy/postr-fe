@@ -28,7 +28,7 @@ export default function Modal({ children, open, handleCloseModal }) {
     if (!open) return null;
     return ReactDom.createPortal(
         <>
-            <div style={overlayStyles} />
+            <div style={overlayStyles} onClick={handleCloseModal} />
             <div style={modalStyles}>
                 <button onClick={handleCloseModal} style={{ cursor: 'pointer' }} >close</button>
                 {children}
