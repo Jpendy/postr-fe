@@ -1,0 +1,19 @@
+.homePage {
+    display: grid;
+    grid-gap: 25px;
+    grid-template-columns: 5fr 2.5fr;
+
+    .listArea {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .boardSearch {
+        display: flex;
+        justify-content: center;
+        margin-top: 68px;
+        margin-right: 40px;
+        min-width: 210px;
+    }
+}

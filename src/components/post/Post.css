@@ -1,0 +1,64 @@
+
+.post {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    margin-bottom: 40px;
+    padding: 20px 40px 10px 10px; 
+    width: 60vw; 
+    background-color: #E7E3D4;
+    min-width: 400px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 3px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    summary::-webkit-details-marker {display: none; }
+
+    .postTopArea {
+        display: flex;
+        height: 30px;
+    }
+
+    .votingArea {
+        margin-top: 17px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 1.1rem;
+    }
+
+    .votingArea p {
+        margin: 4px;
+    }
+
+    .votingArea img {
+        width: 17px;
+        cursor: pointer;
+    }
+
+    .postImage {
+        width: 350px;
+        
+    }
+
+    a {
+        text-decoration: none;
+        color: #c23104;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: rgb(49, 4, 155)
+    }
+
+   .summaryIcon {
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+    }
+    summary{ list-style: none }
+}
+ 
+
+
+
+

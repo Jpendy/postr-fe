@@ -1,7 +1,8 @@
 const NONBODY_METHODS = ['GET', 'DELETE'];
 
 const localUrl = 'http://localhost:7890';
-const url = localUrl;
+const herokuDevUrl = 'https://powerful-sands-82157.herokuapp.com'
+const url = herokuDevUrl;
 
 const request = (path, method, body) => {
     // eslint-disable-next-line no-undef
@@ -19,6 +20,6 @@ const request = (path, method, body) => {
 };
 
 export const post = (path, body) => request(path, 'POST', body);
-export const put = (path, body, token) => request(path, 'PUT', body);
+export const put = (path, body) => request(path, 'PUT', body);
 export const get = path => request(path, 'GET');
 export const del = path => request(path, 'DELETE');
