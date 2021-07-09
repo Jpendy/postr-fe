@@ -14,6 +14,7 @@ export const fetchDeletePost = id => del(`/api/v1/posts/${id}`)
 
 export const fetchCreateComment = body => post('/api/v1/comments', body)
 export const fetchDeleteComment = id => del(`/api/v1/comments/${id}`)
+export const fetchAllUnreadReplies = () => get('/api/v1/comments/new-replies')
 
 export const fetchUserPostVoteHistory = () => get('/api/v1/users/post-vote-history')
 export const fetchUserCommentVoteHistory = () => get('/api/v1/users/comment-vote-history')

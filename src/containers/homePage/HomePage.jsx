@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PostList from '../../components/postList/PostList'
 import usePosts from '../../hooks/usePosts'
 import Sort from '../../components/sort/Sort'
@@ -7,6 +7,7 @@ import styles from './HomePage.css'
 import usePagination from '../../hooks/usePagination'
 
 export default function HomePage() {
+
 
     const { posts, loading, error, page, PageButtons } = usePosts()
 
