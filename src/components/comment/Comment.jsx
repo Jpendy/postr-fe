@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { createNewCommentVoteHistory, deleteComment, setPostDetails, updateCommentVote, updateUserCommentVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
@@ -27,6 +27,8 @@ export default function Comment({
     const activeUser = useActiveUser()
     const postDetails = useSelector(getPostDetails)
     const commentVoteHistory = useSelector(getUserCommentVoteHistory)
+
+    const { commentId } = useParams()
 
     const handleDeleteComment = () => {
         setError(null)
@@ -112,12 +114,26 @@ export default function Comment({
             {error && <p style={{ color: 'red' }} >Error: {error}</p>}
 
             {+activeUser?.id === +userId && <button onClick={handleDeleteComment} >delete</button>}
-            {activeUser && <CreateComment post={postDetails} parentCommentId={id} replyBoolDefault={false} />}
+            {activeUser && <CreateComment
+                post={postDetails}
+                parentCommentId={id}
+                parentUserId={userId}
+                replyBoolDefault={false}
+            />}
 
-            {replies && <details open={depthCounter % 3 !== 0}>
+            {replies && <details open={(depthCounter % 3 !== 0) || isCommentDownStream(replies, +commentId)}>
                 <summary >{`${replies.length} ${replyMessage}`}</summary>
                 <CommentList depthCounter={depthCounter} comments={replies} />
             </details>}
         </div>
     )
+}
+
+function isCommentDownStream(comments, commentId) {
+    for (let i = 0; i < comments.length; i++) {
+        const { id, replies } = comments[i];
+        if (id === commentId) return true;
+        if (replies) return isCommentDownStream(replies, commentId)
+    }
+    return false;
 }

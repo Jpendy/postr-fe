@@ -1,8 +1,8 @@
-import { postcss } from 'autoprefixer'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useBoards from '../../hooks/useBoards'
 import styles from './BoardSearch.css'
+import Input from '../input/Input'
 
 export default function BoardSearch() {
 
@@ -27,8 +27,9 @@ export default function BoardSearch() {
 
     return (
         <div style={{ height: `${height}px` }} className={styles.boardSearch}  >
+            {/* <Input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} /> */}
             <input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} />
-            <ul >
+            <ul>
                 {list}
             </ul>
         </div>
