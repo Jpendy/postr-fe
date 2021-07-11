@@ -18,7 +18,8 @@ export default function Comment({
     createdBy,
     replies,
     userId,
-    depthCounter
+    depthCounter,
+    unread
 }) {
 
     const [error, setError] = useState(null)
@@ -84,6 +85,7 @@ export default function Comment({
 
     return (
         <div className={styles.commentArea} >
+            <div style={{ color: 'red' }} >{unread && 'New'}</div>
             <p><Link to={`/user-page/${userId}`} >{createdBy}</Link> - {date.slice(0, 16)}</p>
 
             <p className={styles.body} >{body}</p>

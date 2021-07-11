@@ -10,7 +10,7 @@ export default function UserInbox() {
 
     const repliesList = replies.map(comment => (
         <li key={comment.id} >
-            <Comment {...comment} />
+            <Comment {...comment} unread={!comment.readByParent} />
             <Link to={`/post-detail/${comment.postId}/${comment.id}`} >
                 <button>Go To Comment</button>
             </Link>
