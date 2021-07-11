@@ -4,7 +4,7 @@ import { createNewCommentVoteHistory, deleteComment, setPostDetails, updateComme
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getPostDetails, getUserCommentVoteHistory } from '../../selectors/selectors'
-import { fetchDeleteComment, fetchPostDetails, fetchVoteOnComment } from '../../services/apiFetches'
+import { fetchDeleteComment, fetchVoteOnComment } from '../../services/apiFetches'
 import CommentList from '../commentList/CommentList'
 import CreateComment from '../createComment/CreateComment'
 import styles from './Comment.css'

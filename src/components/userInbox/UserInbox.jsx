@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from '../../providers/AppProvider'
+import { useSelector, useDispatch } from '../../providers/AppProvider'
+import { setReplies } from '../../actions/reducerActions'
 import { getReplies } from '../../selectors/selectors'
 import Comment from '../comment/Comment'
+import { fetchAllReplies } from '../../services/apiFetches'
 
 export default function UserInbox() {
-
+    const dispatch = useDispatch();
     const replies = useSelector(getReplies)
+
+    useEffect(() => {
+        fetchAllReplies()
+            .then(replies => dispatch(setReplies(replies)))
+    }, [])
 
     const repliesList = replies.map(comment => (
         <li key={comment.id} >
