@@ -42,7 +42,7 @@ export default function Header() {
                 <div className={styles['link-buttons']} >
                     <Link to='/signup' >Sign Up</Link>
                     <Link to='/login' >Login</Link>
-                    <Link to='/' >Front Page</Link>
+                    {/* <Link to='/' >Front Page</Link> */}
                 </div>
             </div>
         </div>

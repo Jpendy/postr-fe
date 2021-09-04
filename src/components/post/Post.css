@@ -5,10 +5,11 @@
     margin-bottom: 40px;
     padding: 20px 40px 10px 10px; 
     width: 60vw; 
-    background-color: #E7E3D4;
+    background-color: #EEE4E1;
+    opacity: 1;
     min-width: 400px;
-    border: 1px solid black;
-    box-shadow: 1px 1px 3px;
+    border: 1px solid #495057;
+    
     font-family: verdana, arial, helvetica, sans-serif;
     summary::-webkit-details-marker {display: none; }
 
@@ -56,6 +57,72 @@
         cursor: pointer;
     }
     summary{ list-style: none }
+}
+
+@media  (max-width: 849px) {
+    
+    .post {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        margin-bottom: 40px;
+        padding: 20px 40px 10px 10px; 
+        width: 100vw;
+        background-color: #EEE4E1;
+        align-content: center;
+        border-top: 3px solid #b7bbbe;
+        border-bottom: 3px solid #b7bbbe;
+        border-left: 0px;
+        border-right: 0px;
+       
+        font-family: verdana, arial, helvetica, sans-serif;
+        summary::-webkit-details-marker {display: none; }
+
+        .postTopArea {
+            display: flex;
+            white-space: nowrap;
+            height: 30px;
+        }
+
+        .votingArea {
+            margin-top: 17px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 1.1rem;
+        }
+
+        .votingArea p {
+            margin: 4px;
+        }
+
+        .votingArea img {
+            width: 17px;
+            cursor: pointer;
+        }
+
+        .postImage {
+            width: 95vw;
+            
+        }
+
+        a {
+            text-decoration: none;
+            color: #c23104;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: rgb(49, 4, 155)
+        }
+
+    .summaryIcon {
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+        summary{ list-style: none }
+    }
 }
  
 

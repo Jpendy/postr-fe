@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../utils/css/pagination.css'
 import { useLocation, useHistory } from 'react-router-dom';
 
 export default function usePagination(count) {
@@ -9,24 +10,19 @@ export default function usePagination(count) {
 
     const totalPages = count / 10
 
-    const buttonStyles = {
-        width: '80px',
-        margin: '0px 5px 0px 5px',
-        cursor: 'pointer'
-    }
-
     const PageButtons = () => (
-        <div style={{ textAlign: 'center', marginBottom: '50px' }} >
+        <div className={styles.buttonContainer} >
             <button
-                style={buttonStyles}
+                className={styles.button}
+                style={{ opacity: page <= 1 && '.5' }}
                 disabled={page <= 1}
                 onClick={() => history.push(`?page=${page - 1}`)}
             >
                 previous
             </button>
-            {/* <span>{`${page} / ${totalPages}`}</span> */}
             <button
-                style={buttonStyles}
+                className={styles.button}
+                style={{ opacity: page >= totalPages && '.5' }}
                 disabled={page >= totalPages}
                 onClick={() => history.push(`?page=${page + 1}`)}
             >
@@ -40,16 +36,3 @@ export default function usePagination(count) {
         PageButtons
     };
 }
-
-// const PageButton = () => (
-//     <div style={{ textAlign: 'center', marginBottom: '50px' }} >
-
-//         <button
-//             disabled={page >= totalPages}
-//             name='next'
-//             onClick={() => history.push(`?page=${page + 1}`)}
-//         >
-//             Load More
-//         </button>
-//     </div>
-// );

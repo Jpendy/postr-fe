@@ -6,9 +6,9 @@ import CommentList from '../../components/commentList/CommentList'
 import CreateComment from '../../components/createComment/CreateComment'
 import styles from './PostDetail.css'
 
-const commentlist = forwardRef((props, commentEls) => (
-    <CommentList commentEls={commentEls} comments={pd.comments} />
-))
+// const commentlist = forwardRef((props, commentEls) => (
+//     <CommentList commentEls={commentEls} comments={pd.comments} />
+// ))
 
 export default function PostDetail({ match }) {
 

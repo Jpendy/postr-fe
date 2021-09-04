@@ -1,19 +1,50 @@
 .homePage {
     display: grid;
-    grid-gap: 25px;
+    grid-gap: 0px;
     grid-template-columns: 5fr 2.5fr;
+    grid-template-areas: "posts search";
+    margin-top: 50px;
 
     .listArea {
+        grid-area: posts;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     .boardSearch {
+        grid-area: search;
         display: flex;
         justify-content: center;
-        margin-top: 68px;
-        margin-right: 40px;
+        margin-top: 155.5px;
+        
         min-width: 210px;
     }
 }
+
+@media (max-width: 849px) {
+
+    .homePage {
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 2.5% 95% 2.5%;
+        grid-template-areas: 
+        "... search ..."
+        "... posts  ...";
+
+        .listArea {
+            grid-area: posts;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }        
+
+        .boardSearch {
+            grid-area: search;
+            display: flex;
+            justify-content: center;
+            display: none;
+        }
+    }
+}
+

@@ -141,8 +141,8 @@ export default function Post({
 
                 <div className={styles.postArea} >
                     <div className={styles.postTopArea} >
-                        <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;</p>
-                        <p><Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
+                        <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;
+                            <Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
                         <p>&nbsp;on {date.slice(0, 16)}</p>
                     </div>
 
