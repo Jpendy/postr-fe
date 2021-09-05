@@ -10,6 +10,7 @@ const request = (path, method, body) => {
         method,
         headers: NONBODY_METHODS.includes(method) ? {} : { 'Content-Type': 'application/json' },
         credentials: 'include',
+        mode: 'cors',
         body: NONBODY_METHODS.includes(method) ? null : JSON.stringify(body)
     })
         .then(res => Promise.all([res.ok, res.json()]))
