@@ -111,3 +111,9 @@ export const deleteComment = payload => ({
     type: DELETE_COMMENT,
     payload
 })
+
+export const SET_REPLIES = 'SET_REPLIES';
+export const setReplies = payload => ({
+    type: SET_REPLIES,
+    payload
+})

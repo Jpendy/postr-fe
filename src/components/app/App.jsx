@@ -21,6 +21,7 @@ import CheckForDisplayName from '../../wrappers/CheckForDisplayName';
 import Signup from '../../containers/signup/Signup';
 import Login from '../../containers/login/Login';
 import UserProfile from '../../containers/userProfile/UserProfile';
+import UserInbox from '../userInbox/UserInbox';
 
 export default function App() {
   return (
@@ -32,9 +33,10 @@ export default function App() {
             <Header />
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/post-detail/:id" component={PostDetail} />
+              <Route exact path="/post-detail/:id/:commentId?" component={PostDetail} />
               <PrivateRoute exact path="/user-profile" component={UserProfile} />
               <PrivateRoute exact path="/create-board" component={CreateBoardPage} />
+              <PrivateRoute exact path="/user-inbox" component={UserInbox} />
               <Route exact path="/board/:name" component={BoardPage} />
               <Route exact path="/user-page/:id" component={UserDetailPage} />
               <Route exact path="/display-name" component={SetDisplayName} />

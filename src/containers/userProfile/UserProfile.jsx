@@ -9,8 +9,6 @@ export default function UserProfile() {
     const activeUser = useActiveUser()
     const [display, setDisplay] = useState('userInfo')
 
-    console.log(activeUser)
-
     return (
         <div>
             <UserProfileDisplayControls setDisplay={setDisplay} />
