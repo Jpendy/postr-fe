@@ -4,8 +4,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { fetchCreatePost } from '../../services/apiFetches'
 import { useDispatch } from '../../providers/AppProvider'
 import { createPost } from '../../actions/reducerActions'
-import MediaUploader from '../mediaUploader/MediaUploader'
-
+import styles from './CreatePost.css'
+import Input from '../input/Input'
 
 const styleObj = {
     display: 'flex',
@@ -59,11 +59,11 @@ export default function CreatePost({ boardId }) {
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }} >
+        <div className={styles.createPost} style={{ display: 'flex', justifyContent: 'center' }} >
             <form style={styleObj} onSubmit={createPostSubmit} >
                 Create Post
-                <input value={title} type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
-                <textarea value={postBody} placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
+                <Input value={title} type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
+                <Input height="100px" value={postBody} placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
 
                 {/* <select id="board-list" onChange={e => setBoardId(e.target.value)} >
                     <option value="">choose board</option>
@@ -72,7 +72,7 @@ export default function CreatePost({ boardId }) {
 
                 <input type="file" name="image-upload" onChange={handleFileInputChange} value={file} />
 
-                <button disabled={!title.trim() || !boardId} >Submit Post</button>
+                <button className={styles.createPostButton} disabled={!title.trim() || !boardId} >Submit Post</button>
                 {postError && <p style={{ color: 'red' }}>{postError}</p>}
             </form>
             {imagePreviewSource && <img src={imagePreviewSource} alt="image preview" style={{ height: '300px' }} />}

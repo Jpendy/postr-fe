@@ -41,6 +41,7 @@ export default function Post({
 
     const [loginSignupModalOpen, setLoginSignupModalOpen] = useState(false)
     const [loginOrSignup, setLoginOrSignup] = useState('login')
+
     const handleModalChange = () => setLoginOrSignup(curr => curr === 'login' ? 'signup' : 'login')
     const handleCloseModal = () => setLoginSignupModalOpen(false)
 
@@ -73,6 +74,7 @@ export default function Post({
                 setLoading(false)
             })
     }
+
     const downvote = () => {
         if (!activeUser) {
             setLoginSignupModalOpen(true)
