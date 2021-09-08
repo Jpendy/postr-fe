@@ -41,6 +41,7 @@ export default function Post({
 
     const [loginSignupModalOpen, setLoginSignupModalOpen] = useState(false)
     const [loginOrSignup, setLoginOrSignup] = useState('login')
+
     const handleModalChange = () => setLoginOrSignup(curr => curr === 'login' ? 'signup' : 'login')
     const handleCloseModal = () => setLoginSignupModalOpen(false)
 
@@ -73,6 +74,7 @@ export default function Post({
                 setLoading(false)
             })
     }
+
     const downvote = () => {
         if (!activeUser) {
             setLoginSignupModalOpen(true)
@@ -159,7 +161,7 @@ export default function Post({
 
                 <img className={styles.summaryIcon}
                     onClick={() => handleOpenPost(id)}
-                    src={imageUrl}
+                    src={imageUrl || '/text-icon1.png'}
                     // style={{
                     //     // objectFit: 'cover',
                     //     height: '70px',
@@ -169,7 +171,7 @@ export default function Post({
 
                 {postOpen && <div className={styles.imageArea} >
                     {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
-                    {body && <p>{body}</p>}
+                    {body && <p className={styles.postBody} >{body}</p>}
                 </div>}
                 {/* <details open={!allPostsClosed}> */}
                 {/* <summary className={styles.summary} onClick={() => handleOpenDetails(id)} > */}
