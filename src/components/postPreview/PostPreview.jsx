@@ -57,8 +57,8 @@ export default function PostPreview({
 
                 {/* <div className={styles.postArea} > */}
                 <div className={styles.postTopArea} >
-                    <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;
-                        <Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
+                    <p>Posted to <Link style={{ color: linkColor }} >{board}</Link> by&nbsp;
+                        <Link style={{ color: linkColor }}>{createdBy}</Link></p>
                     {/* <p>&nbsp;on {date.slice(0, 16)}</p> */}
                 </div>
 
@@ -67,27 +67,17 @@ export default function PostPreview({
                 </Link>
 
                 <img className={styles.summaryIcon}
+                    style={{ backgroundColor: 'white', width: window.innerWidth > 800 && '8vw', height: window.innerWidth > 800 && '8vw' }}
                     onClick={() => handleOpenPost(id)}
                     src={imageUrl || '/text-icon1.png'}
-                    // style={{
-                    //     // objectFit: 'cover',
-                    //     height: '70px',
-                    //     width: '70px',
-                    // }}
                     alt='post image icon' />
 
                 {postOpen && <div className={styles.imageArea} >
-                    {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
+                    {imageUrl && <img className={styles.postImage} src={imageUrl} />}
                     {body && <p className={styles.postBody} >{body}</p>}
                 </div>}
 
-                {dateModifed && <p>Modified on: {DatedateModifed}</p>}
-
-                <p className={styles.comments} ><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`0 ${commentMessage}`} </Link></p>
-                {/* </div> */}
-
-
-
+                <p className={styles.comments} ><Link style={{ color: linkColor }} >{`0 ${commentMessage}`} </Link></p>
             </div>
         </>
     )

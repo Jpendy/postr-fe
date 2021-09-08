@@ -1,7 +1,9 @@
 .createPost {
     border: 1px solid black;
     padding: 30px;
-    background-color: #f1efe7;
+    max-height: 100vh;
+    overflow-y:auto;
+    background-color: white;
 
     .postTitle, .postBody, .postFile {
         margin: auto;
@@ -9,11 +11,22 @@
         width: 90vw;
     }
 
+    .createPostForm {
+        overflow: scroll;
+    }
+
+    .postFile {
+        margin-bottom: 10px;
+    }
+
     @media (min-width: 800px) {
         .postTitle, .postBody, .postFile {
             margin: auto;
             margin-top: 10px;
             width: 80%;
+        }
+        .postFile {
+            margin-bottom: 10px;
         }
     }
 

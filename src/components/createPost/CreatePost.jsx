@@ -62,8 +62,7 @@ export default function CreatePost({ boardId, boardName, userName }) {
 
     return (
         <div className={styles.createPost} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
-            <form style={styleObj} onSubmit={createPostSubmit} >
-                Create Post
+            <form className={styles.createPostForm} style={styleObj} onSubmit={createPostSubmit} >
                 <FormControl >
                     <TextField
                         className={styles.postTitle}
@@ -78,7 +77,7 @@ export default function CreatePost({ boardId, boardName, userName }) {
                         className={styles.postBody}
                         variant="outlined"
                         multiline
-                        rows={5}
+                        rows={3}
                         maxRows={Infinity}
                         value={postBody}
                         label="Post Body"
@@ -94,7 +93,6 @@ export default function CreatePost({ boardId, boardName, userName }) {
                     />
 
                     <div>
-                        <p className={styles.postPreview}>Post Preview</p>
                         <PostPreview
                             title={title}
                             imageUrl={imagePreviewSource}
