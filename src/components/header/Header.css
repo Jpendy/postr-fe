@@ -20,7 +20,8 @@
 }
 
 .logo-link .logo {
-    width: 100%;
+    width: 25vw;
+    max-width: 100%;
 }
 
 .header-right-area > button {

@@ -1,7 +1,15 @@
 
 .post {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-areas: 
+    "voting title image"
+    "voting comments image"
+    "voting ........  image"
+    "...... expandedImage image "
+    "......     info     image"
+    "........ delete ........."
+    ;
     margin-bottom: 40px;
     padding: 20px 40px 10px 10px; 
     width: 60vw; 
@@ -12,6 +20,26 @@
     
     font-family: verdana, arial, helvetica, sans-serif;
     summary::-webkit-details-marker {display: none; }
+
+    .votingArea {grid-area: voting;}
+        details {grid-area: image;}
+        .postTopArea {grid-area: info;}
+        .summaryIcon {grid-area: image;}
+        .imageArea {
+            grid-area: expandedImage;
+            margin-top: 10px;
+            margin-left: 5px;
+        }
+        .comments {
+            grid-area: comments;
+            font-size: 15px;
+        }
+
+        .deletePost {
+            grid-area: delete;
+            width: 25vw;
+            max-width: 100px;
+        }
 
     .postTopArea {
         display: flex;
@@ -52,8 +80,8 @@
     }
 
    .summaryIcon {
-        width: 70px;
-        height: 70px;
+        width: 130px;
+        height: 130px;
         cursor: pointer;
     }
     summary{ list-style: none }
@@ -70,6 +98,7 @@
         "voting ......   image"
         "expandedImage expandedImage expandedImage "
         "......  info    info"
+        ". delete ."
         ;
         margin-bottom: 40px; 
         width: 100vw;
@@ -84,14 +113,24 @@
         font-family: verdana, arial, helvetica, sans-serif;
         summary::-webkit-details-marker {display: none; }
 
-        .imageArea {grid-area: expandedImage;}
         .votingArea {grid-area: voting;}
         details {grid-area: image;}
         .postTopArea {grid-area: info;}
         .summaryIcon {grid-area: image;}
+        .imageArea {
+            grid-area: expandedImage;
+            margin-top: 10px;
+            margin-left: 5px;
+        }
         .comments {
             grid-area: comments;
             font-size: 3.5vw;
+        }
+
+        .deletePost {
+            grid-area: delete;
+            width: 25vw;
+            max-width: 100px;
         }
 
         .title {
