@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
 
     .post {
     display: 'flex';
@@ -85,6 +86,8 @@
     
         ul {
             list-style: none;
+            width: 100%;
+            padding-inline-start: 0px;
         }
     
         a:hover {
@@ -95,8 +98,6 @@
             display: flex;
             justify-content: center;
         }
-        ul {
-            padding-inline-start: 0px;
-        }
+        
     }
 }

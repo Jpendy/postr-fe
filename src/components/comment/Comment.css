@@ -1,14 +1,15 @@
 
 .commentArea {
-    background-color: lightblue;
     width: 100vw;
     padding-left: 10px;
-    border-top: solid .2px grey;
-    border-left: solid .2px grey;
+    border-top: solid .8px lightgrey;
+    border-left: solid .8px lightgrey;
     font-family: verdana, arial, helvetica, sans-serif;
 
     .body {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .voteArea {
@@ -33,6 +34,7 @@
 
     summary {
         margin-top: 15px;
+        padding-bottom: 5px;
         cursor: pointer;
     }
 
