@@ -84,7 +84,7 @@ export default function Comment({
     const replyMessage = replies?.length === 1 ? 'reply' : 'replies'
 
     return (
-        <div className={styles.commentArea} >
+        <div className={styles.commentArea} style={{ position: 'relative', left: depthCounter !== 1 && '5px' }} >
             <div style={{ color: 'red' }} >{unread && 'New'}</div>
             <p><Link to={`/user-page/${userId}`} >{createdBy}</Link> - {date.slice(0, 16)}</p>
 

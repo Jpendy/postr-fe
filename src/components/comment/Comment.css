@@ -1,11 +1,10 @@
 
 .commentArea {
     background-color: lightblue;
-    padding: 15px 70px;
-    margin-top: 20px;
-    width: 100%;
-    border-top: solid .2px black;
-    border-left: solid .2px black;
+    width: 100vw;
+    padding-left: 10px;
+    border-top: solid .2px grey;
+    border-left: solid .2px grey;
     font-family: verdana, arial, helvetica, sans-serif;
 
     .body {
