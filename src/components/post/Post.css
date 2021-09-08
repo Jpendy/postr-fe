@@ -52,8 +52,8 @@
     }
 
    .summaryIcon {
-        width: 15px;
-        height: 15px;
+        width: 70px;
+        height: 70px;
         cursor: pointer;
     }
     summary{ list-style: none }
@@ -63,10 +63,17 @@
     
     .post {
         display: grid;
-        grid-template-columns: 1fr 5fr;
-        margin-bottom: 40px;
-        padding: 20px 40px 10px 10px; 
+        grid-template-columns: 20% 60% 20%;
+        grid-template-areas: 
+        "voting title image"
+        "voting comments image"
+        "voting ......   image"
+        "expandedImage expandedImage expandedImage "
+        "......  info    info"
+        ;
+        margin-bottom: 40px; 
         width: 100vw;
+        height: 100%;
         background-color: #EEE4E1;
         align-content: center;
         border-top: 3px solid #b7bbbe;
@@ -77,10 +84,27 @@
         font-family: verdana, arial, helvetica, sans-serif;
         summary::-webkit-details-marker {display: none; }
 
+        .imageArea {grid-area: expandedImage;}
+        .votingArea {grid-area: voting;}
+        details {grid-area: image;}
+        .postTopArea {grid-area: info;}
+        .summaryIcon {grid-area: image;}
+        .comments {
+            grid-area: comments;
+            font-size: 3.5vw;
+        }
+
+        .title {
+            margin: 0px;
+            font-size: 5vw;
+        }
+
         .postTopArea {
             display: flex;
             white-space: nowrap;
             height: 30px;
+            font-size: 3.5vw;
+            margin-bottom: 10px;
         }
 
         .votingArea {
@@ -89,7 +113,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            font-size: 1.1rem;
+            font-size: 4.1vw;
         }
 
         .votingArea p {
@@ -99,11 +123,6 @@
         .votingArea img {
             width: 17px;
             cursor: pointer;
-        }
-
-        .postImage {
-            width: 95vw;
-            
         }
 
         a {
@@ -117,8 +136,8 @@
         }
 
     .summaryIcon {
-            width: 15px;
-            height: 15px;
+            width: 20vw;
+            height: 20vw;
             cursor: pointer;
         }
         summary{ list-style: none }

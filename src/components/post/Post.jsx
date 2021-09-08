@@ -37,6 +37,8 @@ export default function Post({
     const postVoteHistory = useSelector(getUserPostVoteHistory)
     const [loading, setLoading] = useState(false)
 
+    const [postOpen, setPostOpen] = useState(false)
+
     const [loginSignupModalOpen, setLoginSignupModalOpen] = useState(false)
     const [loginOrSignup, setLoginOrSignup] = useState('login')
     const handleModalChange = () => setLoginOrSignup(curr => curr === 'login' ? 'signup' : 'login')
@@ -92,6 +94,11 @@ export default function Post({
             })
     }
 
+    const handleOpenPost = (id) => {
+        setPostOpen(curr => !curr)
+        handleOpenDetails(id)
+    }
+
     const modalButtonStyle = { marginTop: '15px' }
     const modalStyle = { width: '90%' }
 
@@ -139,37 +146,51 @@ export default function Post({
 
                 </div>
 
-                <div className={styles.postArea} >
-                    <div className={styles.postTopArea} >
-                        <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;
-                            <Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
-                        <p>&nbsp;on {date.slice(0, 16)}</p>
-                    </div>
-
-                    <Link to={`/post-detail/${id}`} style={{ color: linkColor }} >
-                        <h2>{title}</h2>
-                    </Link>
-
-                    <details open={!allPostsClosed}>
-                        <summary className={styles.summary} onClick={() => handleOpenDetails(id)} >
-                            <img className={styles.summaryIcon}
-                                src={closedPosts.includes(id) ? imageUrl : '/x-close.png'}
-                                style={{
-                                    // objectFit: 'cover',
-                                    height: closedPosts.includes(id) ? '70px' : '15px',
-                                    width: closedPosts.includes(id) ? '70px' : '15px',
-                                }}
-                                alt='post image icon' />
-                        </summary>
-                        {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
-                        {body && <p>{body}</p>}
-                    </details>
-
-                    {dateModifed && <p>Modified on: {DatedateModifed}</p>}
-
-                    <p><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`${commentCount} ${commentMessage}`} </Link></p>
-                    {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
+                {/* <div className={styles.postArea} > */}
+                <div className={styles.postTopArea} >
+                    <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;
+                        <Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
+                    {/* <p>&nbsp;on {date.slice(0, 16)}</p> */}
                 </div>
+
+                <Link to={`/post-detail/${id}`} style={{ color: linkColor }} >
+                    <h2 className={styles.title}>{title}</h2>
+                </Link>
+
+                <img className={styles.summaryIcon}
+                    onClick={() => handleOpenPost(id)}
+                    src={imageUrl}
+                    // style={{
+                    //     // objectFit: 'cover',
+                    //     height: '70px',
+                    //     width: '70px',
+                    // }}
+                    alt='post image icon' />
+
+                {postOpen && <div className={styles.imageArea} >
+                    {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
+                    {body && <p>{body}</p>}
+                </div>}
+                {/* <details open={!allPostsClosed}> */}
+                {/* <summary className={styles.summary} onClick={() => handleOpenDetails(id)} > */}
+                {/* <img className={styles.summaryIcon}
+                            src={closedPosts.includes(id) ? imageUrl : '/x-close.png'}
+                            style={{
+                                // objectFit: 'cover',
+                                height: closedPosts.includes(id) ? '70px' : '15px',
+                                width: closedPosts.includes(id) ? '70px' : '15px',
+                            }}
+                            alt='post image icon' /> */}
+                {/* </summary> */}
+                {/* {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
+                    {body && <p>{body}</p>} */}
+                {/* </details> */}
+
+                {dateModifed && <p>Modified on: {DatedateModifed}</p>}
+
+                <p className={styles.comments} ><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`${commentCount} ${commentMessage}`} </Link></p>
+                {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
+                {/* </div> */}
 
 
             </div>
