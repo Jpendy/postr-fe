@@ -192,11 +192,11 @@ export default function Post({
                 {/* </div> */}
 
 
-                {activeUser?.id === userId && <button
+                {/* {activeUser?.id === userId && <button
                     className={styles.deletePost}
                     onClick={handleDeletePost} >
                     Delete Post
-                </button>}
+                </button>} */}
             </div>
         </>
     )

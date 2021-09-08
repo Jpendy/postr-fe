@@ -24,7 +24,7 @@ export default function PostDetail({ match }) {
 
             <div className={styles.post}>
                 <h2>{pd.title}</h2>
-                {pd.imageUrl && <img src={pd.imageUrl} />}
+                {pd.imageUrl && <img src={pd.imageUrl} className={styles.postImage} />}
                 {pd.body && <p>{pd.body}</p>}
                 <p>Score: {pd.voteScore}</p>
                 <p>Created on {date.slice(0, 16)}</p>
