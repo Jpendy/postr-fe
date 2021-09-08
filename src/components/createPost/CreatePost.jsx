@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
 import useBoards from '../../hooks/useBoards'
-import { v4 as uuidv4 } from 'uuid'
 import { fetchCreatePost } from '../../services/apiFetches'
 import { useDispatch } from '../../providers/AppProvider'
 import { createPost } from '../../actions/reducerActions'
 import styles from './CreatePost.css'
-import Input from '../input/Input'
+// import Input from '../input/Input'
+import { TextField, FormControl, Button, Input } from '@material-ui/core';
+import PostPreview from '../postPreview/PostPreview'
+
 
 const styleObj = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '50%',
+    width: '500px',
 }
 
-export default function CreatePost({ boardId }) {
+export default function CreatePost({ boardId, boardName, userName }) {
 
     const dispatch = useDispatch()
     const { boards, loading, error } = useBoards()
@@ -59,23 +61,55 @@ export default function CreatePost({ boardId }) {
     }
 
     return (
-        <div className={styles.createPost} style={{ display: 'flex', justifyContent: 'center' }} >
+        <div className={styles.createPost} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
             <form style={styleObj} onSubmit={createPostSubmit} >
                 Create Post
-                <Input value={title} type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
-                <Input height="100px" value={postBody} placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
+                <FormControl >
+                    <TextField
+                        className={styles.postTitle}
+                        value={title}
+                        type="text"
+                        label="Title"
+                        variant="outlined"
+                        size="small"
+                        onChange={e => setTitle(e.target.value)}
+                    />
+                    <TextField
+                        className={styles.postBody}
+                        variant="outlined"
+                        multiline
+                        rows={5}
+                        maxRows={Infinity}
+                        value={postBody}
+                        label="Post Body"
+                        onChange={e => setPostBody(e.target.value)}
+                    />
+                    <Input
+                        className={styles.postFile}
+                        type="file"
+                        disableUnderline={true}
+                        name="image-upload"
+                        onChange={handleFileInputChange}
+                        value={file}
+                    />
 
-                {/* <select id="board-list" onChange={e => setBoardId(e.target.value)} >
-                    <option value="">choose board</option>
-                    {boards.map((board, i) => <option key={i - 9999} value={board.id}> {board.name} </option>)}
-                </select> */}
+                    <div>
+                        <p className={styles.postPreview}>Post Preview</p>
+                        <PostPreview
+                            title={title}
+                            imageUrl={imagePreviewSource}
+                            body={postBody}
+                            board={boardName}
+                            createdBy={userName}
+                        />
+                    </div>
 
-                <input type="file" name="image-upload" onChange={handleFileInputChange} value={file} />
-
-                <button className={styles.createPostButton} disabled={!title.trim() || !boardId} >Submit Post</button>
-                {postError && <p style={{ color: 'red' }}>{postError}</p>}
+                    {/* {(imagePreviewSource || title || postBody) && <p className={styles.postPreview}>Post Preview</p>}
+                    {imagePreviewSource && <img src={imagePreviewSource} alt="image preview" style={{ height: '100%', width: '200px', margin: 'auto' }} />} */}
+                    <button className={styles.createPostButton} disabled={!title.trim() || !boardId} >Submit Post</button>
+                    {postError && <p style={{ color: 'red' }}>{postError}</p>}
+                </FormControl>
             </form>
-            {imagePreviewSource && <img src={imagePreviewSource} alt="image preview" style={{ height: '300px' }} />}
 
         </div >
     )

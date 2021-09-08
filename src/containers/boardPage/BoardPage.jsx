@@ -27,6 +27,8 @@ export default function BoardPage({ match }) {
 
     const owner = board.userId === activeUser?.id
 
+    console.log(activeUser)
+
     useEffect(() => {
         setError(null)
         fetchBoardByName(match.params.name)
@@ -73,7 +75,7 @@ export default function BoardPage({ match }) {
                 open={createPostBool}
                 handleCloseModal={handleOpenCreatePost}
             >
-                {activeUser && < CreatePost boardId={board.id} />}
+                {activeUser && < CreatePost boardId={board.id} boardName={board.name} userName={activeUser.displayName} />}
             </Modal>
 
             {board.posts && <PostList

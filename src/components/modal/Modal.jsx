@@ -1,4 +1,3 @@
-import autoprefixer from 'autoprefixer';
 import React from 'react'
 import ReactDom from 'react-dom'
 import styles from './Modal.css'
@@ -11,10 +10,10 @@ const modalStyles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
-    top: window.innerWidth < windowWidth ? '20px' : '50%',
+    top: window.innerWidth < windowWidth ? '25%' : '50%',
     left: window.innerWidth < windowWidth ? '0' : '50%',
     transform: window.innerWidth > windowWidth && 'translate(-50%, -50%)',
-    height: window.innerWidth < windowWidth && '90%',
+    height: window.innerWidth < windowWidth && '50%',
     width: window.innerWidth < windowWidth && '100%',
     backgroundColor: '#EEE4E1',
     // padding: '25px 75px',
