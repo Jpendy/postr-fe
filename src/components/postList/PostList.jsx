@@ -7,6 +7,7 @@ export default function PostList({ bgColor, postColor, fontColor, linkColor, pos
 
     const [closedPosts, setClosedPosts] = useState(posts.map(post => post.id))
     const [allPostsClosed, setAllPostsClosed] = useState(true)
+    const [postOpen, setPostOpen] = useState(false)
 
     const handleOpenDetails = (id) => {
         closedPosts.includes(id) ?
@@ -23,7 +24,7 @@ export default function PostList({ bgColor, postColor, fontColor, linkColor, pos
 
     return (
         <div className={styles.postsContainer} style={{ backgroundColor: bgColor }}>
-            <button className={styles.closePostsButton} onClick={handleCloseAllPosts} >{allPostsClosed ? 'show all' : 'hide all'}</button>
+            {/* <button className={styles.closePostsButton} onClick={handleCloseAllPosts} >{allPostsClosed ? 'show all' : 'hide all'}</button> */}
 
             <ul className={styles.postList}>
                 {posts.map(post => (

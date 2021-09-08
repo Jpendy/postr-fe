@@ -189,10 +189,14 @@ export default function Post({
                 {dateModifed && <p>Modified on: {DatedateModifed}</p>}
 
                 <p className={styles.comments} ><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`${commentCount} ${commentMessage}`} </Link></p>
-                {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
                 {/* </div> */}
 
 
+                {activeUser?.id === userId && <button
+                    className={styles.deletePost}
+                    onClick={handleDeletePost} >
+                    Delete Post
+                </button>}
             </div>
         </>
     )
