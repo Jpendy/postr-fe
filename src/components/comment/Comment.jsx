@@ -45,6 +45,7 @@ export default function Comment({
     const currentVote = commentVoteHistory.find(voteHistory => +voteHistory.commentId === +id)?.vote
 
     const upvote = () => {
+        if (loading) return
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -55,14 +56,13 @@ export default function Comment({
                 if (currentVote === undefined) dispatch(createNewCommentVoteHistory(voteHistory))
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
 
-
                 dispatch(updateCommentVote({ id, score: comment.voteScore }))
-                setLoading(false)
             })
-
+        setLoading(false)
     }
 
     const downvote = () => {
+        if (loading) return
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -74,8 +74,8 @@ export default function Comment({
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
 
                 dispatch(updateCommentVote({ id, score: comment.voteScore }))
-                setLoading(false)
             })
+        setLoading(false)
     }
 
     const date = new Date(+dateCreated).toString()

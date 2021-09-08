@@ -159,7 +159,7 @@ export default function Post({
 
                 <img className={styles.summaryIcon}
                     onClick={() => handleOpenPost(id)}
-                    src={imageUrl}
+                    src={imageUrl || '/text-icon1.png'}
                     // style={{
                     //     // objectFit: 'cover',
                     //     height: '70px',
@@ -169,7 +169,7 @@ export default function Post({
 
                 {postOpen && <div className={styles.imageArea} >
                     {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
-                    {body && <p>{body}</p>}
+                    {body && <p className={styles.postBody} >{body}</p>}
                 </div>}
                 {/* <details open={!allPostsClosed}> */}
                 {/* <summary className={styles.summary} onClick={() => handleOpenDetails(id)} > */}
