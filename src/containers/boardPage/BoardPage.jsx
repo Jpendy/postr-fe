@@ -66,9 +66,9 @@ export default function BoardPage({ match }) {
 
             </div>}
 
-            {activeUser && <button
+            {activeUser && <button className={styles.createPostButton}
                 onClick={handleOpenCreatePost}
-            >Create New Post
+            >New Post
             </button>}
 
             <Modal
