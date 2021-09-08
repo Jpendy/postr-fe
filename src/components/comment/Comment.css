@@ -17,10 +17,11 @@
         align-items: center;
     }
 
-    .voteArea img {
-        width: 17px;
+    .voteArea .voteImage {
         margin: 10px;
         cursor: pointer;
+        width: 17px;
+        height: 17px;
     }
   
     a {

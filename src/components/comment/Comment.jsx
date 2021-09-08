@@ -93,6 +93,7 @@ export default function Comment({
             <div className={styles.voteArea}>
 
                 {activeUser && <img
+                    className={styles.voteImage}
                     src="/upArrow.png"
                     onClick={upvote}
                     disabled={loading}
@@ -102,6 +103,7 @@ export default function Comment({
 
                 <p>{voteScore}</p>
                 {activeUser && <img
+                    className={styles.voteImage}
                     src="/downArrow.png"
                     onClick={downvote}
                     disabled={loading}
