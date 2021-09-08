@@ -43,7 +43,9 @@ export default function PostDetail({ match }) {
                 parentUserId={pd.userId}
                 replyBoolDefault={true}
             />}
-            {pd.comments && <CommentList comments={pd.comments} />}
+            <div className={styles.commentList}>
+                {pd.comments && <CommentList comments={pd.comments} />}
+            </div>
         </div>
     )
 }
