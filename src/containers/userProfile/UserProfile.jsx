@@ -10,7 +10,7 @@ export default function UserProfile() {
     const [display, setDisplay] = useState('userInfo')
 
     return (
-        <div>
+        <div style={{ marginTop: '150px' }} >
             <UserProfileDisplayControls setDisplay={setDisplay} />
             {display === 'userInfo' && <UserInfo {...activeUser} />}
             {display === 'userPosts' && <UserProfileUserPosts />}
