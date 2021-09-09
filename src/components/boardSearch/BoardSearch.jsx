@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useBoards from '../../hooks/useBoards'
 import styles from './BoardSearch.css'
-import Input from '../input/Input'
+import { TextField, FormControl, Input } from '@material-ui/core';
 
 export default function BoardSearch() {
 
@@ -23,12 +23,12 @@ export default function BoardSearch() {
         </li>
     ))
 
-    const height = 85 + boardsList.length * 26;
+    const height = 100 + boardsList.length * 26;
 
     return (
-        <div style={{ height: `${height}px` }} className={styles.boardSearch}  >
+        <div style={{ height: `${height}px`, width: `${window.innerWidth * 0.3}px` }} className={styles.boardSearch}>
             {/* <Input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} /> */}
-            <input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} />
+            <TextField variant="outlined" size="small" label="search boards" onChange={e => setSearch(e.target.value)} />
             <ul>
                 {list}
             </ul>

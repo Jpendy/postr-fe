@@ -2,7 +2,7 @@ const NONBODY_METHODS = ['GET', 'DELETE'];
 
 const localUrl = 'http://localhost:7890';
 const herokuDevUrl = 'https://powerful-sands-82157.herokuapp.com'
-const url = herokuDevUrl;
+const url = localUrl;
 
 const request = (path, method, body) => {
     // eslint-disable-next-line no-undef

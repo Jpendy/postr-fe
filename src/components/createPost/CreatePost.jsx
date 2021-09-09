@@ -5,7 +5,7 @@ import { useDispatch } from '../../providers/AppProvider'
 import { createPost } from '../../actions/reducerActions'
 import styles from './CreatePost.css'
 // import Input from '../input/Input'
-import { TextField, FormControl, Button, Input } from '@material-ui/core';
+import { TextField, FormControl, Input } from '@material-ui/core';
 import PostPreview from '../postPreview/PostPreview'
 
 

@@ -28,7 +28,7 @@
     margin-left: 5px;
     min-width: 65px;
     background: #3B8BEB;
-    height: 29px;
+    height: 40px;
     font-size: 12px;
     border: 1px solid black;
     border-radius: 2px;
@@ -39,11 +39,17 @@
     color: #ffffff;
 }
 
+.header-right-area .openbtn {
+    font-size: 20px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .link-buttons {
     display: flex;
 }
-
-
 
 .link-buttons > a {
     display: flex;
@@ -63,17 +69,16 @@
     background: #3B8BEB;
     transition: 0.15s ease-in-out;
     text-align: center;
-}
+} 
 
 .header-right-area > button:hover, .link-buttons > a:hover {
 background: rgb(83, 83, 248);
-box-shadow: 2px 2px 4px black;
 }
 
 .header-right-area > button:active, .link-buttons > a:active {
     transform: scale(0.95);
     background: rgb(83, 83, 248);
-    box-shadow: 2px 2px 4px black;
+    
     }
     
 .username-link {
@@ -87,3 +92,67 @@ box-shadow: 2px 2px 4px black;
     display: flex;
     align-items: center;
 }
+
+/* The sidebar menu */
+.sidebar {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Stay on top */
+    top: 0;
+    right: -10px;
+    border: 5px solid white;
+    background-color: #111; /* Black*/
+    background-color: #05438f;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  }
+  
+  /* The sidebar links */
+  .sidebar a, .sidebar .logout {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    color: white;
+    display: block;
+    transition: 0.3s;
+    white-space: nowrap;
+    z-index: 10;
+    cursor: pointer;
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidebar a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  /* The button used to open the sidebar */
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    border: none;
+  }
+  
+  .openbtn:hover {
+    background-color: #444;
+  }
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */  
+  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+  @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+  }
