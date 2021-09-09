@@ -39,9 +39,9 @@ export default function Header() {
                 )}
             </div>
 
+            <h3>Hello {activeUser.displayName || activeUser.email}</h3>
             <div className={styles['header-right-area']} >
-                <h3>Hello {activeUser.displayName || activeUser.email}</h3>
-                <button className={styles.openbtn} onClick={openNav}>&#9776;</button>
+                <button className={styles.openbtn} style={{ width: '20px', padding: '0px' }} onClick={openNav}>&#9776;</button>
             </div>
         </div>
     )
