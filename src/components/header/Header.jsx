@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ReactDom from 'react-dom'
 import { Link } from 'react-router-dom'
 import { useSelector } from '../../providers/AppProvider'
 import { useActiveUser, useLogout } from '../../providers/AuthProvider'
@@ -10,6 +11,10 @@ export default function Header() {
     const activeUser = useActiveUser()
     const logout = useLogout()
 
+    const [navWidth, setNavWidth] = useState(0)
+    const closeNav = () => setNavWidth(0)
+    const openNav = () => setNavWidth(250)
+
     const replies = useSelector(getReplies)
     const newMessages = replies.some(comment => !comment.readByParent)
 
@@ -18,17 +23,25 @@ export default function Header() {
             <Link to='/' className={styles['logo-link']} ><img className={styles.logo} src="/postr-logo2.png" alt="" /></Link>
 
             <div className={styles['link-buttons']} >
-                <Link to='/create-board' >Create Board</Link>
-                <Link to='/user-profile' >My Profile</Link>
-                <Link to='/user-inbox' style={{ display: 'flex', justifyContent: 'space-evenly' }} >
-                    Inbox
-                    {newMessages && < img style={{ width: '15px' }} src="/mail.ico" />}
-                </Link>
+
+                {ReactDom.createPortal(
+                    <div className={styles.sidebar} style={{ width: navWidth }}>
+                        <a href="javascript:void(0)" className={styles.closebtn} onClick={closeNav}>&times;</a>
+                        <div className={styles.logout} onClick={logout} style={{ height: '40px' }} >Log Out</div>
+                        <Link to='/' onClick={closeNav}>Home</Link>
+                        <Link to='/user-profile' onClick={closeNav} >My Profile</Link>
+                        <Link to='/create-board' onClick={closeNav} >Create Board</Link>
+                        <Link to='/user-inbox' onClick={closeNav} style={{ display: 'flex', justifyContent: 'space-between' }} >
+                            Inbox
+                            {newMessages && < img style={{ width: '15px' }} src="/mail.ico" />}
+                        </Link>
+                    </div>, document.getElementById('portal')
+                )}
             </div>
 
             <div className={styles['header-right-area']} >
                 <h3>Hello {activeUser.displayName || activeUser.email}</h3>
-                <button onClick={logout} style={{ height: '40px' }} >Log Out</button>
+                <button className={styles.openbtn} onClick={openNav}>&#9776;</button>
             </div>
         </div>
     )
