@@ -59,7 +59,7 @@ export default function Post({
             setLoginSignupModalOpen(true)
             return
         }
-
+        if (loading) return;
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -71,8 +71,8 @@ export default function Post({
                 if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
 
-                setLoading(false)
             })
+        setLoading(false)
     }
 
     const downvote = () => {
@@ -80,7 +80,7 @@ export default function Post({
             setLoginSignupModalOpen(true)
             return
         }
-
+        if (loading) return;
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -92,8 +92,8 @@ export default function Post({
                 if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
 
-                setLoading(false)
             })
+        setLoading(false)
     }
 
     const handleOpenPost = (id) => {
