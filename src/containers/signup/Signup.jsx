@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import Input from '../../components/input/Input';
 import { useAuthError, useGoogleOAuth, usePostrSignup } from '../../providers/AuthProvider';
-// import { useSignup, useAuthError } from '../../hooks/AuthContext'
+import { TextField } from '@material-ui/core';
 import styles from './Signup.css'
 
 export default function Signup({ modalStyle, handleCloseModal }) {
@@ -31,26 +31,35 @@ export default function Signup({ modalStyle, handleCloseModal }) {
             <button onClick={googleOAuth} className={styles.googleButton} > <img src="google-logo.png" alt="" /> Sign up with Google</button>
             <form onSubmit={handleSubmit} >
 
-                <Input
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    fullWidth
                     type="email"
-                    placeholder='Email'
+                    label='Email'
                     required={true}
                     onChange={e => setEmail(e.target.value)}
                 />
-                <Input
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    fullWidth
                     type="text"
-                    placeholder="Display Name"
+                    label="Display Name"
                     required={true}
                     onChange={e => setDisplayName(e.target.value)}
                 />
-                <Input
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    fullWidth
                     type='password'
-                    placeholder='Password'
+                    label='Password'
                     required={true}
                     onChange={e => setPassword(e.target.value)}
                 />
 
-                <button>submit</button>
+                <button className={styles.signupButton} >submit</button>
             </form>
             {error && <p style={{ color: 'red' }} >{`${error}`}</p>}
         </div>

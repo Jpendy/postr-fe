@@ -102,7 +102,7 @@ export default function Post({
     }
 
     const modalButtonStyle = { marginTop: '15px' }
-    const modalStyle = { width: '90%' }
+    const modalStyle = { width: window.innerWidth > 600 ? '90%' : '100%', marginTop: '30px' }
 
     const commentMessage = +commentCount === 1 ? 'comment' : 'comments'
 
@@ -117,12 +117,12 @@ export default function Post({
                 <h3>Please log in or sign up to vote on posts!</h3>
                 {loginOrSignup === 'login' && <div>
                     <Login modalStyle={modalStyle} handleCloseModal={handleCloseModal} />
-                    <button style={modalButtonStyle} onClick={handleModalChange} >Sign Up</button>
+                    <button className={styles.switchModalButton} onClick={handleModalChange} >Sign Up</button>
                 </div>}
 
                 {loginOrSignup === 'signup' && <div >
                     <Signup modalStyle={modalStyle} handleCloseModal={handleCloseModal} />
-                    <button style={modalButtonStyle} onClick={handleModalChange} >Log in</button>
+                    <button className={styles.switchModalButton} style={{ marginBottom: '20px' }} onClick={handleModalChange} >Log in</button>
                 </div>}
 
             </Modal>

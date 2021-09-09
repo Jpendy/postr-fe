@@ -85,6 +85,20 @@
         cursor: pointer;
     }
     summary{ list-style: none }
+
+    .switchModalButton {
+        margin-left: 5px;
+    min-width: 40px;
+    background: #3B8BEB;
+    height: 40px;
+    font-size: 12px;
+    border: 1px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-family: verdana, arial, helvetica, sans-serif;
+    color: #ffffff;
+    }
 }
 
 @media  (max-width: 849px) {
@@ -187,6 +201,21 @@
             cursor: pointer;
         }
         summary{ list-style: none }
+    }
+
+    .switchModalButton {
+        margin-top: 15px;
+        width: 60px;
+        min-width: 40px;
+        background: #3B8BEB;
+        height: 40px;
+        font-size: 12px;
+        border: 1px solid black;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        font-family: verdana, arial, helvetica, sans-serif;
+        color: #ffffff;
     }
 }
  

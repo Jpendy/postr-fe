@@ -4,23 +4,7 @@ import styles from './Modal.css'
 
 const windowWidth = 600;
 
-const modalStyles = {
-    position: 'fixed',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignContent: 'center',
-    top: window.innerWidth < windowWidth ? '30px' : '50%',
-    left: window.innerWidth < windowWidth ? '0' : '50%',
-    transform: window.innerWidth > windowWidth && 'translate(-50%, -50%)',
-    height: window.innerWidth < windowWidth && '85vh',
-    width: window.innerWidth < windowWidth && '100%',
-    backgroundColor: '#EEE4E1',
-    maxHeight: '100vh',
-    overflowY: 'scroll',
-    zIndex: 1000,
-    textAlign: 'center',
-}
+
 
 const overlayStyles = {
     position: 'fixed',
@@ -32,7 +16,25 @@ const overlayStyles = {
     zIndex: 1000
 }
 
-export default function Modal({ children, open, handleCloseModal }) {
+export default function Modal({ children, open, handleCloseModal, backgroundColor = '#FFFFFF' }) {
+
+    const modalStyles = {
+        position: 'fixed',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
+        top: window.innerWidth < windowWidth ? '30px' : '50%',
+        left: window.innerWidth < windowWidth ? '0' : '50%',
+        transform: window.innerWidth > windowWidth && 'translate(-50%, -50%)',
+        height: window.innerWidth < windowWidth && '85vh',
+        width: window.innerWidth < windowWidth && '100%',
+        backgroundColor,
+        maxHeight: '100vh',
+        overflowY: 'scroll',
+        zIndex: 1000,
+        textAlign: 'center',
+    }
 
     if (!open) return null;
     return ReactDom.createPortal(

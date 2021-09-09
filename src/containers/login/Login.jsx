@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-import Input from '../../components/input/Input';
+import { TextField } from '@material-ui/core';
 import { useAuthError, useGoogleOAuth, usePostrLogin } from '../../providers/AuthProvider';
 import styles from './Login.css'
 
@@ -31,19 +31,23 @@ export default function Login({ modalStyle, handleCloseModal }) {
             <form onSubmit={handleSubmit} >
                 {error && <p style={{ color: 'red' }} >{`${error}`}</p>}
 
-                <Input
+                <TextField
+                    variant="outlined"
+                    size="small"
                     type="email"
-                    placeholder='Email'
+                    label='Email'
                     required={true}
                     onChange={e => setEmail(e.target.value)}
                 />
-                <Input
+                <TextField
+                    variant="outlined"
+                    size="small"
                     type='password'
-                    placeholder='Password'
+                    label='Password'
                     required={true}
                     onChange={e => setPassword(e.target.value)}
                 />
-                <button>submit</button>
+                <button className={styles.loginButton} >submit</button>
             </form>
         </div>
     )

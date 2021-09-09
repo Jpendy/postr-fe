@@ -74,6 +74,7 @@ export default function BoardPage({ match }) {
             <Modal
                 open={createPostBool}
                 handleCloseModal={handleOpenCreatePost}
+                backgroundColor="EEE4E1"
             >
                 {activeUser && < CreatePost boardId={board.id} boardName={board.name} userName={activeUser.displayName} />}
             </Modal>
