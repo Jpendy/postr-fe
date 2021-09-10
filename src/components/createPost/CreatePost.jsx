@@ -4,9 +4,9 @@ import { fetchCreatePost } from '../../services/apiFetches'
 import { useDispatch } from '../../providers/AppProvider'
 import { createPost } from '../../actions/reducerActions'
 import styles from './CreatePost.css'
-// import Input from '../input/Input'
 import { TextField, FormControl, Input } from '@material-ui/core';
 import PostPreview from '../postPreview/PostPreview'
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner'
 
 
 const styleObj = {
@@ -16,10 +16,10 @@ const styleObj = {
     width: '500px',
 }
 
-export default function CreatePost({ boardId, boardName, userName }) {
+export default function CreatePost({ boardId, boardName, userName, handleCloseModal }) {
 
     const dispatch = useDispatch()
-    const { boards, loading, error } = useBoards()
+    // const { boards, loading, error } = useBoards()
 
     const [title, setTitle] = useState('')
     const [postBody, setPostBody] = useState('')
@@ -28,6 +28,7 @@ export default function CreatePost({ boardId, boardName, userName }) {
     const [file, setFile] = useState('')
     const [postError, setPostError] = useState(null)
 
+    const [loading, setLoading] = useState(false)
 
     const handleFileInputChange = e => {
         const file = e.target.files[0];
@@ -41,6 +42,8 @@ export default function CreatePost({ boardId, boardName, userName }) {
         setPostError(null)
 
         if (!title.trim() || !boardId) return
+
+        setLoading(true)
 
         const post = {
             title,
@@ -56,12 +59,16 @@ export default function CreatePost({ boardId, boardName, userName }) {
                 setPostBody('')
                 setImagePreviewSource('')
                 setFile('')
+                setLoading(false)
+                handleCloseModal()
             })
             .catch(err => setPostError(err.message))
+
     }
 
     return (
         <div className={styles.createPost} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
+            {loading && <LoadingSpinner />}
             <form className={styles.createPostForm} style={styleObj} onSubmit={createPostSubmit} >
                 <FormControl >
                     <TextField

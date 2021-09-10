@@ -76,7 +76,12 @@ export default function BoardPage({ match }) {
                 handleCloseModal={handleOpenCreatePost}
                 backgroundColor="EEE4E1"
             >
-                {activeUser && < CreatePost boardId={board.id} boardName={board.name} userName={activeUser.displayName} />}
+                {activeUser && < CreatePost
+                    boardId={board.id}
+                    boardName={board.name}
+                    userName={activeUser.displayName}
+                    handleCloseModal={handleOpenCreatePost}
+                />}
             </Modal>
 
             {board.posts && <PostList
