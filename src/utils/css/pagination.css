@@ -4,7 +4,6 @@
 }
 
 .button {
-    margin: 10px;
     cursor: pointer;
     display: flex;
     height: 30px;
@@ -14,6 +13,7 @@
     align-self: center;
     font-size: 12px;
     margin: 0px 5px 0px 5px;
+    margin-bottom: 50px;
     color: #ffffff;
     text-decoration: none;
     border: 1px solid black;

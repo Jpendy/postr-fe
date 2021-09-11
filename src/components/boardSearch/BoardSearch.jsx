@@ -26,7 +26,7 @@ export default function BoardSearch() {
     const height = 100 + boardsList.length * 26;
 
     return (
-        <div style={{ height: `${height}px`, width: `${window.innerWidth * 0.3}px` }} className={styles.boardSearch}>
+        <div style={{ height: `${height}px` }} className={styles.boardSearch}>
             {/* <Input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} /> */}
             <TextField variant="outlined" size="small" label="search boards" onChange={e => setSearch(e.target.value)} />
             <ul>

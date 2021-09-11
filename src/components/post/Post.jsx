@@ -41,13 +41,20 @@ export default function Post({
     image.src = imageUrl;
     let imageHeight = 0;
     image.onload = function () {
-        imageHeight = (this.height / (this.width / window.innerWidth))
+        if (window.innerWidth < 850) {
+            imageHeight = this.height / (this.width / (window.innerWidth * .9))
+        } else imageHeight = (this.height / (this.width / (window.innerWidth * .9))) * 0.35;
     }
 
     const [postHeight, setPostHeight] = useState(0)
 
     const togglePostHeight = () => {
-        setPostHeight(curr => curr === 0 ? (imageHeight + (((body?.length || 0) / 40) * 25)) : 0)
+        const vw = window.innerWidth / 100;
+        const lineHeight = 28;
+        const lines = Math.max(body?.length / 40, 2) || 0;
+        const textHeight = Math.max(lines * lineHeight, 80);
+        const height = imageHeight + textHeight
+        setPostHeight(curr => curr === 0 ? height : 0)
     }
 
     const [loginSignupModalOpen, setLoginSignupModalOpen] = useState(false)

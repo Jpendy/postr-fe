@@ -1,9 +1,8 @@
 .homePage {
     display: grid;
     grid-gap: 0px;
-    grid-template-columns: 5fr 2.5fr;
+    grid-template-columns: 70vw 30vw;
     grid-template-areas: "posts search";
-    margin-top: 50px;
 
     .listArea {
         grid-area: posts;
@@ -16,8 +15,11 @@
         grid-area: search;
         display: flex;
         justify-content: center;
-        margin-top: 155.5px;
-        min-width: 210px;
+        margin-top: 136px;
+    }
+
+    .toggleSearchButton {
+        display: none;
     }
 }
 
@@ -36,6 +38,7 @@
 
         .toggleSearchButton {
             grid-area: searchButton;
+            display: block;
             margin-top: 120px;
             height: 30px;
         }

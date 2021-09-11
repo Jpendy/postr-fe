@@ -27,8 +27,11 @@
         .summaryIcon {grid-area: image;}
         .imageArea {
             grid-area: expandedImage;
-            margin-top: 10px;
-            margin-left: 5px;
+            margin-top: 20px;
+            width: 100%;
+            height: 0px;
+            transition: height 0.5s ease-in-out;
+            overflow-y: hidden;
         }
         .comments {
             grid-area: comments;
@@ -65,7 +68,7 @@
     }
 
     .postImage {
-        width: 350px;
+        width: 100%;
     }
 
     a {
@@ -123,7 +126,6 @@
         border-bottom: 3px solid #b7bbbe;
         border-left: 0px;
         border-right: 0px;
-       
         font-family: verdana, arial, helvetica, sans-serif;
         summary::-webkit-details-marker {display: none; }
 
@@ -134,8 +136,8 @@
         .imageArea {
             grid-area: expandedImage;
             margin-top: 10px;
-            margin-left: 5px;
             height: 0px;
+            width: 100vw;
             transition: height 0.5s ease-in-out;
             overflow-y: hidden;
         }
@@ -156,8 +158,15 @@
         }
 
         .postBody {
-            padding-left: 25px;
+            
+           
+            padding: 25px;
             font-size: 4vw;
+        }
+
+        .postImage {
+            width: 100%;
+
         }
 
         .postTopArea {
