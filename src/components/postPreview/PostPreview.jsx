@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { createNewPostVoteHistory, deletePost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
-import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
-import { getUserPostVoteHistory } from '../../selectors/selectors'
-import { fetchDeletePost, fetchVoteOnPost } from '../../services/apiFetches'
-import Modal from '../modal/Modal'
-import Login from '../../containers/login/Login'
-import Signup from '../../containers/signup/Signup'
+
 import styles from '../post/Post.css'
 
 export default function PostPreview({
@@ -38,7 +32,7 @@ export default function PostPreview({
 
     const handleOpenPost = (id) => {
         setPostOpen(curr => !curr)
-        handleOpenDetails(id)
+
     }
 
     const commentMessage = 'comments';
@@ -72,7 +66,7 @@ export default function PostPreview({
                     src={imageUrl || '/text-icon1.png'}
                     alt='post image icon' />
 
-                {postOpen && <div className={styles.imageArea} >
+                {postOpen && <div style={{ height: '100%' }} className={styles.imageArea} >
                     {imageUrl && <img className={styles.postImage} src={imageUrl} />}
                     {body && <p className={styles.postBody} >{body}</p>}
                 </div>}

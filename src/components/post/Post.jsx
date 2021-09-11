@@ -37,7 +37,18 @@ export default function Post({
     const postVoteHistory = useSelector(getUserPostVoteHistory)
     const [loading, setLoading] = useState(false)
 
-    const [postOpen, setPostOpen] = useState(false)
+    const image = new Image()
+    image.src = imageUrl;
+    let imageHeight = 0;
+    image.onload = function () {
+        imageHeight = (this.height / (this.width / window.innerWidth))
+    }
+
+    const [postHeight, setPostHeight] = useState(0)
+
+    const togglePostHeight = () => {
+        setPostHeight(curr => curr === 0 ? (imageHeight + (((body?.length || 0) / 40) * 25)) : 0)
+    }
 
     const [loginSignupModalOpen, setLoginSignupModalOpen] = useState(false)
     const [loginOrSignup, setLoginOrSignup] = useState('login')
@@ -97,11 +108,11 @@ export default function Post({
     }
 
     const handleOpenPost = (id) => {
-        setPostOpen(curr => !curr)
+        togglePostHeight()
         handleOpenDetails(id)
     }
 
-    const modalButtonStyle = { marginTop: '15px' }
+    // const modalButtonStyle = { marginTop: '15px' }
     const modalStyle = { width: window.innerWidth > 600 ? '90%' : '100%', marginTop: '30px' }
 
     const commentMessage = +commentCount === 1 ? 'comment' : 'comments'
@@ -162,31 +173,12 @@ export default function Post({
                 <img className={styles.summaryIcon}
                     onClick={() => handleOpenPost(id)}
                     src={imageUrl || '/text-icon1.png'}
-                    // style={{
-                    //     // objectFit: 'cover',
-                    //     height: '70px',
-                    //     width: '70px',
-                    // }}
                     alt='post image icon' />
 
-                {postOpen && <div className={styles.imageArea} >
+                {<div style={{ height: postHeight }} className={styles.imageArea} >
                     {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
                     {body && <p className={styles.postBody} >{body}</p>}
                 </div>}
-                {/* <details open={!allPostsClosed}> */}
-                {/* <summary className={styles.summary} onClick={() => handleOpenDetails(id)} > */}
-                {/* <img className={styles.summaryIcon}
-                            src={closedPosts.includes(id) ? imageUrl : '/x-close.png'}
-                            style={{
-                                // objectFit: 'cover',
-                                height: closedPosts.includes(id) ? '70px' : '15px',
-                                width: closedPosts.includes(id) ? '70px' : '15px',
-                            }}
-                            alt='post image icon' /> */}
-                {/* </summary> */}
-                {/* {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
-                    {body && <p>{body}</p>} */}
-                {/* </details> */}
 
                 {dateModifed && <p>Modified on: {DatedateModifed}</p>}
 

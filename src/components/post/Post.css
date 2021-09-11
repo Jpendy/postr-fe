@@ -66,7 +66,6 @@
 
     .postImage {
         width: 350px;
-        
     }
 
     a {
@@ -88,16 +87,16 @@
 
     .switchModalButton {
         margin-left: 5px;
-    min-width: 40px;
-    background: #3B8BEB;
-    height: 40px;
-    font-size: 12px;
-    border: 1px solid black;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-    font-family: verdana, arial, helvetica, sans-serif;
-    color: #ffffff;
+        min-width: 40px;
+        background: #3B8BEB;
+        height: 40px;
+        font-size: 12px;
+        border: 1px solid black;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        font-family: verdana, arial, helvetica, sans-serif;
+        color: #ffffff;
     }
 }
 
@@ -117,6 +116,7 @@
         margin-bottom: 40px;
         padding-bottom: 5vw; 
         width: 100vw;
+        overflow-y: scroll;
         background-color: #EEE4E1;
         align-content: center;
         border-top: 3px solid #b7bbbe;
@@ -135,6 +135,9 @@
             grid-area: expandedImage;
             margin-top: 10px;
             margin-left: 5px;
+            height: 0px;
+            transition: height 0.5s ease-in-out;
+            overflow-y: hidden;
         }
         .comments {
             grid-area: comments;
