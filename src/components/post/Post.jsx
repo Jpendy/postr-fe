@@ -89,8 +89,9 @@ export default function Post({
                 if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
 
+
             })
-        setLoading(false)
+            .then(() => setLoading(false))
     }
 
     const downvote = () => {
@@ -110,8 +111,9 @@ export default function Post({
                 if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
 
+
             })
-        setLoading(false)
+            .then(() => setLoading(false))
     }
 
     const handleOpenPost = (id) => {
@@ -154,19 +156,15 @@ export default function Post({
                         disabled={loading}
                         style={{ filter: currentVote === 1 && 'drop-shadow(1.5px 1.5px 2px orangered)' }}
                     />
-
                     <p>{voteScore}</p>
-
                     <img
                         src="/downArrow.png"
                         onClick={downvote}
                         disabled={loading}
                         style={{ filter: currentVote === -1 && 'drop-shadow(1.5px 1.5px 2px blue)' }}
                     />
-
                 </div>
 
-                {/* <div className={styles.postArea} > */}
                 <div className={styles.postTopArea} >
                     <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;
                         <Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
@@ -190,8 +188,6 @@ export default function Post({
                 {dateModifed && <p>Modified on: {DatedateModifed}</p>}
 
                 <p className={styles.comments} ><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`${commentCount} ${commentMessage}`} </Link></p>
-                {/* </div> */}
-
 
                 {/* {activeUser?.id === userId && <button
                     className={styles.deletePost}
