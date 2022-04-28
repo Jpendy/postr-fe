@@ -24,6 +24,7 @@ export default function AppProvider({ children }) {
                 dispatch(setUserCommentVoteHistory(commentHistory))
                 dispatch(setReplies(replies))
             })
+            .catch(e => console.error('Error', e))
 
     }, [activeUser])
 

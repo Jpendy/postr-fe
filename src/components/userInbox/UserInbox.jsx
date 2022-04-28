@@ -13,6 +13,7 @@ export default function UserInbox() {
     useEffect(() => {
         fetchAllReplies()
             .then(replies => dispatch(setReplies(replies)))
+            .catch(console.error)
     }, [])
 
     const repliesList = replies.map(comment => (
