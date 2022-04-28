@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useBoards from '../../hooks/useBoards'
 import styles from './BoardSearch.css'
-import { TextField, FormControl, Input } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 export default function BoardSearch() {
 
