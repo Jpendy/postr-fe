@@ -56,9 +56,9 @@ export default function PostPreview({
                     {/* <p>&nbsp;on {date.slice(0, 16)}</p> */}
                 </div>
 
-                <Link to={`/post-detail/${id}`} style={{ color: linkColor }} >
-                    <h2 className={styles.title}>{title}</h2>
-                </Link>
+                {/* <Link to={`/post-detail/${id}`} style={{ color: linkColor }} > */}
+                <h2 className={styles.title}>{title}</h2>
+                {/* </Link> */}
 
                 <img className={styles.summaryIcon}
                     style={{ backgroundColor: 'white', width: window.innerWidth > 800 && '8vw', height: window.innerWidth > 800 && '8vw' }}

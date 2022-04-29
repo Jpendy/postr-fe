@@ -32,8 +32,8 @@
 
         margin-top: 0px;
         grid-template-areas:
-            "... searchButton ..."
-            "... search ..."
+            /* "... searchButton ..." */
+            /*  "... search ..." */
             "... posts  ...";
 
         .toggleSearchButton {

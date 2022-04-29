@@ -31,10 +31,12 @@ export default function HomePage() {
                     PageButtons={PageButtons}
                 />}
             </div>
-            {/* <button className={styles.toggleSearchButton} onClick={toggleBoardSearch} >search boards</button>
-            <div className={styles.boardSearch} style={{ height: boardSearchHeight }} >
+            {/* <button className={styles.toggleSearchButton} onClick={toggleBoardSearch} >search boards</button> */}
+            <div className={styles.boardSearch}
+            // style={{ height: boardSearchHeight }} 
+            >
                 <BoardSearch />
-            </div> */}
+            </div>
         </div>
     )
 }

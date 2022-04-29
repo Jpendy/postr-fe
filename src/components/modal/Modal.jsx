@@ -31,7 +31,7 @@ export default function Modal({ children, open, handleCloseModal, backgroundColo
         width: window.innerWidth < windowWidth && '100%',
         backgroundColor,
         maxHeight: '100vh',
-        overflowY: 'scroll',
+        // overflowY: 'scroll',
         zIndex: 1000,
         textAlign: 'center',
     }
