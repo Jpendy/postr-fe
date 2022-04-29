@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useContext } from 'react';
-import { setReplies, setUserCommentVoteHistory, setUserPostVoteHistory } from '../actions/reducerActions';
+import { setUserCommentVoteHistory, setUserPostVoteHistory } from '../actions/reducerActions';
 import reducer, { initialState } from '../reducers/appReducer';
-import { fetchAllReplies, fetchUserCommentVoteHistory, fetchUserPostVoteHistory } from '../services/apiFetches';
+import { fetchUserCommentVoteHistory, fetchUserPostVoteHistory } from '../services/apiFetches';
 import { useActiveUser } from './AuthProvider';
 
 const AppContext = React.createContext();
@@ -16,15 +16,12 @@ export default function AppProvider({ children }) {
         if (!activeUser) return;
         Promise.all([
             fetchUserPostVoteHistory(),
-            fetchUserCommentVoteHistory(),
-            fetchAllReplies(),
+            fetchUserCommentVoteHistory()
         ])
-            .then(([postHistory, commentHistory, replies]) => {
+            .then(([postHistory, commentHistory]) => {
                 dispatch(setUserPostVoteHistory(postHistory))
                 dispatch(setUserCommentVoteHistory(commentHistory))
-                dispatch(setReplies(replies))
             })
-            .catch(e => console.error('Error', e))
 
     }, [activeUser])
 

@@ -1,62 +1,19 @@
 .homePage {
     display: grid;
-    grid-gap: 0px;
-    grid-template-columns: 70vw 25vw;
-    grid-template-areas: "posts search";
+    grid-gap: 25px;
+    grid-template-columns: 5fr 2.5fr;
 
     .listArea {
-        grid-area: posts;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     .boardSearch {
-        grid-area: search;
         display: flex;
         justify-content: center;
-        margin-top: 86px;
-    }
-
-    .toggleSearchButton {
-        display: none;
-    }
-}
-
-@media (max-width: 849px) {
-
-    .homePage {
-        display: grid;
-        justify-content: center;
-        grid-template-columns: 2.5% 95% 2.5%;
-
-        margin-top: 0px;
-        grid-template-areas:
-            /* "... searchButton ..." */
-            /*  "... search ..." */
-            "... posts  ...";
-
-        .toggleSearchButton {
-            grid-area: searchButton;
-            display: block;
-            margin-top: 20px;
-            height: 30px;
-        }
-
-        .listArea {
-            grid-area: posts;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .boardSearch {
-            grid-area: search;
-            display: flex;
-            justify-content: center;
-            height: 0;
-            overflow-y: hidden;
-            transition: height 0.5s ease-in-out;
-        }
+        margin-top: 68px;
+        margin-right: 40px;
+        min-width: 210px;
     }
 }

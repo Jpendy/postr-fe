@@ -1,6 +1,8 @@
 const NONBODY_METHODS = ['GET', 'DELETE'];
 
-const url = process.env.API_URL;
+const localUrl = 'http://localhost:7890';
+const herokuDevUrl = 'https://powerful-sands-82157.herokuapp.com'
+const url = herokuDevUrl;
 
 const request = (path, method, body) => {
     // eslint-disable-next-line no-undef
@@ -8,7 +10,6 @@ const request = (path, method, body) => {
         method,
         headers: NONBODY_METHODS.includes(method) ? {} : { 'Content-Type': 'application/json' },
         credentials: 'include',
-        mode: 'cors',
         body: NONBODY_METHODS.includes(method) ? null : JSON.stringify(body)
     })
         .then(res => Promise.all([res.ok, res.json()]))

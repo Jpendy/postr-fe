@@ -18,15 +18,12 @@ export default function Input({
     minLength,
     maxLength,
     autoComplete,
-    onChange,
-    backgroundColor,
-    height
+    onChange
 }) {
 
     return (
-        <div className={styles.form__div}  >
+        <div className={styles.form__div}>
             <input
-                style={{ backgroundColor, height }}
                 id={id}
                 type={type}
                 min={min}

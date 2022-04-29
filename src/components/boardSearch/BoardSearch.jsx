@@ -1,8 +1,8 @@
+import { postcss } from 'autoprefixer'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useBoards from '../../hooks/useBoards'
 import styles from './BoardSearch.css'
-import { TextField } from '@material-ui/core';
 
 export default function BoardSearch() {
 
@@ -23,13 +23,12 @@ export default function BoardSearch() {
         </li>
     ))
 
-    const height = 100 + boardsList.length * 26;
+    const height = 85 + boardsList.length * 26;
 
     return (
-        <div style={{ height: `${height}px` }} className={styles.boardSearch}>
-            {/* <Input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} /> */}
-            <TextField variant="outlined" size="small" label="search boards" onChange={e => setSearch(e.target.value)} />
-            <ul>
+        <div style={{ height: `${height}px` }} className={styles.boardSearch}  >
+            <input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} />
+            <ul >
                 {list}
             </ul>
         </div>

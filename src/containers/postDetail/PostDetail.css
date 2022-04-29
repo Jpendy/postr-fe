@@ -1,22 +1,23 @@
+
 .postArea {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
 
     .post {
-        display: 'flex';
-        justify-content: 'center';
-        margin-top: 50px;
-        padding: 20px 100px;
-        width: 50%;
-        background-color: #EEE4E1;
-        text-align: center;
-        border: 1px solid black;
-        font-family: verdana, arial, helvetica, sans-serif;
+    display: 'flex';
+    justify-content: 'center';
+    margin: 40px 0px;
+    padding: 20px 50px;
+    width: 50%;
+    background-color: #E7E3D4;
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 1px 1px 3px;
+    font-family: verdana, arial, helvetica, sans-serif;
 
-        h2 {
+            h2 {
             color: #c23104;
         }
 
@@ -26,9 +27,8 @@
         }
     }
 
-    .postImage {
-        width: 100%;
-        min-width: 300px;
+    img {
+        width: 350px;
         height: 100%;
     }
 
@@ -43,62 +43,5 @@
     .postedBy {
         display: flex;
         justify-content: center;
-    }
-}
-
-@media (max-width: 900px) {
-
-    .postArea {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100vw;
-        padding-bottom: 200px;
-
-        .post {
-            display: 'flex';
-            justify-content: 'center';
-            margin-top: 50px;
-            width: 100vw;
-            min-width: 301px;
-            padding: 0px;
-            background-color: #EEE4E1;
-            text-align: center;
-            border: 1px solid black;
-            font-family: verdana, arial, helvetica, sans-serif;
-
-            h2 {
-                color: #c23104;
-            }
-
-            a {
-                text-decoration: none;
-                color: #c23104;
-            }
-        }
-
-        .postImage {
-            width: 100%;
-            min-width: 301px;
-            max-width: 400px;
-            height: 100%;
-        }
-
-        ul {
-            list-style: none;
-            width: 100%;
-            padding-inline-start: 0px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .postedBy {
-            display: flex;
-            justify-content: center;
-        }
-
     }
 }

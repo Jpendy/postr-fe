@@ -14,7 +14,6 @@ export default function usePostDetails(id) {
     useEffect(() => {
         setLoading(true)
         fetchPostDetails(id)
-            .catch(console.error)
             .then(post => dispatch(setPostDetails(post)))
             .finally(() => setLoading(false))
     }, [])

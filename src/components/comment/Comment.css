@@ -1,15 +1,15 @@
 
 .commentArea {
-    width: 100vw;
-    padding-left: 10px;
-    border-top: solid .8px lightgrey;
-    border-left: solid .8px lightgrey;
+    background-color: lightblue;
+    padding: 15px 70px;
+    margin-top: 20px;
+    width: 100%;
+    border-top: solid .2px black;
+    border-left: solid .2px black;
     font-family: verdana, arial, helvetica, sans-serif;
 
     .body {
-        font-size: 1rem;
-        padding-left: 10px;
-        padding-right: 10px;
+        font-size: 1.1rem;
     }
 
     .voteArea {
@@ -17,11 +17,10 @@
         align-items: center;
     }
 
-    .voteArea .voteImage {
+    .voteArea img {
+        width: 17px;
         margin: 10px;
         cursor: pointer;
-        width: 17px;
-        height: 17px;
     }
   
     a {
@@ -34,7 +33,6 @@
 
     summary {
         margin-top: 15px;
-        padding-bottom: 5px;
         cursor: pointer;
     }
 

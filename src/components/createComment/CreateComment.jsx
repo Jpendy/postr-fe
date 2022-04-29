@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { createCommentReply, createPostComment, setPostDetails } from '../../actions/reducerActions'
 import { useDispatch } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
@@ -12,20 +12,20 @@ const styleObj = {
     alignItems: 'flex-start',
 }
 
-export default function CreateComment({ post, postDetails, parentCommentId, parentUserId, replyBoolDefault }) {
+export default function CreateComment({ post, postDetails, parentCommentId, replyBoolDefault }) {
+    const activeUser = useActiveUser()
     const dispatch = useDispatch()
-
-    const { commentId } = useParams()
+    const history = useHistory()
 
     const [body, setBody] = useState('')
     const [error, setError] = useState(null)
-    const [replyBool, setReplyBool] = useState(parentCommentId === +commentId || replyBoolDefault)
+    const [replyBool, setReplyBool] = useState(replyBoolDefault)
 
     const handleCommentSubmit = e => {
         e.preventDefault()
         if (!body.trim()) return
 
-        fetchCreateComment({ body, parentUserId, postId: postDetails?.id || post.id, parentCommentId })
+        fetchCreateComment({ body, postId: postDetails?.id, parentCommentId })
             .then(newComment => {
                 if (!newComment.parentCommentId) dispatch(createPostComment(newComment))
                 else dispatch(createCommentReply(newComment))
@@ -44,7 +44,7 @@ export default function CreateComment({ post, postDetails, parentCommentId, pare
 
             <form style={styleObj} onSubmit={handleCommentSubmit} >
                 {error && <h3 style={{ color: 'red' }} >{error.message}</h3>}
-                <textarea autoFocus={parentCommentId === +commentId} value={body} onChange={e => setBody(e.target.value)} />
+                <textarea value={body} onChange={e => setBody(e.target.value)} />
                 <button disabled={!body.trim()}>Submit Comment</button>
             </form>
         </div>

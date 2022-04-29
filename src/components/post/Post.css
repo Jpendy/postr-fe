@@ -1,63 +1,16 @@
+
 .post {
     display: grid;
-    grid-template-columns: 20% 60% 20%;
-    grid-template-areas:
-        "voting title image"
-        "voting comments image"
-        "voting ........  image"
-        "...... expandedImage image "
-        "......     info     info"
-        "........ delete ........."
-    ;
+    grid-template-columns: 1fr 5fr;
     margin-bottom: 40px;
-    padding: 20px 40px 10px 10px;
-    width: 60vw;
-    background-color: #EEE4E1;
-    opacity: 1;
+    padding: 20px 40px 10px 10px; 
+    width: 60vw; 
+    background-color: #E7E3D4;
     min-width: 400px;
-    border: 1px solid #495057;
-
+    border: 1px solid black;
+    box-shadow: 1px 1px 3px;
     font-family: verdana, arial, helvetica, sans-serif;
-
-    summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .votingArea {
-        grid-area: voting;
-    }
-
-    details {
-        grid-area: image;
-    }
-
-    .postTopArea {
-        grid-area: info;
-    }
-
-    .summaryIcon {
-        grid-area: image;
-    }
-
-    .imageArea {
-        grid-area: expandedImage;
-        margin-top: 20px;
-        width: 100%;
-        height: 0px;
-        transition: height 0.5s ease-in-out;
-        overflow-y: hidden;
-    }
-
-    .comments {
-        grid-area: comments;
-        font-size: 15px;
-    }
-
-    .deletePost {
-        grid-area: delete;
-        width: 25vw;
-        max-width: 100px;
-    }
+    summary::-webkit-details-marker {display: none; }
 
     .postTopArea {
         display: flex;
@@ -83,7 +36,8 @@
     }
 
     .postImage {
-        width: 100%;
+        width: 350px;
+        
     }
 
     a {
@@ -96,172 +50,15 @@
         color: rgb(49, 4, 155)
     }
 
-    .summaryIcon {
-        width: 130px;
-        height: 130px;
+   .summaryIcon {
+        width: 15px;
+        height: 15px;
         cursor: pointer;
     }
-
-    summary {
-        list-style: none
-    }
-
-    .switchModalButton {
-        margin-left: 5px;
-        min-width: 40px;
-        background: #3B8BEB;
-        height: 40px;
-        font-size: 12px;
-        border: 1px solid black;
-        border-radius: 2px;
-        cursor: pointer;
-        transition: 0.2s ease-in-out;
-        font-family: verdana, arial, helvetica, sans-serif;
-        color: #ffffff;
-    }
+    summary{ list-style: none }
 }
-
-@media (max-width: 849px) {
-
-    .post {
-        display: grid;
-        grid-template-columns: 20% 60% 20%;
-        grid-template-areas:
-            "voting title image"
-            "voting comments image"
-            "voting ......   image"
-            "expandedImage expandedImage expandedImage "
-            "......  info    info"
-            ". delete ."
-        ;
-        margin-bottom: 40px;
-        padding-bottom: 5vw;
-        width: 100vw;
-        background-color: #EEE4E1;
-        align-content: center;
-        border-top: 3px solid #b7bbbe;
-        border-bottom: 3px solid #b7bbbe;
-        border-left: 0px;
-        border-right: 0px;
-        font-family: verdana, arial, helvetica, sans-serif;
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .votingArea {
-            grid-area: voting;
-        }
-
-        details {
-            grid-area: image;
-        }
-
-        .summaryIcon {
-            grid-area: image;
-        }
-
-        .postTopArea {
-            grid-area: info;
-        }
-
-        .imageArea {
-            grid-area: expandedImage;
-            margin-top: 10px;
-            height: 0px;
-            width: 100vw;
-            transition: height 0.5s ease-in-out;
-            overflow-y: hidden;
-        }
-
-        .comments {
-            grid-area: comments;
-            font-size: 3.5vw;
-        }
-
-        .deletePost {
-            grid-area: delete;
-            width: 25vw;
-            max-width: 100px;
-        }
-
-        .title {
-            margin: 0px;
-            font-size: 5vw;
-        }
-
-        .postBody {
+ 
 
 
-            padding: 25px;
-            font-size: 4vw;
-        }
 
-        .postImage {
-            width: 100%;
 
-        }
-
-        .postTopArea {
-            display: flex;
-            white-space: nowrap;
-            height: 30px;
-            font-size: 3.5vw;
-            margin-bottom: 10px;
-        }
-
-        .votingArea {
-            margin-top: 17px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            font-size: 4.1vw;
-        }
-
-        .votingArea p {
-            margin: 4px;
-        }
-
-        .votingArea img {
-            width: 17px;
-            cursor: pointer;
-        }
-
-        a {
-            text-decoration: none;
-            color: #c23104;
-        }
-
-        a:hover {
-            text-decoration: underline;
-            color: rgb(49, 4, 155)
-        }
-
-        .summaryIcon {
-            width: 20vw;
-            height: 20vw;
-            background-color: white;
-            cursor: pointer;
-        }
-
-        summary {
-            list-style: none
-        }
-    }
-
-    .switchModalButton {
-        margin-top: 15px;
-        width: 60px;
-        min-width: 40px;
-        background: #3B8BEB;
-        height: 40px;
-        font-size: 12px;
-        border: 1px solid black;
-        border-radius: 2px;
-        cursor: pointer;
-        transition: 0.2s ease-in-out;
-        font-family: verdana, arial, helvetica, sans-serif;
-        color: #ffffff;
-    }
-}
