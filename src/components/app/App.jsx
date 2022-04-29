@@ -21,6 +21,7 @@ import Signup from '../../containers/signup/Signup';
 import Login from '../../containers/login/Login';
 import UserProfile from '../../containers/userProfile/UserProfile';
 import UserInbox from '../userInbox/UserInbox';
+import BoardSearchPage from '../../containers/boardSearchPage/BoardSearchPage';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
               <PrivateRoute exact path="/create-board" component={CreateBoardPage} />
               <PrivateRoute exact path="/user-inbox" component={UserInbox} />
               <Route exact path="/board/:name" component={BoardPage} />
+              <Route exact path="/search-boards" component={BoardSearchPage} />
               <Route exact path="/user-page/:id" component={UserDetailPage} />
               <Route exact path="/display-name" component={SetDisplayName} />
               <Route exact path="/signup" component={Signup} />

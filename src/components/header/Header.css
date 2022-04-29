@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: verdana, arial, helvetica, sans-serif;
-
+  z-index: 999;
 }
 
 .logo-link {
@@ -106,7 +106,7 @@
   /* 0 width - change this with JavaScript */
   position: fixed;
   /* Stay in place */
-  z-index: 10;
+  z-index: 1000;
   /* Stay on top */
   top: 0;
   right: -10px;

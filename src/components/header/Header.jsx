@@ -30,6 +30,7 @@ export default function Header() {
                         <div className={styles.sidebar} style={{ width: navWidth }}>
                             <a className={styles.closebtn} onClick={closeNav}>&times;</a>
                             <Link to='/' onClick={closeNav}>Mother Board</Link>
+                            <Link to='/search-boards' onClick={closeNav}>Search All Boards</Link>
                             {/* <Link to='/user-profile' onClick={closeNav} >My Profile</Link> */}
                             <Link to='/create-board' onClick={closeNav} >Create Board</Link>
                             {/* <Link to='/user-inbox' onClick={closeNav} style={{ display: 'flex', justifyContent: 'space-between' }} >
