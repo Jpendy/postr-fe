@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { createNewCommentVoteHistory, deleteComment, setPostDetails, updateCommentVote, updateUserCommentVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
 import { getPostDetails, getUserCommentVoteHistory } from '../../selectors/selectors'
-import { fetchDeleteComment, fetchPostDetails, fetchVoteOnComment } from '../../services/apiFetches'
+import { fetchDeleteComment, fetchVoteOnComment } from '../../services/apiFetches'
 import CommentList from '../commentList/CommentList'
 import CreateComment from '../createComment/CreateComment'
 import styles from './Comment.css'
@@ -18,7 +18,8 @@ export default function Comment({
     createdBy,
     replies,
     userId,
-    depthCounter
+    depthCounter,
+    unread
 }) {
 
     const [error, setError] = useState(null)
@@ -27,6 +28,8 @@ export default function Comment({
     const activeUser = useActiveUser()
     const postDetails = useSelector(getPostDetails)
     const commentVoteHistory = useSelector(getUserCommentVoteHistory)
+
+    const { commentId } = useParams()
 
     const handleDeleteComment = () => {
         setError(null)
@@ -42,6 +45,7 @@ export default function Comment({
     const currentVote = commentVoteHistory.find(voteHistory => +voteHistory.commentId === +id)?.vote
 
     const upvote = () => {
+        if (loading) return
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -52,14 +56,13 @@ export default function Comment({
                 if (currentVote === undefined) dispatch(createNewCommentVoteHistory(voteHistory))
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
 
-
                 dispatch(updateCommentVote({ id, score: comment.voteScore }))
-                setLoading(false)
             })
-
+        setLoading(false)
     }
 
     const downvote = () => {
+        if (loading) return
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -71,8 +74,8 @@ export default function Comment({
                 else dispatch(updateUserCommentVoteHistory(voteHistory))
 
                 dispatch(updateCommentVote({ id, score: comment.voteScore }))
-                setLoading(false)
             })
+        setLoading(false)
     }
 
     const date = new Date(+dateCreated).toString()
@@ -81,7 +84,8 @@ export default function Comment({
     const replyMessage = replies?.length === 1 ? 'reply' : 'replies'
 
     return (
-        <div className={styles.commentArea} >
+        <div className={styles.commentArea} style={{ position: 'inherit', left: depthCounter !== 1 && '5px' }} >
+            <div style={{ color: 'red' }} >{unread && 'New'}</div>
             <p><Link to={`/user-page/${userId}`} >{createdBy}</Link> - {date.slice(0, 16)}</p>
 
             <p className={styles.body} >{body}</p>
@@ -89,6 +93,7 @@ export default function Comment({
             <div className={styles.voteArea}>
 
                 {activeUser && <img
+                    className={styles.voteImage}
                     src="/upArrow.png"
                     onClick={upvote}
                     disabled={loading}
@@ -98,6 +103,7 @@ export default function Comment({
 
                 <p>{voteScore}</p>
                 {activeUser && <img
+                    className={styles.voteImage}
                     src="/downArrow.png"
                     onClick={downvote}
                     disabled={loading}
@@ -112,12 +118,26 @@ export default function Comment({
             {error && <p style={{ color: 'red' }} >Error: {error}</p>}
 
             {+activeUser?.id === +userId && <button onClick={handleDeleteComment} >delete</button>}
-            {activeUser && <CreateComment post={postDetails} parentCommentId={id} replyBoolDefault={false} />}
+            {activeUser && <CreateComment
+                post={postDetails}
+                parentCommentId={id}
+                parentUserId={userId}
+                replyBoolDefault={false}
+            />}
 
-            {replies && <details open={depthCounter % 3 !== 0}>
+            {replies && <details open={(depthCounter % 3 !== 0) || isCommentDownStream(replies, +commentId)}>
                 <summary >{`${replies.length} ${replyMessage}`}</summary>
                 <CommentList depthCounter={depthCounter} comments={replies} />
             </details>}
         </div>
     )
+}
+
+function isCommentDownStream(comments, commentId) {
+    for (let i = 0; i < comments.length; i++) {
+        const { id, replies } = comments[i];
+        if (id === commentId) return true;
+        if (replies) return isCommentDownStream(replies, commentId)
+    }
+    return false;
 }

@@ -9,10 +9,8 @@ export default function UserProfile() {
     const activeUser = useActiveUser()
     const [display, setDisplay] = useState('userInfo')
 
-    console.log(activeUser)
-
     return (
-        <div>
+        <div style={{ marginTop: '300px' }} >
             <UserProfileDisplayControls setDisplay={setDisplay} />
             {display === 'userInfo' && <UserInfo {...activeUser} />}
             {display === 'userPosts' && <UserProfileUserPosts />}

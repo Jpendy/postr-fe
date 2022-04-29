@@ -1,23 +1,25 @@
 import React, { useState } from 'react'
 import useBoards from '../../hooks/useBoards'
-import { v4 as uuidv4 } from 'uuid'
 import { fetchCreatePost } from '../../services/apiFetches'
 import { useDispatch } from '../../providers/AppProvider'
 import { createPost } from '../../actions/reducerActions'
-import MediaUploader from '../mediaUploader/MediaUploader'
+import styles from './CreatePost.css'
+import { TextField, FormControl, Input } from '@material-ui/core';
+import PostPreview from '../postPreview/PostPreview'
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner'
 
 
 const styleObj = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '50%',
+    width: '500px',
 }
 
-export default function CreatePost({ boardId }) {
+export default function CreatePost({ boardId, boardName, userName, handleCloseModal }) {
 
     const dispatch = useDispatch()
-    const { boards, loading, error } = useBoards()
+    // const { boards, loading, error } = useBoards()
 
     const [title, setTitle] = useState('')
     const [postBody, setPostBody] = useState('')
@@ -26,6 +28,7 @@ export default function CreatePost({ boardId }) {
     const [file, setFile] = useState('')
     const [postError, setPostError] = useState(null)
 
+    const [loading, setLoading] = useState(false)
 
     const handleFileInputChange = e => {
         const file = e.target.files[0];
@@ -39,6 +42,8 @@ export default function CreatePost({ boardId }) {
         setPostError(null)
 
         if (!title.trim() || !boardId) return
+
+        setLoading(true)
 
         const post = {
             title,
@@ -54,28 +59,62 @@ export default function CreatePost({ boardId }) {
                 setPostBody('')
                 setImagePreviewSource('')
                 setFile('')
+                setLoading(false)
+                handleCloseModal()
             })
             .catch(err => setPostError(err.message))
+
     }
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }} >
-            <form style={styleObj} onSubmit={createPostSubmit} >
-                Create Post
-                <input value={title} type="text" placeholder="Title" onChange={e => setTitle(e.target.value)} />
-                <textarea value={postBody} placeholder="Post Body" onChange={e => setPostBody(e.target.value)} />
+        <div className={styles.createPost} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
+            {loading && <LoadingSpinner />}
+            <form className={styles.createPostForm} style={styleObj} onSubmit={createPostSubmit} >
+                <FormControl >
+                    <TextField
+                        className={styles.postTitle}
+                        value={title}
+                        type="text"
+                        label="Title"
+                        variant="outlined"
+                        size="small"
+                        onChange={e => setTitle(e.target.value)}
+                    />
+                    <TextField
+                        className={styles.postBody}
+                        variant="outlined"
+                        multiline
+                        rows={3}
+                        maxRows={Infinity}
+                        value={postBody}
+                        label="Post Body"
+                        onChange={e => setPostBody(e.target.value)}
+                    />
+                    <Input
+                        className={styles.postFile}
+                        type="file"
+                        disableUnderline={true}
+                        name="image-upload"
+                        onChange={handleFileInputChange}
+                        value={file}
+                    />
 
-                {/* <select id="board-list" onChange={e => setBoardId(e.target.value)} >
-                    <option value="">choose board</option>
-                    {boards.map((board, i) => <option key={i - 9999} value={board.id}> {board.name} </option>)}
-                </select> */}
+                    <div>
+                        <PostPreview
+                            title={title}
+                            imageUrl={imagePreviewSource}
+                            body={postBody}
+                            board={boardName}
+                            createdBy={userName}
+                        />
+                    </div>
 
-                <input type="file" name="image-upload" onChange={handleFileInputChange} value={file} />
-
-                <button disabled={!title.trim() || !boardId} >Submit Post</button>
-                {postError && <p style={{ color: 'red' }}>{postError}</p>}
+                    {/* {(imagePreviewSource || title || postBody) && <p className={styles.postPreview}>Post Preview</p>}
+                    {imagePreviewSource && <img src={imagePreviewSource} alt="image preview" style={{ height: '100%', width: '200px', margin: 'auto' }} />} */}
+                    <button className={styles.createPostButton} disabled={!title.trim() || !boardId} >Submit Post</button>
+                    {postError && <p style={{ color: 'red' }}>{postError}</p>}
+                </FormControl>
             </form>
-            {imagePreviewSource && <img src={imagePreviewSource} alt="image preview" style={{ height: '300px' }} />}
 
         </div >
     )

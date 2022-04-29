@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PostList from '../../components/postList/PostList'
 import usePosts from '../../hooks/usePosts'
 import Sort from '../../components/sort/Sort'
 import BoardSearch from '../../components/boardSearch/BoardSearch'
 import styles from './HomePage.css'
-import usePagination from '../../hooks/usePagination'
+import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
 
 export default function HomePage() {
 
+
     const { posts, loading, error, page, PageButtons } = usePosts()
 
-    if (loading) return <h2>Loading...</h2>
+    // const [boardSearchHeight, setBoardSearchHeight] = useState(0)
+
+    // const toggleBoardSearch = () => {
+    //     setBoardSearchHeight(curr => curr === 0 ? 200 : 0)
+    // }
+
+    if (loading) return <LoadingSpinner />
     return (
         <div className={styles.homePage} >
             <div className={styles.listArea} >
@@ -24,7 +31,10 @@ export default function HomePage() {
                     PageButtons={PageButtons}
                 />}
             </div>
-            <div className={styles.boardSearch} >
+            {/* <button className={styles.toggleSearchButton} onClick={toggleBoardSearch} >search boards</button> */}
+            <div className={styles.boardSearch}
+            // style={{ height: boardSearchHeight }} 
+            >
                 <BoardSearch />
             </div>
         </div>

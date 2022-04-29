@@ -37,8 +37,29 @@ export default function Post({
     const postVoteHistory = useSelector(getUserPostVoteHistory)
     const [loading, setLoading] = useState(false)
 
+    const image = new Image()
+    image.src = imageUrl;
+    let imageHeight = 0;
+    image.onload = function () {
+        if (window.innerWidth < 850) {
+            imageHeight = this.height / (this.width / (window.innerWidth * .9))
+        } else imageHeight = (this.height / (this.width / (window.innerWidth * .9))) * 0.35;
+    }
+
+    const [postHeight, setPostHeight] = useState(0)
+
+    const togglePostHeight = () => {
+        const vw = window.innerWidth / 100;
+        const lineHeight = 28;
+        const lines = Math.max(body?.length / 40, 2) || 0;
+        const textHeight = Math.max(lines * lineHeight, 80);
+        const height = imageHeight + textHeight
+        setPostHeight(curr => curr === 0 ? height : 0)
+    }
+
     const [loginSignupModalOpen, setLoginSignupModalOpen] = useState(false)
     const [loginOrSignup, setLoginOrSignup] = useState('login')
+
     const handleModalChange = () => setLoginOrSignup(curr => curr === 'login' ? 'signup' : 'login')
     const handleCloseModal = () => setLoginSignupModalOpen(false)
 
@@ -56,7 +77,7 @@ export default function Post({
             setLoginSignupModalOpen(true)
             return
         }
-
+        if (loading) return;
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -68,15 +89,17 @@ export default function Post({
                 if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
 
-                setLoading(false)
+
             })
+            .then(() => setLoading(false))
     }
+
     const downvote = () => {
         if (!activeUser) {
             setLoginSignupModalOpen(true)
             return
         }
-
+        if (loading) return;
         setLoading(true)
         const body = {
             voteHistory: currentVote,
@@ -88,12 +111,18 @@ export default function Post({
                 if (currentVote === undefined) dispatch(createNewPostVoteHistory(voteHistory))
                 else dispatch(updatePostVoteHistory(voteHistory))
 
-                setLoading(false)
+
             })
+            .then(() => setLoading(false))
     }
 
-    const modalButtonStyle = { marginTop: '15px' }
-    const modalStyle = { width: '90%' }
+    const handleOpenPost = (id) => {
+        togglePostHeight()
+        handleOpenDetails(id)
+    }
+
+    // const modalButtonStyle = { marginTop: '15px' }
+    const modalStyle = { width: window.innerWidth > 600 ? '90%' : '100%', marginTop: '30px' }
 
     const commentMessage = +commentCount === 1 ? 'comment' : 'comments'
 
@@ -108,12 +137,12 @@ export default function Post({
                 <h3>Please log in or sign up to vote on posts!</h3>
                 {loginOrSignup === 'login' && <div>
                     <Login modalStyle={modalStyle} handleCloseModal={handleCloseModal} />
-                    <button style={modalButtonStyle} onClick={handleModalChange} >Sign Up</button>
+                    <button className={styles.switchModalButton} onClick={handleModalChange} >Sign Up</button>
                 </div>}
 
                 {loginOrSignup === 'signup' && <div >
                     <Signup modalStyle={modalStyle} handleCloseModal={handleCloseModal} />
-                    <button style={modalButtonStyle} onClick={handleModalChange} >Log in</button>
+                    <button className={styles.switchModalButton} style={{ marginBottom: '20px' }} onClick={handleModalChange} >Log in</button>
                 </div>}
 
             </Modal>
@@ -127,51 +156,44 @@ export default function Post({
                         disabled={loading}
                         style={{ filter: currentVote === 1 && 'drop-shadow(1.5px 1.5px 2px orangered)' }}
                     />
-
                     <p>{voteScore}</p>
-
                     <img
                         src="/downArrow.png"
                         onClick={downvote}
                         disabled={loading}
                         style={{ filter: currentVote === -1 && 'drop-shadow(1.5px 1.5px 2px blue)' }}
                     />
-
                 </div>
 
-                <div className={styles.postArea} >
-                    <div className={styles.postTopArea} >
-                        <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;</p>
-                        <p><Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
-                        <p>&nbsp;on {date.slice(0, 16)}</p>
-                    </div>
-
-                    <Link to={`/post-detail/${id}`} style={{ color: linkColor }} >
-                        <h2>{title}</h2>
-                    </Link>
-
-                    <details open={!allPostsClosed}>
-                        <summary className={styles.summary} onClick={() => handleOpenDetails(id)} >
-                            <img className={styles.summaryIcon}
-                                src={closedPosts.includes(id) ? imageUrl : '/x-close.png'}
-                                style={{
-                                    // objectFit: 'cover',
-                                    height: closedPosts.includes(id) ? '70px' : '15px',
-                                    width: closedPosts.includes(id) ? '70px' : '15px',
-                                }}
-                                alt='post image icon' />
-                        </summary>
-                        {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
-                        {body && <p>{body}</p>}
-                    </details>
-
-                    {dateModifed && <p>Modified on: {DatedateModifed}</p>}
-
-                    <p><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`${commentCount} ${commentMessage}`} </Link></p>
-                    {activeUser?.id === userId && <button onClick={handleDeletePost} >Delete Post</button>}
+                <div className={styles.postTopArea} >
+                    <p>Posted to <Link to={`/board/${board}`} style={{ color: linkColor }} >{board}</Link> by&nbsp;
+                        <Link style={{ color: linkColor }} to={`/user-page/${userId}`} >{createdBy}</Link></p>
+                    {/* <p>&nbsp;on {date.slice(0, 16)}</p> */}
                 </div>
 
+                <Link to={`/post-detail/${id}`} style={{ color: linkColor }} >
+                    <h2 className={styles.title}>{title}</h2>
+                </Link>
 
+                <img className={styles.summaryIcon}
+                    onClick={() => handleOpenPost(id)}
+                    src={imageUrl || '/text-icon1.png'}
+                    alt='post image icon' />
+
+                {<div style={{ height: postHeight }} className={styles.imageArea} >
+                    {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
+                    {body && <p className={styles.postBody} >{body}</p>}
+                </div>}
+
+                {dateModifed && <p>Modified on: {DatedateModifed}</p>}
+
+                <p className={styles.comments} ><Link style={{ color: linkColor }} to={`/post-detail/${id}`} >{`${commentCount} ${commentMessage}`} </Link></p>
+
+                {/* {activeUser?.id === userId && <button
+                    className={styles.deletePost}
+                    onClick={handleDeletePost} >
+                    Delete Post
+                </button>} */}
             </div>
         </>
     )
