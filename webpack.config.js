@@ -29,6 +29,9 @@ module.exports = {
     new HtmlPlugin({ template: './src/index.html' }),
     new CleanWebpackPlugin(),
     new webpack.EnvironmentPlugin(env),
+    new webpack.DefinePlugin({
+      process: { env: {} }
+    }),
     new CopyPlugin({
       patterns: [{ from: 'public' }],
     }),
