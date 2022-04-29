@@ -11,11 +11,11 @@ export default function HomePage() {
 
     const { posts, loading, error, page, PageButtons } = usePosts()
 
-    const [boardSearchHeight, setBoardSearchHeight] = useState(0)
+    // const [boardSearchHeight, setBoardSearchHeight] = useState(0)
 
-    const toggleBoardSearch = () => {
-        setBoardSearchHeight(curr => curr === 0 ? 200 : 0)
-    }
+    // const toggleBoardSearch = () => {
+    //     setBoardSearchHeight(curr => curr === 0 ? 200 : 0)
+    // }
 
     if (loading) return <LoadingSpinner />
     return (
@@ -31,10 +31,10 @@ export default function HomePage() {
                     PageButtons={PageButtons}
                 />}
             </div>
-            <button className={styles.toggleSearchButton} onClick={toggleBoardSearch} >search boards</button>
+            {/* <button className={styles.toggleSearchButton} onClick={toggleBoardSearch} >search boards</button>
             <div className={styles.boardSearch} style={{ height: boardSearchHeight }} >
                 <BoardSearch />
-            </div>
+            </div> */}
         </div>
     )
 }

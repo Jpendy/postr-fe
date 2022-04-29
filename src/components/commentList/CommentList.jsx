@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import Comment from '../comment/Comment'
 
 export default function CommentList({ depthCounter = 0, comments }) {
-    // console.log('comments', comments)
+
     depthCounter++
     return (
         <ul>

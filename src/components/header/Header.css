@@ -164,9 +164,16 @@
   background-color: #444;
 }
 
+@media screen and (max-width: 450px) {
+  .header-body {
+    width: 100vw;
+  }
+}
+
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
+
   .sidebar {
     padding-top: 15px;
   }

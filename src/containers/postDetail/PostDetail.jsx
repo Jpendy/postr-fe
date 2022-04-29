@@ -15,8 +15,6 @@ export default function PostDetail({ match }) {
     const activeUser = useActiveUser()
     const { postDetails: pd, loading } = usePostDetails(match.params.id)
 
-    console.log('post details', pd)
-
     const date = new Date(+pd.dateCreated).toString()
     const dateMod = new Date(+pd.dateModifed).toString()
 

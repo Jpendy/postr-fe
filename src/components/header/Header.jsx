@@ -28,15 +28,15 @@ export default function Header() {
 
                     {ReactDom.createPortal(
                         <div className={styles.sidebar} style={{ width: navWidth }}>
-                            <a href="javascript:void(0)" className={styles.closebtn} onClick={closeNav}>&times;</a>
-                            <div className={styles.logout} onClick={logout} style={{ height: '40px' }} >Log Out</div>
-                            <Link to='/' onClick={closeNav}>Home</Link>
-                            <Link to='/user-profile' onClick={closeNav} >My Profile</Link>
+                            <a className={styles.closebtn} onClick={closeNav}>&times;</a>
+                            <Link to='/' onClick={closeNav}>Mother Board</Link>
+                            {/* <Link to='/user-profile' onClick={closeNav} >My Profile</Link> */}
                             <Link to='/create-board' onClick={closeNav} >Create Board</Link>
-                            <Link to='/user-inbox' onClick={closeNav} style={{ display: 'flex', justifyContent: 'space-between' }} >
+                            {/* <Link to='/user-inbox' onClick={closeNav} style={{ display: 'flex', justifyContent: 'space-between' }} >
                                 Inbox
                                 {newMessages && < img style={{ width: '15px' }} src="/mail.ico" />}
-                            </Link>
+                            </Link> */}
+                            <div className={styles.logout} onClick={logout} style={{ height: '40px' }} >Log Out</div>
                         </div>, document.getElementById('portal')
                     )}
                 </div>

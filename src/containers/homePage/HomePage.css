@@ -29,7 +29,7 @@
         display: grid;
         justify-content: center;
         grid-template-columns: 2.5% 95% 2.5%;
-        grid-template-rows: 30px 50px auto;
+
         margin-top: 0px;
         grid-template-areas:
             "... searchButton ..."
