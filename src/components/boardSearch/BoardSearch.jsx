@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import useBoards from '../../hooks/useBoards'
 import styles from './BoardSearch.css'
 import { TextField } from '@material-ui/core';
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner'
 
 export default function BoardSearch() {
 
     const [search, setSearch] = useState('')
 
-    const { boards } = useBoards()
+    const { boards, loading } = useBoards()
 
     const boardsList = boards
         .filter(board => {
@@ -25,6 +26,7 @@ export default function BoardSearch() {
 
     const height = 100 + boardsList.length * 26;
 
+    if (loading) return <LoadingSpinner />
     return (
         <div style={{ height: `${height}px` }} className={styles.boardSearch}>
             {/* <Input type="text" placeholder="board search" onChange={e => setSearch(e.target.value)} /> */}

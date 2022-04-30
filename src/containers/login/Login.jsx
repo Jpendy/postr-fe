@@ -49,6 +49,10 @@ export default function Login({ modalStyle, handleCloseModal }) {
                 />
                 <button className={styles.loginButton} >submit</button>
             </form>
+            <button
+                className={styles.loginButton}
+                onClick={() => history.push("/signup")}
+            >sign up</button>
         </div>
     )
 }

@@ -61,6 +61,10 @@ export default function Signup({ modalStyle, handleCloseModal }) {
 
                 <button className={styles.signupButton} >submit</button>
             </form>
+            <button
+                className={styles.signupButton}
+                onClick={() => history.push("/login")}
+            >login</button>
             {error && <p style={{ color: 'red' }} >{`${error}`}</p>}
         </div>
     )
