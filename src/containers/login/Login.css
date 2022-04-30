@@ -42,6 +42,20 @@
     cursor: pointer;
 }
 
+.login-area .loginButton {
+    margin-left: 5px;
+    min-width: 40px;
+    background: #3B8BEB;
+    height: 40px;
+    font-size: 12px;
+    border: 1px solid black;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    font-family: verdana, arial, helvetica, sans-serif;
+    color: #ffffff;
+}
+
 .login-area .googleButton {
     display: flex;
     justify-content: center;
