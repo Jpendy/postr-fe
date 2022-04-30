@@ -57,10 +57,25 @@ export default function Header() {
 
                 <Link className={styles['logo-link']} to='/' > <img className={styles.logo} src='/postr-logo2.png' alt="" /></Link>
 
-                <div className={styles['link-buttons']} >
+                {/* <div className={styles['link-buttons']} >
                     <Link to='/signup' >Sign Up</Link>
                     <Link to='/login' >Login</Link>
-                    {/* <Link to='/' >Front Page</Link> */}
+                </div> */}
+
+                <div className={styles['link-buttons']} >
+
+                    {ReactDom.createPortal(
+                        <div className={styles.sidebar} style={{ width: navWidth }}>
+                            <a className={styles.closebtn} onClick={closeNav}>&times;</a>
+                            <Link to='/' onClick={closeNav}>Mother Board</Link>
+                            <Link to='/search-boards' onClick={closeNav}>Search All Boards</Link>
+                            <Link to='/login' onClick={closeNav}>Login</Link>
+                            <Link to='/signup' onClick={closeNav}>Sign up</Link>
+                        </div>, document.getElementById('portal')
+                    )}
+                </div>
+                <div className={styles['header-right-area']} >
+                    <button className={styles.openbtn} style={{ width: '20px', padding: '0px' }} onClick={openNav}>&#9776;</button>
                 </div>
             </div>
         </div>
