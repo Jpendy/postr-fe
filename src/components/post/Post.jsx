@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { createNewPostVoteHistory, deletePost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
 import { useActiveUser } from '../../providers/AuthProvider'
@@ -34,6 +34,7 @@ export default function Post({
 
     const activeUser = useActiveUser()
     const dispatch = useDispatch()
+    const history = useHistory()
     const postVoteHistory = useSelector(getUserPostVoteHistory)
     const [loading, setLoading] = useState(false)
 
@@ -74,7 +75,8 @@ export default function Post({
 
     const upvote = () => {
         if (!activeUser) {
-            setLoginSignupModalOpen(true)
+            history.push("/login")
+            // setLoginSignupModalOpen(true)
             return
         }
         if (loading) return;
@@ -96,7 +98,8 @@ export default function Post({
 
     const downvote = () => {
         if (!activeUser) {
-            setLoginSignupModalOpen(true)
+            history.push("/login")
+            // setLoginSignupModalOpen(true)
             return
         }
         if (loading) return;
