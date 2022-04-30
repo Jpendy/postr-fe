@@ -33,6 +33,7 @@ export default function Login({ modalStyle, handleCloseModal }) {
 
                 <TextField
                     variant="outlined"
+                    style={{ width: "223px" }}
                     size="small"
                     type="email"
                     label='Email'
@@ -42,6 +43,7 @@ export default function Login({ modalStyle, handleCloseModal }) {
                 <TextField
                     variant="outlined"
                     size="small"
+                    style={{ width: "223px" }}
                     type='password'
                     label='Password'
                     required={true}
