@@ -54,6 +54,7 @@
     transition: 0.2s ease-in-out;
     font-family: verdana, arial, helvetica, sans-serif;
     color: #ffffff;
+    text-align: center;
 }
 
 .login-area .googleButton {
@@ -117,6 +118,7 @@
         transition: 0.2s ease-in-out;
         font-family: verdana, arial, helvetica, sans-serif;
         color: #ffffff;
+        text-align: center;
     }
 
     .login-area .googleButton {
