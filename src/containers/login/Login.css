@@ -8,6 +8,9 @@
     box-shadow: 1px 1px 2px black;
     background-color: #EEE4E1;
     border: 1px solid black;
+    margin-top: 30px;
+    align-items: center;
+    margin-bottom: 200px;
 
     img {
         width: 40%;
@@ -23,18 +26,6 @@
     }
 }
 
-
-
-.login-area {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-
-
 .login-area button {
     margin: 10px;
     height: 30px;
@@ -44,6 +35,7 @@
 
 .login-area .loginButton {
     margin-left: 5px;
+    padding: 0;
     min-width: 40px;
     background: #3B8BEB;
     height: 40px;
@@ -54,6 +46,7 @@
     transition: 0.2s ease-in-out;
     font-family: verdana, arial, helvetica, sans-serif;
     color: #ffffff;
+    text-align: center;
 }
 
 .login-area .googleButton {
@@ -82,6 +75,8 @@
         box-shadow: 1px 1px 2px black;
         background-color: #EEE4E1;
         border: 1px solid black;
+        margin-top: 30px;
+        align-items: center;
 
         img {
             width: 40%;
@@ -97,16 +92,9 @@
         }
     }
 
-    .login-area {
-        margin-top: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-
     .login-area .loginButton {
         margin-left: 5px;
+        padding: 0;
         min-width: 40px;
         background: #3B8BEB;
         height: 40px;
@@ -117,6 +105,7 @@
         transition: 0.2s ease-in-out;
         font-family: verdana, arial, helvetica, sans-serif;
         color: #ffffff;
+        text-align: center;
     }
 
     .login-area .googleButton {

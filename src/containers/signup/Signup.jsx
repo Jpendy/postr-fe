@@ -26,7 +26,7 @@ export default function Signup({ modalStyle, handleCloseModal }) {
     }
 
     return (
-        <div className={styles['sign-up-area']} style={modalStyle} >
+        <div className={styles['sign-up-area']} >
             <img src='/postr-logo2.png' alt='' />
             <button onClick={googleOAuth} className={styles.googleButton} > <img src="google-logo.png" alt="" /> Sign up with Google</button>
             <form onSubmit={handleSubmit} >
@@ -34,6 +34,7 @@ export default function Signup({ modalStyle, handleCloseModal }) {
                 <TextField
                     variant="outlined"
                     size="small"
+                    style={{ width: "223px" }}
                     fullWidth
                     type="email"
                     label='Email'
@@ -43,6 +44,7 @@ export default function Signup({ modalStyle, handleCloseModal }) {
                 <TextField
                     variant="outlined"
                     size="small"
+                    style={{ width: "223px" }}
                     fullWidth
                     type="text"
                     label="Display Name"
@@ -52,6 +54,7 @@ export default function Signup({ modalStyle, handleCloseModal }) {
                 <TextField
                     variant="outlined"
                     size="small"
+                    style={{ width: "223px" }}
                     fullWidth
                     type='password'
                     label='Password'

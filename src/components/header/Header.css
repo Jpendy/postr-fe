@@ -120,6 +120,8 @@
   padding-top: 60px;
   /* Place content 60px from the top */
   transition: 0.5s;
+  font-family: verdana, arial, helvetica, sans-serif;
+  ;
   /* 0.5 second transition effect to slide in the sidebar */
 }
 
@@ -128,7 +130,7 @@
 .sidebar .logout {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
   color: #818181;
   color: white;
   display: block;
