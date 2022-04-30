@@ -7,7 +7,7 @@ export default function BoardSearchPage() {
     if (window.innerWidth < 400) width = '100%';
 
     return (
-        <div style={{ display: "flex", justifyContent: "center" }} >
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "30px" }} >
             <div
                 style={{ width }}
             >

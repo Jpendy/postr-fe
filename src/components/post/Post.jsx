@@ -135,7 +135,7 @@ export default function Post({
                 handleCloseModal={handleCloseModal}
             >
                 <h3>Please log in or sign up to vote on posts!</h3>
-                {loginOrSignup === 'login' && <div>
+                {loginOrSignup === 'login' && <div style={{ marginBottom: '20px' }} >
                     <Login modalStyle={modalStyle} handleCloseModal={handleCloseModal} />
                     <button className={styles.switchModalButton} onClick={handleModalChange} >Sign Up</button>
                 </div>}

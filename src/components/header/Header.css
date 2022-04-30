@@ -113,7 +113,8 @@
   border: 5px solid white;
   background-color: #111;
   /* Black*/
-  background-color: #05438f;
+  /* background-color: #05438f;*/
+  background-color: #1f66bd;
   overflow-x: hidden;
   /* Disable horizontal scroll */
   padding-top: 60px;

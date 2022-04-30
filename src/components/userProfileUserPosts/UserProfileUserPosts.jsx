@@ -2,6 +2,7 @@ import React from 'react'
 import { useActiveUser } from '../../providers/AuthProvider'
 import PostList from '../../components/postList/PostList'
 import useUserPosts from '../../hooks/useUserPosts'
+import LoadingSpinner from '../loadingSpinner/LoadingSpinner'
 
 export default function UserProfileUserPosts() {
 
@@ -9,7 +10,7 @@ export default function UserProfileUserPosts() {
 
     const { posts, loading, error } = useUserPosts(activeUser.id)
 
-    if (loading) return <h3>Loading...</h3>
+    if (loading) return <LoadingSpinner />
     return (
         <div style={{ textAlign: 'center' }} >
             {error && <p style={{ color: 'red' }} >{error}</p>}

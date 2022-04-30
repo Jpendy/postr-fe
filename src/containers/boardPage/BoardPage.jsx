@@ -8,6 +8,7 @@ import CreatePost from '../../components/createPost/CreatePost'
 import { useActiveUser } from '../../providers/AuthProvider'
 import styles from './BoardPage.css'
 import Modal from '../../components/modal/Modal'
+import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
 
 export default function BoardPage({ match }) {
 
@@ -26,8 +27,6 @@ export default function BoardPage({ match }) {
     const [linkColor, setLinkColor] = useState('')
 
     const owner = board.userId === activeUser?.id
-
-    console.log(activeUser)
 
     useEffect(() => {
         setError(null)
@@ -49,7 +48,7 @@ export default function BoardPage({ match }) {
 
     const handleOpenCreatePost = () => setCreatePostBool(curr => !curr)
 
-    if (loading) return <h3>Loading...</h3>
+    if (loading) return <LoadingSpinner />
     return (
         <div className={styles.boardPage} style={{ backgroundColor: bgColor || board.bgColor }}>
 

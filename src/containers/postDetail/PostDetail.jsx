@@ -5,6 +5,7 @@ import { useActiveUser } from '../../providers/AuthProvider'
 import CommentList from '../../components/commentList/CommentList'
 import CreateComment from '../../components/createComment/CreateComment'
 import styles from './PostDetail.css'
+import LoadingSpinner from '../../components/loadingSpinner/LoadingSpinner'
 
 // const commentlist = forwardRef((props, commentEls) => (
 //     <CommentList commentEls={commentEls} comments={pd.comments} />
@@ -18,7 +19,7 @@ export default function PostDetail({ match }) {
     const date = new Date(+pd.dateCreated).toString()
     const dateMod = new Date(+pd.dateModifed).toString()
 
-    if (loading) return <h2>Loading...</h2>
+    if (loading) return <LoadingSpinner />
     return (
         <div className={styles.postArea} >
 
