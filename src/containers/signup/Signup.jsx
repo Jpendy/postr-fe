@@ -26,7 +26,7 @@ export default function Signup({ modalStyle, handleCloseModal }) {
     }
 
     return (
-        <div className={styles['sign-up-area']} style={modalStyle} >
+        <div className={styles['sign-up-area']} >
             <img src='/postr-logo2.png' alt='' />
             <button onClick={googleOAuth} className={styles.googleButton} > <img src="google-logo.png" alt="" /> Sign up with Google</button>
             <form onSubmit={handleSubmit} >
