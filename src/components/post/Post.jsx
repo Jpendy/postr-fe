@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { createNewPostVoteHistory, deletePost, updatePostVote, updatePostVoteHistory } from '../../actions/reducerActions'
 import { useDispatch, useSelector } from '../../providers/AppProvider'
@@ -49,12 +49,10 @@ export default function Post({
 
     const [postHeight, setPostHeight] = useState(0)
 
+    const imageArea = useRef(null);
+
     const togglePostHeight = () => {
-        const vw = window.innerWidth / 100;
-        const lineHeight = 28;
-        const lines = Math.max(body?.length / 40, 2) || 0;
-        const textHeight = Math.max(lines * lineHeight, 80);
-        const height = imageHeight + textHeight
+        const height = imageArea.current.scrollHeight;
         setPostHeight(curr => curr === 0 ? height : 0)
     }
 
@@ -183,7 +181,7 @@ export default function Post({
                     src={imageUrl || '/text-icon1.png'}
                     alt='post image icon' />
 
-                {<div style={{ height: postHeight }} className={styles.imageArea} >
+                {<div ref={imageArea} style={{ height: postHeight }} className={styles.imageArea} >
                     {imageUrl && <Link to={`/post-detail/${id}`} style={{ color: linkColor }} ><img className={styles.postImage} src={imageUrl} /></Link>}
                     {body && <p className={styles.postBody} >{body}</p>}
                 </div>}
